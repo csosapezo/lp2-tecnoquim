@@ -16,12 +16,13 @@ public class UsuarioMySQL implements UsuarioDAO {
     CallableStatement cs;
     
     @Override
-    public void insertar(Usuario usuario) {
+    public void insertar(Usuario usuario, int idTrabajador) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_USUARIO(?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_USUARIO(?,?,?,?)}"); // Modificar el SQL
             cs.setString("_USERNAME", usuario.getUsername());
             cs.setString("_CONTRASENA",usuario.getPassword());
+            cs.setInt("_FK_ID__TRABAJADOR", idTrabajador);
             
             cs.registerOutParameter("_ID_USUARIO", java.sql.Types.INTEGER);
             cs.executeUpdate();
@@ -34,11 +35,12 @@ public class UsuarioMySQL implements UsuarioDAO {
     }
 
     @Override
-    public void actualizar(Usuario usuario) {
+    public void actualizar(Usuario usuario, int idTrabajador) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_USUARIO(?,?,?)}");
+            cs = con.prepareCall("{call ACTUALIZAR_USUARIO(?,?,?,?)}"); // Modificar el SQL
             cs.setInt("_ID_USUARIO", usuario.getIdUsuario());
+            cs.setInt("_FK_ID__TRABAJADOR", idTrabajador);
             cs.setString("_USERNAME", usuario.getUsername());
             cs.setString("_CONTRASENA",usuario.getPassword());
                     
@@ -93,6 +95,33 @@ public class UsuarioMySQL implements UsuarioDAO {
             try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
         }
         return usuario;
+    }
+    
+    @Override
+    public boolean verificar(Usuario usuario) {
+        
+        boolean resultado;
+        
+        try{
+            con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            cs = con.prepareCall("{call VERIFICAR_USUARIO(?,?,?)}");
+            cs.setString("_USERNAME", usuario.getUsername());
+            cs.setString("_CONTRASENA",usuario.getPassword());
+            
+            cs.registerOutParameter("_ES_VALIDO", java.sql.Types.TINYINT);
+            cs.executeUpdate();
+            
+            resultado =  cs.getBoolean("_ES_VALIDO");
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+            
+            resultado = false;
+        }finally{
+            try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
+        }
+        
+        return resultado;
     }
     
 }

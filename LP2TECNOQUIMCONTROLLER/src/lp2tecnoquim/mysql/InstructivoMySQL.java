@@ -26,12 +26,13 @@ public class InstructivoMySQL implements InstructivoDAO {
     CallableStatement cs;
     
     @Override
-    public void insertar(Instructivo instructivo) {
+    public void insertar(Instructivo instructivo, int idProducto) {
          try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_INSTRUCTIVO(?,?)}");
-            
+            cs = con.prepareCall("{call INSERTAR_INSTRUCTIVO(?,?,?)}"); // Modificar el SQL
+             
             cs.setString("_ACTIVIDADES", instructivo.getActividades());
+            cs.setInt("_FK_ID_PRODUCTO", idProducto);
             
             cs.registerOutParameter("_ID_INSTRUCTIVO", java.sql.Types.INTEGER);
             cs.executeUpdate();
@@ -44,10 +45,11 @@ public class InstructivoMySQL implements InstructivoDAO {
     }
 
     @Override
-    public void actualizar(Instructivo instructivo) {
+    public void actualizar(Instructivo instructivo, int idProducto) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_INSTRUCTIVO(?,?)}");
+            cs = con.prepareCall("{call ACTUALIZAR_INSTRUCTIVO(?,?,?)}"); // Modificar el SQL
+            cs.setInt("_FK_ID_PRODUCTO", idProducto);
             cs.setInt("_ID_INSTRUCTIVO", instructivo.getId());
             cs.setString("_ACTIVIDADES", instructivo.getActividades());          
             cs.executeUpdate();

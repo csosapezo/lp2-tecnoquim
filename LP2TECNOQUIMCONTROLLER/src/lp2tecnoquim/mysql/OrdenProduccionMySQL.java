@@ -29,7 +29,7 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
     public void insertar(OrdenProduccion ordenProduccion, int idPMP) {
          try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_ORDENPROD(?,?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_ORDENPROD(?,?,?)}"); // Modificar el SQL
             
             cs.setDate("_FECHA", new java.sql.Date(ordenProduccion.getFecha().getTime()));
             cs.setInt("_FK_ID_PMP", idPMP);
@@ -79,12 +79,13 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
 
 
     @Override
-    public ArrayList<OrdenProduccion> listar() {
+    public ArrayList<OrdenProduccion> listar(int idPMP) {
        ArrayList<OrdenProduccion> ordenProduccions = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_ORDENPROD()}");
+            cs = con.prepareCall("{call LISTAR_ORDENPROD(?)}"); // Modificar el SQL
+            cs.setInt("_FK_ID_PMP", idPMP);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 OrdenProduccion  o = new OrdenProduccion();
