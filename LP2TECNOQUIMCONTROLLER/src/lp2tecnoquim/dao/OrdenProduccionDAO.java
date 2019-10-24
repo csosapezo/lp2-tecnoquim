@@ -17,6 +17,6 @@ public interface OrdenProduccionDAO {
     void insertar(OrdenProduccion orden, int idPMP);
     void actualizar(OrdenProduccion orden, int idPMP);
     void eliminar(int id);
-    ArrayList<OrdenProduccion> listar();
+    ArrayList<OrdenProduccion> listar(int idPMP);
     
 }

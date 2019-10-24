@@ -14,10 +14,11 @@ import lp2tecnoquim.model.Usuario;
  */
 public interface UsuarioDAO {
     
-    void insertar(Usuario usuario);
-    void actualizar(Usuario usuario);
+    void insertar(Usuario usuario, int idTrabajador);
+    void actualizar(Usuario usuario, int idTrabajador);
     void eliminar(int idUsuario);
     ArrayList<Usuario> listar();
+    boolean verificar(Usuario usuario);
     
     
 }

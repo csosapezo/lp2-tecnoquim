@@ -15,8 +15,8 @@ import lp2tecnoquim.model.Instructivo;
  */
 public interface InstructivoDAO {
     
-    void insertar(Instructivo instructivo);
-    void actualizar(Instructivo instructivo);
+    void insertar(Instructivo instructivo, int idProducto);
+    void actualizar(Instructivo instructivo, int idProducto);
     void eliminar(int id);
     ArrayList<Instructivo> listar();
     
