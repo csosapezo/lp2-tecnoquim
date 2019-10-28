@@ -38,6 +38,7 @@ public class Servicio {
 //    }
     
     //Almacen
+    @WebMethod(operationName = "insertarAlmacen")
     public void insertarAlmacen(@WebParam(name = "almacen") Almacen almacen){
         DBController.insertarAlmacen(almacen);
     }
@@ -51,6 +52,7 @@ public class Servicio {
     }
         
     //DetalleAlmacenInsumo
+    @WebMethod(operationName = "insertarDetalleAlmacenInsumo")
     public void insertarDetalleAlmacenInsumo(@WebParam(name = "detalleAlmacenInsumo") DetalleAlmacenInsumo detalleAlmacenInsumo){
         DBController.insertarDetalleAlmacenInsumo(detalleAlmacenInsumo);
     }
@@ -63,6 +65,7 @@ public class Servicio {
         return DBController.listarDetalleAlmacenInsumo();
     }
     //DetalleAlmacenProducto
+    @WebMethod(operationName = "insertarDetalleAlmacenProducto")
     public void insertarDetalleAlmacenProducto(@WebParam(name = "detalleAlmacenProducto") DetalleAlmacenProducto detalleAlmacenProducto){
         DBController.insertarDetalleAlmacenProducto(detalleAlmacenProducto);
     }
@@ -74,20 +77,8 @@ public class Servicio {
     public ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(){
         return DBController.listarDetalleAlmacenProducto();
     }
-    //Maquinaria
-    public void insertarMaquinaria(@WebParam(name = "maquinaria") Maquinaria maquinaria){
-        DBController.insertarMaquinaria(maquinaria);
-    }
-    @WebMethod(operationName = "actualizarMaquinaria")
-    public void actualizarMaquinaria(@WebParam(name = "maquinaria") Maquinaria maquinaria){
-        DBController.actualizarMaquinaria(maquinaria);
-    }
-    @WebMethod(operationName = "listarMaquinaria")
-    public ArrayList<Maquinaria> listarMaquinaria(){
-        return DBController.listarMaquinaria();
-    }
-    
     //DetalleMaquinaria
+    @WebMethod(operationName = "insertarDetalleMaquinaria")
     public void insertarDetalleMaquinaria(@WebParam(name = "maquinaria") DetalleMaquinaria maquinaria,
             @WebParam(name = "idPMP") int idPMP){
         DBController.insertarDetalleMaquinaria(maquinaria,idPMP);
@@ -118,6 +109,7 @@ public class Servicio {
     }
     
     //LineaInsumo
+    @WebMethod(operationName = "insertarLineaInsumo")
     public void insertarLineaInsumo(@WebParam(name = "lineaInsumo") LineaInsumo lineaInsumo,
             @WebParam(name = "idInstructivo") int idInstructivo){
         DBController.insertarLineaInsumo(lineaInsumo,idInstructivo);
@@ -133,14 +125,15 @@ public class Servicio {
     }
     
      //LineaOrden
-    public void insertarLineaOrden(@WebParam(name = "lineaInsumo") LineaOrden lineaInsumo,
+    @WebMethod(operationName = "insertarLineaOrden")
+    public void insertarLineaOrden(@WebParam(name = "lineaOrden") LineaOrden lineaOrden,
             @WebParam(name = "idOrden") int idOrden){
-        DBController.insertarLineaOrden(lineaInsumo,idOrden);
+        DBController.insertarLineaOrden(lineaOrden,idOrden);
     }
     @WebMethod(operationName = "actualizarLineaOrden")
-    public void actualizarLineaOrden(@WebParam(name = "lineaInsumo") LineaOrden lineaInsumo,
+    public void actualizarLineaOrden(@WebParam(name = "lineaOrden") LineaOrden lineaOrden,
             @WebParam(name = "idOrden") int idOrden){
-        DBController.actualizarLineaOrden(lineaInsumo,idOrden);
+        DBController.actualizarLineaOrden(lineaOrden,idOrden);
     }
     @WebMethod(operationName = "listarLineaOrden")
     public ArrayList<LineaOrden> listarLineaOrden(@WebParam(name = "idOrden") int idOrden){
@@ -148,6 +141,7 @@ public class Servicio {
     }
     
     //LineaProyeccion
+    @WebMethod(operationName = "insertarLineaProyeccion")
     public void insertarLineaProyeccion(@WebParam(name = "lineaProyeccion") LineaProyeccion lineaProyeccion,
             @WebParam(name = "idProyeccion") int idProyeccion){
         DBController.insertarLineaProyeccion(lineaProyeccion,idProyeccion);
@@ -163,6 +157,7 @@ public class Servicio {
     }
     
     //Maquinaria
+    @WebMethod(operationName = "insertarMaquinaria")
     public void insertarMaquinaria(@WebParam(name = "maquinaria") Maquinaria maquinaria){
         DBController.insertarMaquinaria(maquinaria);
     }
@@ -175,5 +170,151 @@ public class Servicio {
         return DBController.listarMaquinaria();
     }
     
+    //Mensaje
+    @WebMethod(operationName = "insertarMensaje")
+    public void insertarMensaje(@WebParam(name = "mensaje") Mensaje mensaje){
+        DBController.enviarMensaje(mensaje);
+    }
+    @WebMethod(operationName = "listarMensaje")
+    public ArrayList<Mensaje> listarMensaje(@WebParam(name = "idReceptor") int idReceptor){
+        return DBController.listarMensajes(idReceptor);
+    }
+    
+    //Orden de Produccion
+    @WebMethod(operationName = "insertarOrdenProduccion")
+    public void insertarOrdenProduccion(@WebParam(name = "ordenProduccion") OrdenProduccion ordenProduccion,int idPMP){
+        DBController.insertarOrdenProduccion(ordenProduccion, idPMP);        
+    }
 
+    @WebMethod(operationName = "actualizarOrdenProduccion")
+    public void actualizarOrdenProduccion(@WebParam(name = "ordenProduccion") OrdenProduccion ordenProduccion,int idPMP){
+        DBController.insertarOrdenProduccion(ordenProduccion, idPMP);        
+    }
+    
+    @WebMethod(operationName = "listarOrdenesProduccion")
+    public ArrayList<OrdenProduccion> listarOrdenesProduccion(int idPMP){
+        return DBController.listarOrdenesProduccion(idPMP);        
+    }
+    
+    //Plan Maestro de Produccion
+    @WebMethod(operationName = "insertarPMP")
+    public void insertarPMP(@WebParam(name = "politicaStock") PlanMaestroProduccion politicaStock){
+        DBController.insertarPMP(politicaStock);        
+    }
+
+    @WebMethod(operationName = "actualizarPMP")
+    public void actualizarPMP(@WebParam(name = "politicaStock") PlanMaestroProduccion politicaStock){
+        DBController.insertarPMP(politicaStock);        
+    }
+    
+    @WebMethod(operationName = "listarPMP")
+    public ArrayList<PlanMaestroProduccion> listarPMP(){
+        return DBController.listarPMP();        
+    }
+    
+    //PoliticaStock
+    @WebMethod(operationName = "insertarPoliticaStock")
+    public void insertarPoliticaStock(@WebParam(name = "politicaStock") PoliticaStock politicaStock){
+        DBController.insertarPoliticaStock(politicaStock);        
+    }
+
+    @WebMethod(operationName = "actualizarPoliticaStock")
+    public void actualizarPoliticaStock(@WebParam(name = "politicaStock") PoliticaStock politicaStock){
+        DBController.insertarPoliticaStock(politicaStock);        
+    }
+    
+    @WebMethod(operationName = "listarPoliticaStock")
+    public ArrayList<PoliticaStock> listarPoliticaStock(){
+        return DBController.listarPoliticaStock();        
+    }
+    //Producto
+    @WebMethod(operationName = "insertarProducto")
+    public void insertarProducto(@WebParam(name = "producto") Producto producto){
+        DBController.insertarProducto(producto);        
+    }
+
+    @WebMethod(operationName = "actualizarProducto")
+    public void actualizarProducto(@WebParam(name = "producto") Producto producto){
+        DBController.insertarProducto(producto);        
+    }
+    
+    @WebMethod(operationName = "listarProductos")
+    public ArrayList<Producto> listarProductos(){
+        return DBController.listarProductos();        
+    }
+    //ProyeccionVenta
+    @WebMethod(operationName = "insertarProyeccionVenta")
+    public void insertarProyeccionVenta(@WebParam(name = "proyeccionVenta") ProyeccionVenta proyeccionVenta){
+        DBController.insertarProyeccionVenta(proyeccionVenta);        
+    }
+
+    @WebMethod(operationName = "actualizarProyeccionVenta")
+    public void actualizarProyeccionVenta(@WebParam(name = "proyeccionVenta") ProyeccionVenta proyeccionVenta){
+        DBController.insertarProyeccionVenta(proyeccionVenta);        
+    }
+    
+    @WebMethod(operationName = "listarProyeccionVenta")
+    public ArrayList<ProyeccionVenta> listarProyeccionVenta(){
+        return DBController.listarProyeccionVenta();        
+    }
+    //Rol
+    @WebMethod(operationName = "insertarRol")
+    public void insertarRol(@WebParam(name = "rol") Rol rol){
+        DBController.insertarRol(rol);        
+    }
+
+    @WebMethod(operationName = "actualizarRol")
+    public void actualizarRol(@WebParam(name = "rol") Rol rol){
+        DBController.insertarRol(rol);        
+    }
+    
+    @WebMethod(operationName = "listarRoles")
+    public ArrayList<Rol> listarRoles(){
+        return DBController.listarRoles();        
+    }
+    //Trabajador
+    @WebMethod(operationName = "insertarTrabajador")
+    public void insertarTrabajador(@WebParam(name = "trabajador") Trabajador trabajador){
+        DBController.insertarTrabajador(trabajador);        
+    }
+
+    @WebMethod(operationName = "actualizarTrabajador")
+    public void actualizarTrabajador(@WebParam(name = "trabajador") Trabajador trabajador){
+        DBController.actualizarTrabajador(trabajador);        
+    }
+    
+    @WebMethod(operationName = "listarTrabajadores")
+    public ArrayList<Trabajador> listarTrabajadores(){
+        return DBController.listarTrabajadores();        
+    }
+    //Usuario
+    @WebMethod(operationName = "insertarUsuario")
+    public void insertarUsuario(@WebParam(name = "usuario") Usuario usuario,
+            @WebParam(name = "idTrabajador") int idTrabajador){
+        DBController.insertarUsuario(usuario,idTrabajador);        
+    }
+
+    @WebMethod(operationName = "actualizarUsuario")
+    public void actualizarUsuario(@WebParam(name = "usuario") Usuario usuario,
+            @WebParam(name = "idTrabajador") int idTrabajador){
+        DBController.actualizarUsuario(usuario,idTrabajador);        
+    }
+    
+    @WebMethod(operationName = "listarUsuarios")
+    public ArrayList<Usuario> listarUsuarios(){
+        return DBController.listarUsuarios();        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+    
+    
            
