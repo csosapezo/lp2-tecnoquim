@@ -156,7 +156,7 @@ public abstract class DBController {
           daoFactory.getLineaProyeccionDAO().eliminar(idLineaProyeccion);
       }
       
-      public ArrayList<LineaProyeccion> listarLineaProyeccion(int idProyeccion){
+      public static ArrayList<LineaProyeccion> listarLineaProyeccion(int idProyeccion){
           return daoFactory.getLineaProyeccionDAO().listar(idProyeccion);
       }
       
