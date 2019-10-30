@@ -24,6 +24,7 @@ import lp2tecnoquim.model.Maquinaria;
 public class MaquinariaMySQL implements MaquinariaDAO {
     Connection con = null;
     CallableStatement cs;
+    Statement st=null;
     
     @Override
     public void insertar(Maquinaria maquinaria) {
@@ -82,8 +83,10 @@ public class MaquinariaMySQL implements MaquinariaDAO {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_MAQUINARIA()}");
-            ResultSet rs = cs.executeQuery();
+            st = con.createStatement();
+//            ResultSet rs = st.executeQuery("SELECT * FROM MAQUINARIA");
+//            cs = con.prepareCall("{call LISTAR_MAQUINARIA()}");
+            ResultSet rs = st.executeQuery("SELECT * FROM MAQUINARIA");
             while(rs.next()){
                 Maquinaria  m = new Maquinaria();
                 

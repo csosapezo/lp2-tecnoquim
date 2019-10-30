@@ -11,7 +11,7 @@ package lp2tecnoquim.config;
  */
 public class DBManager {
     
-    public static String url = "jdbc:mysql://lp2ta.c8ips0ntznjf.us-east-1.rds.amazonaws.com:3306/basetecnoquim";
+    public static String url = "jdbc:mysql://lp2ta.c8ips0ntznjf.us-east-1.rds.amazonaws.com:3306/basetecnoquim?useSSL=false";
     public static String user = "admin";
     public static String password = "abcd1234";
     

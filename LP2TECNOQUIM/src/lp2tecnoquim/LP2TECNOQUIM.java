@@ -24,12 +24,12 @@ public class LP2TECNOQUIM {
         // TODO code application logic here
         //Ingresar Usuario
         
-        Usuario u = new Usuario();
-        
-        u.setUsername("ctrujillo");
-        u.setPassword("yacai");
-        
-        DAOFactory.getDAOFactory().getUsuarioDAO().insertar(u);
+//        Usuario u = new Usuario();
+//        
+//        u.setUsername("ctrujillo");
+//        u.setPassword("yacai");
+//        
+//        DAOFactory.getDAOFactory().getUsuarioDAO().insertar(u);
         
     }
     
