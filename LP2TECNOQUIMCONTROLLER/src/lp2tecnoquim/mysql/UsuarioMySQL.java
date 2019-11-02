@@ -6,8 +6,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import lp2tecnoquim.config.DBController;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.UsuarioDAO;
+import lp2tecnoquim.model.Rol;
+import lp2tecnoquim.model.Trabajador;
 import lp2tecnoquim.model.Usuario;
 
 public class UsuarioMySQL implements UsuarioDAO {
@@ -98,19 +101,24 @@ public class UsuarioMySQL implements UsuarioDAO {
     }
     
     @Override
-    public boolean verificar(Usuario usuario) {
-        
+    public Trabajador verificar(Usuario usuario) {
+        Trabajador trabajador = new Trabajador();
+        trabajador = null;
+        ArrayList<Trabajador> trabajadores = new ArrayList<>(); 
+        int id_trabajador=-1;
         boolean resultado;
         
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call VERIFICAR_USUARIO(?,?,?)}");
+            cs = con.prepareCall("{call VERIFICAR_USUARIO(?,?,?,?)}");
             cs.setString("_USERNAME", usuario.getUsername());
             cs.setString("_CONTRASENA",usuario.getPassword());
             
             cs.registerOutParameter("_ES_VALIDO", java.sql.Types.TINYINT);
+            cs.registerOutParameter("_ID_TRABAJADOR", java.sql.Types.TINYINT);
             cs.executeUpdate();
             
+            id_trabajador = cs.getInt("_ID_TRABAJADOR");
             resultado =  cs.getBoolean("_ES_VALIDO");
             
         }catch(SQLException ex){
@@ -121,7 +129,18 @@ public class UsuarioMySQL implements UsuarioDAO {
             try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
         }
         
-        return resultado;
+        if(resultado){
+            trabajadores = DBController.listarTrabajadores();
+            for (Trabajador trabajadorSel : trabajadores) { 		      
+                if(trabajadorSel.getId() == id_trabajador){
+                    trabajador = trabajadorSel;
+                }                
+            }
+        }
+        else{
+            trabajador = null;
+        }
+        return trabajador;
     }
     
 }

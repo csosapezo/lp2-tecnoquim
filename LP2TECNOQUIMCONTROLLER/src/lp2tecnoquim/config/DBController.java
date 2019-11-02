@@ -332,7 +332,7 @@ public abstract class DBController {
           return daoFactory.getUsuarioDAO().listar();
       }
       
-      public static boolean verificarUsuario(Usuario usuario){
+      public static Trabajador verificarUsuario(Usuario usuario){
           return daoFactory.getUsuarioDAO().verificar(usuario);
       }
 }
