@@ -25,6 +25,8 @@ public class DetalleMaquinaria {
     }
 
     public DetalleMaquinaria() {
+        maquinaria = new Maquinaria();
+        fecha = new Date();
     }
 
     public int getIdDetalleM() {

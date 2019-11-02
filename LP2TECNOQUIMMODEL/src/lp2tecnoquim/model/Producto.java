@@ -19,9 +19,9 @@ public class Producto {
     private Instructivo instructivo;
     
     public Producto(){
-        
-        
+        instructivo = new Instructivo();
     }
+    
     public Producto(  String n,  float g, String p, Instructivo i){
         nombre=n;
         granularidad=g;

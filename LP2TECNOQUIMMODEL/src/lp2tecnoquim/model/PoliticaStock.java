@@ -16,6 +16,7 @@ public class PoliticaStock {
     private int cantMin;
 
     public PoliticaStock() {
+        producto = new Producto();
     }
 
     public PoliticaStock(Producto producto, int cantMax, int cantMin) {

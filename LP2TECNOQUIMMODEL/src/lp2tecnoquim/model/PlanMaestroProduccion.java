@@ -5,8 +5,8 @@
  */
 package lp2tecnoquim.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -16,14 +16,18 @@ public class PlanMaestroProduccion {
     private int id;
     private Date periodo;
     private Estado estado;
-    private List<OrdenProduccion> ordenes;
-    private List<Maquinaria> maquinarias;
+    private ArrayList<OrdenProduccion> ordenes;
+    private ArrayList<Maquinaria> maquinarias;
     private Trabajador responsable;
 
     public PlanMaestroProduccion() {
+        periodo = new Date();
+        ordenes = new ArrayList<OrdenProduccion>();
+        maquinarias = new ArrayList<Maquinaria>();
+        responsable = new Trabajador();
     }
 
-    public PlanMaestroProduccion(Date periodo, Estado estado, List<OrdenProduccion> ordenes, List<Maquinaria> maquinarias, Trabajador responsable) {
+    public PlanMaestroProduccion(Date periodo, Estado estado, ArrayList<OrdenProduccion> ordenes, ArrayList<Maquinaria> maquinarias, Trabajador responsable) {
         this.periodo = periodo;
         this.estado = estado;
         this.ordenes = ordenes;
@@ -55,19 +59,19 @@ public class PlanMaestroProduccion {
         this.estado = estado;
     }
 
-    public List<OrdenProduccion> getOrdenes() {
+    public ArrayList<OrdenProduccion> getOrdenes() {
         return ordenes;
     }
 
-    public void setOrdenes(List<OrdenProduccion> ordenes) {
+    public void setOrdenes(ArrayList<OrdenProduccion> ordenes) {
         this.ordenes = ordenes;
     }
 
-    public List<Maquinaria> getMaquinarias() {
+    public ArrayList<Maquinaria> getMaquinarias() {
         return maquinarias;
     }
 
-    public void setMaquinarias(List<Maquinaria> maquinarias) {
+    public void setMaquinarias(ArrayList<Maquinaria> maquinarias) {
         this.maquinarias = maquinarias;
     }
 

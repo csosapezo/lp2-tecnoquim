@@ -111,7 +111,7 @@ public class UsuarioMySQL implements UsuarioDAO {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call VERIFICAR_USUARIO(?,?,?,?)}");
-            cs.setString("_USERNAME", usuario.getUsername());
+            cs.setString("_USUARIO", usuario.getUsername());
             cs.setString("_CONTRASENA",usuario.getPassword());
             
             cs.registerOutParameter("_ES_VALIDO", java.sql.Types.TINYINT);
@@ -136,9 +136,6 @@ public class UsuarioMySQL implements UsuarioDAO {
                     trabajador = trabajadorSel;
                 }                
             }
-        }
-        else{
-            trabajador = null;
         }
         return trabajador;
     }

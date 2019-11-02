@@ -5,8 +5,8 @@
  */
 package lp2tecnoquim.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -15,13 +15,15 @@ import java.util.List;
 public class OrdenProduccion {
     
     private int id;
-    private List<LineaOrden> lineasOrden;
+    private ArrayList<LineaOrden> lineasOrden;
     private Date fecha;
 
     public OrdenProduccion() {
+        lineasOrden = new ArrayList<LineaOrden>();
+        fecha = new Date();
     }
 
-    public OrdenProduccion(List<LineaOrden> lineasOrden, Date fecha) {
+    public OrdenProduccion(ArrayList<LineaOrden> lineasOrden, Date fecha) {
         this.lineasOrden = lineasOrden;
         this.fecha = fecha;
     }
@@ -37,15 +39,13 @@ public class OrdenProduccion {
     }
 
 
-    public List<LineaOrden> getLineasOrden() {
+    public ArrayList<LineaOrden> getLineasOrden() {
         return lineasOrden;
     }
 
-
-    public void setLineasOrden(List<LineaOrden> lineasOrden) {
+    public void setLineasOrden(ArrayList<LineaOrden> lineasOrden) {
         this.lineasOrden = lineasOrden;
     }
-
 
     public Date getFecha() {
         return fecha;

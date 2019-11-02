@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.TrabajadorDAO;
+import lp2tecnoquim.model.Rol;
 import lp2tecnoquim.model.Trabajador;
+import lp2tecnoquim.model.Usuario;
 
 public class TrabajadorMySQL implements TrabajadorDAO{
 
@@ -80,7 +82,7 @@ public class TrabajadorMySQL implements TrabajadorDAO{
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_USUARIO()}");
+            cs = con.prepareCall("{call LISTAR_TRABAJADOR()}");
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 Trabajador  a = new Trabajador();
@@ -89,8 +91,12 @@ public class TrabajadorMySQL implements TrabajadorDAO{
                 a.setApellidos(rs.getString("APELLIDOS"));
                 a.setDni(rs.getString("DNI"));
                 a.setCorreo(rs.getString("CORREO"));
-                a.getRol().setIdRol(rs.getInt("FK_ID_ROL"));
-                a.getUsuario().setIdUsuario(rs.getInt("FK_ID_USUARIO"));
+                Rol rol = new Rol();
+                rol.setIdRol(rs.getInt("FK_ID_ROL"));
+                a.setRol(rol);
+                Usuario usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("FK_ID_USUARIO"));
+                a.setUsuario(usuario);
                 ///////////////////////////////////////////////
                 
                 

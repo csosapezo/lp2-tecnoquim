@@ -16,10 +16,12 @@ public class LineaInsumo {
     private int cantInsumo;
     private boolean estado;
 
+    public LineaInsumo(){
+        insumo = new Insumo();
+    }
     public int getIdLineaI() {
         return idLineaI;
     }
-
  
     public void setIdLineaI(int idLineaI) {
         this.idLineaI = idLineaI;
@@ -48,6 +50,4 @@ public class LineaInsumo {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
-    
 }

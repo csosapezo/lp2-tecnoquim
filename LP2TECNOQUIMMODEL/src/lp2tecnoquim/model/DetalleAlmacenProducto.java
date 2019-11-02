@@ -21,6 +21,9 @@ public class DetalleAlmacenProducto {
     private EstadoMaterial estado;
 
     public DetalleAlmacenProducto() {
+        producto = new Producto();
+        periodo = new Date();
+        almacen = new Almacen();
     }
 
     public DetalleAlmacenProducto(int id, Producto producto, int nLote, Date periodo, int stock, Almacen almacen, EstadoMaterial estado) {
