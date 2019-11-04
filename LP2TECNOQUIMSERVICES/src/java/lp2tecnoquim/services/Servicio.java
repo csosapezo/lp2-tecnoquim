@@ -180,8 +180,8 @@ public class Servicio {
         DBController.actualizarMaquinaria(maquinaria);
     }
     @WebMethod(operationName = "listarMaquinaria")
-    public ArrayList<Maquinaria> listarMaquinaria(){
-        return DBController.listarMaquinaria();
+    public ArrayList<Maquinaria> listarMaquinaria(String dato){
+        return DBController.listarMaquinaria(dato);
     }
     
     //Mensaje
