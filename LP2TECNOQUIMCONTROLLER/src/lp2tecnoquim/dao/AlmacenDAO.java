@@ -18,6 +18,6 @@ public interface AlmacenDAO {
     void insertar(Almacen almacen);
     void actualizar(Almacen almacen);
     void eliminar(int id);
-    ArrayList<Almacen> listar();
+    ArrayList<Almacen> listar(String tipo);
     
 }

@@ -18,6 +18,6 @@ public interface TrabajadorDAO {
     void insertar(Trabajador trabajador);
     void actualizar(Trabajador trabajador);
     void eliminar(int id);
-    ArrayList<Trabajador> listar();
+    ArrayList<Trabajador> listar(String nombres);
     
 }

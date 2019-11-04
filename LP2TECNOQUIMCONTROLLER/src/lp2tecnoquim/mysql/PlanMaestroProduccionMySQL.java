@@ -72,12 +72,13 @@ public class PlanMaestroProduccionMySQL implements PlanMaestroProduccionDAO{
     }
 
     @Override
-    public ArrayList<PlanMaestroProduccion> listar() {
+    public ArrayList<PlanMaestroProduccion> listar(java.util.Date periodo) {
         ArrayList<PlanMaestroProduccion> plan = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_PLAN()}");
+            cs = con.prepareCall("{call LISTAR_PLAN(?)}");
+            cs.setDate("_PERIODO", new java.sql.Date(periodo.getTime()));
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 PlanMaestroProduccion  a = new PlanMaestroProduccion();

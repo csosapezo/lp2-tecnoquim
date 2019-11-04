@@ -30,7 +30,7 @@ public class AlmacenMySQL implements AlmacenDAO{
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call INSERTAR_ALMACEN(?,?,?,?)}");
-            cs.setInt("_ID_TRABAJADOR", almacen.getTrabajador().getId());
+            cs.setInt("_FK_ID_TRABAJADOR", almacen.getTrabajador().getId());
             cs.setString("_DIRECCION",almacen.getDireccion());
             cs.setString("_TIPO", almacen.getTipo());
             
@@ -79,12 +79,13 @@ public class AlmacenMySQL implements AlmacenDAO{
     }
 
     @Override
-    public ArrayList<Almacen> listar() {
+    public ArrayList<Almacen> listar(String tipo) {
         ArrayList<Almacen> almacen = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call LISTAR_ALMACEN()}");
+            cs.setString("_TIPO", tipo);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 Almacen  a = new Almacen();

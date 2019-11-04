@@ -61,13 +61,14 @@ public class RolMySQL implements RolDAO{
 
 
     @Override
-    public ArrayList<Rol> listar() {
+    public ArrayList<Rol> listar(String descripcion) {
        ArrayList<Rol> roles = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM ROL");
+            cs = con.prepareCall("{call LISTAR_ROL(?)}");
+            cs.setString("_DESCRIPCION", descripcion);
+            ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 Rol e = new Rol();
                 e.setIdRol(rs.getInt("ID_ROL"));
