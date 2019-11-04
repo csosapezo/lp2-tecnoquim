@@ -71,7 +71,8 @@ public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_PROYECCION()}");
+            cs = con.prepareCall("{call LISTAR_PROYECCION(?)}");
+            cs.setDate("_PERIODO", new java.sql.Date(periodo.getTime()));
             
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
