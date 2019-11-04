@@ -47,8 +47,8 @@ public class Servicio {
         DBController.actualizarAlmacen(almacen);
     }
     @WebMethod(operationName = "listarAlmacen")
-    public ArrayList<Almacen> listarAlmacen(){
-        return DBController.listarAlmacen();
+    public ArrayList<Almacen> listarAlmacen(@WebParam(name = "tipo") String tipo){
+        return DBController.listarAlmacen(tipo);
     }
     
     //Insumo
@@ -75,8 +75,8 @@ public class Servicio {
         DBController.actualizarDetalleAlmacenInsumo(detalleAlmacenInsumo);
     }
     @WebMethod(operationName = "listarDetalleAlmacenInsumo")
-    public ArrayList<DetalleAlmacenInsumo> listarDetalleAlmacenInsumo(){
-        return DBController.listarDetalleAlmacenInsumo();
+    public ArrayList<DetalleAlmacenInsumo> listarDetalleAlmacenInsumo(@WebParam(name = "id") int id){
+        return DBController.listarDetalleAlmacenInsumo(id);
     }
     //DetalleAlmacenProducto
     @WebMethod(operationName = "insertarDetalleAlmacenProducto")
@@ -88,8 +88,8 @@ public class Servicio {
         DBController.actualizarDetalleAlmacenProducto(detalleAlmacenProducto);
     }
     @WebMethod(operationName = "listarDetalleAlmacenProducto")
-    public ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(){
-        return DBController.listarDetalleAlmacenProducto();
+    public ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(@WebParam(name = "id") int id){
+        return DBController.listarDetalleAlmacenProducto(id);
     }
     //DetalleMaquinaria
     @WebMethod(operationName = "insertarDetalleMaquinaria")
@@ -206,8 +206,13 @@ public class Servicio {
     }
     
     @WebMethod(operationName = "listarOrdenesProduccion")
-    public ArrayList<OrdenProduccion> listarOrdenesProduccion(int idPMP){
+    public ArrayList<OrdenProduccion> listarOrdenesProduccion(@WebParam(name = "idPMP") int idPMP){
         return DBController.listarOrdenesProduccion(idPMP);        
+    }
+    
+    @WebMethod(operationName = "listarOrdenesProduccion")
+    public ArrayList<OrdenProduccion> listarOrdenesProduccion(@WebParam(name = "fecha")java.util.Date fecha){
+        return DBController.listarOrdenesProduccion(fecha);        
     }
     
     //Plan Maestro de Produccion
@@ -222,8 +227,8 @@ public class Servicio {
     }
     
     @WebMethod(operationName = "listarPMP")
-    public ArrayList<PlanMaestroProduccion> listarPMP(){
-        return DBController.listarPMP();        
+    public ArrayList<PlanMaestroProduccion> listarPMP(@WebParam(name = "periodo") java.util.Date periodo){
+        return DBController.listarPMP(periodo);        
     }
     
     //PoliticaStock
@@ -268,8 +273,8 @@ public class Servicio {
     }
     
     @WebMethod(operationName = "listarProyeccionVenta")
-    public ArrayList<ProyeccionVenta> listarProyeccionVenta(){
-        return DBController.listarProyeccionVenta();        
+    public ArrayList<ProyeccionVenta> listarProyeccionVenta(@WebParam(name = "periodo")java.util.Date periodo){
+        return DBController.listarProyeccionVenta(periodo);        
     }
     //Rol
     @WebMethod(operationName = "insertarRol")
@@ -283,8 +288,8 @@ public class Servicio {
     }
     
     @WebMethod(operationName = "listarRoles")
-    public ArrayList<Rol> listarRoles(){
-        return DBController.listarRoles();        
+    public ArrayList<Rol> listarRoles(@WebParam(name = "descripcion") String descripcion){
+        return DBController.listarRoles(descripcion);        
     }
     //Trabajador
     @WebMethod(operationName = "insertarTrabajador")
@@ -298,25 +303,23 @@ public class Servicio {
     }
     
     @WebMethod(operationName = "listarTrabajadores")
-    public ArrayList<Trabajador> listarTrabajadores(){
-        return DBController.listarTrabajadores();        
+    public ArrayList<Trabajador> listarTrabajadores(@WebParam(name = "nombres")String nombres){
+        return DBController.listarTrabajadores(nombres);        
     }
     //Usuario
     @WebMethod(operationName = "insertarUsuario")
-    public void insertarUsuario(@WebParam(name = "usuario") Usuario usuario,
-            @WebParam(name = "idTrabajador") int idTrabajador){
-        DBController.insertarUsuario(usuario,idTrabajador);        
+    public void insertarUsuario(@WebParam(name = "usuario") Usuario usuario){
+        DBController.insertarUsuario(usuario);        
     }
 
     @WebMethod(operationName = "actualizarUsuario")
-    public void actualizarUsuario(@WebParam(name = "usuario") Usuario usuario,
-            @WebParam(name = "idTrabajador") int idTrabajador){
-        DBController.actualizarUsuario(usuario,idTrabajador);        
+    public void actualizarUsuario(@WebParam(name = "usuario") Usuario usuario){
+        DBController.actualizarUsuario(usuario);        
     }
     
     @WebMethod(operationName = "listarUsuarios")
-    public ArrayList<Usuario> listarUsuarios(){
-        return DBController.listarUsuarios();        
+    public ArrayList<Usuario> listarUsuarios(@WebParam(name = "username") String username){
+        return DBController.listarUsuarios(username);        
     }
     
     
