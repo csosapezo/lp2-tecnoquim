@@ -17,7 +17,7 @@ public class LineaOrden {
     private EstadoMaterial estadoCalidad;
     
     public LineaOrden(){
-        
+        producto = new Producto();
     }
     
     public LineaOrden(     Producto p,  int c,   EstadoMaterial e){

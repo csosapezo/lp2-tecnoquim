@@ -11,8 +11,6 @@ package lp2tecnoquim.model;
  */
 public class Usuario {
 
-
-
     private int idUsuario;
     private String username;
     private String password;

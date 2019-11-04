@@ -19,6 +19,8 @@ public class Trabajador {
     private Usuario usuario;
 
     public Trabajador() {
+        rol = new Rol();
+        usuario = new Usuario();
     }
 
     public Trabajador(String nombres, String apellidos, String dni, String correo, Rol rol, Usuario usuario) {
@@ -29,9 +31,6 @@ public class Trabajador {
         this.rol = rol;
         this.usuario = usuario;
     }
-
-
-
 
     public int getId() {
         return id;

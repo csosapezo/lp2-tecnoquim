@@ -17,8 +17,7 @@ public class Almacen {
     private String tipo;
 
     public Almacen(){
-        
-        
+        trabajador = new Trabajador();
     }
     
     public Almacen( Trabajador t, String d,  String c){
@@ -27,8 +26,6 @@ public class Almacen {
         direccion =d;
         tipo=c;
     }
-    
-    
     
     public int getIdAlmacen() {
         return idAlmacen;
@@ -57,7 +54,6 @@ public class Almacen {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
 
     public void setIdAlmacen(int idAlmacen) {
         this.idAlmacen = idAlmacen;

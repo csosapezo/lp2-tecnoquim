@@ -7,10 +7,6 @@ package lp2tecnoquim.model;
 
 import java.util.Date;
 
-/**
- *
- * @author alulab14
- */
 public class DetalleAlmacenInsumo {
     private int id;
     private Insumo insumo;
@@ -21,6 +17,9 @@ public class DetalleAlmacenInsumo {
     private EstadoMaterial estado;
 
     public DetalleAlmacenInsumo() {
+        insumo = new Insumo();
+        periodo = new Date();
+        almacen = new Almacen();
     }
 
     public DetalleAlmacenInsumo(int id, Insumo insumo, int nLote, Date periodo, int stock, Almacen almacen, EstadoMaterial estado) {
@@ -32,8 +31,6 @@ public class DetalleAlmacenInsumo {
         this.almacen = almacen;
         this.estado = estado;
     }
-
-    
 
     public int getId() {
         return id;

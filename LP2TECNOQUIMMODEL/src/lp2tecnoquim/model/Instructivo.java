@@ -14,18 +14,17 @@ import java.util.ArrayList;
 public class Instructivo {
 
     private int id;
-    private ArrayList <LineaInsumo> insumos;
+    private ArrayList<LineaInsumo> insumos;
     private String actividades;
     
     public Instructivo (){
-        
+        insumos = new ArrayList<LineaInsumo>();
     }
 
     public Instructivo(ArrayList<LineaInsumo> insumos, String actividades) {
         this.insumos = insumos;
         this.actividades = actividades;
     }
-
     
     public int getId() {
         return id;
@@ -34,7 +33,6 @@ public class Instructivo {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public ArrayList <LineaInsumo> getInsumos() {
         return insumos;
@@ -53,10 +51,7 @@ public class Instructivo {
         this.actividades = actividades;
     }
 
-
     public void mostrar(){
         
     };
-
-    
 }

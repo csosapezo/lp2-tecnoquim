@@ -15,6 +15,7 @@ public class LineaProyeccion {
     private int cantidad;
 
     public LineaProyeccion() {
+        producto = new Producto();
     }
 
     public LineaProyeccion(Producto producto, int cantidad) {

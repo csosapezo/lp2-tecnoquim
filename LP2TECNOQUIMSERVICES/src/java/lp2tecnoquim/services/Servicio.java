@@ -32,10 +32,10 @@ public class Servicio {
         DBController.enviarMensaje(mensaje);
     }
     
-//    @WebMethod(operationName = "verificarUsuario")
-//    public boolean verificarUsuario(@WebParam(name = "usuario") Usuario usuario) {
-//        return DBController.verificarUsuario(usuario);
-//    }
+    @WebMethod(operationName = "verificarUsuario")
+    public Trabajador verificarUsuario(@WebParam(name = "usuario") Usuario usuario) {
+        return DBController.verificarUsuario(usuario);
+    }
     
     //Almacen
     @WebMethod(operationName = "insertarAlmacen")

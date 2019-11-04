@@ -27,6 +27,9 @@ public class Mensaje {
     }
 
     public Mensaje() {
+        fechaEnvio = new Date();
+        emisor = new Trabajador();
+        receptor = new Trabajador();
     }
 
     public int getIdMensaje() {

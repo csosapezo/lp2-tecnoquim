@@ -16,9 +16,11 @@ public class ProyeccionVenta {
     
     private int id;
     private Date periodo; 
-    private ArrayList<LineaProyeccion >proyecciones;
+    private ArrayList<LineaProyeccion> proyecciones;
 
     public ProyeccionVenta() {
+        periodo = new Date();
+        proyecciones = new ArrayList<LineaProyeccion>();
     }
 
     public ProyeccionVenta(Date periodo, ArrayList<LineaProyeccion> proyecciones) {
