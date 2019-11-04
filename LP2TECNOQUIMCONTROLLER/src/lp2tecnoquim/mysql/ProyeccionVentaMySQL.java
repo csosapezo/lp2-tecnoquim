@@ -66,12 +66,13 @@ public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
     }
 
     @Override
-    public ArrayList<ProyeccionVenta> listar() {
+    public ArrayList<ProyeccionVenta> listar(java.util.Date periodo) {
         ArrayList<ProyeccionVenta> proyeccion = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call LISTAR_PROYECCION()}");
+            
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 ProyeccionVenta  a = new ProyeccionVenta();
