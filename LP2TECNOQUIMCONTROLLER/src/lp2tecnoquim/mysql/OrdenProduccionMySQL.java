@@ -109,7 +109,8 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_ORDEN_POR_PLAN(?)}"); // Modificar el SQL
+            cs = con.prepareCall("{call LISTAR_ORDEN_POR_FECHA(?)}"); // Modificar el SQL
+            cs.setDate("_FECHA", new java.sql.Date(fecha.getTime()));
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 OrdenProduccion  o = new OrdenProduccion();
