@@ -11,7 +11,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.MaquinariaDAO;
@@ -78,15 +77,14 @@ public class MaquinariaMySQL implements MaquinariaDAO {
 
 
     @Override
-    public ArrayList<Maquinaria> listar() {
+    public ArrayList<Maquinaria> listar(String dato) {
        ArrayList<Maquinaria> maquinarias = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            st = con.createStatement();
-//            ResultSet rs = st.executeQuery("SELECT * FROM MAQUINARIA");
-//            cs = con.prepareCall("{call LISTAR_MAQUINARIA()}");
-            ResultSet rs = st.executeQuery("SELECT * FROM MAQUINARIA");
+            cs = con.prepareCall("{call LISTAR_MAQUINARIA()}");
+            cs.setString("_NOMBRE",dato);
+            ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 Maquinaria  m = new Maquinaria();
                 

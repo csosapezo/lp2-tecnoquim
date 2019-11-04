@@ -50,7 +50,21 @@ public class Servicio {
     public ArrayList<Almacen> listarAlmacen(){
         return DBController.listarAlmacen();
     }
-        
+    
+    //Insumo
+    @WebMethod(operationName = "insertarInsumo")
+    public void insertarInsumo(@WebParam(name = "insumo") Insumo insumo){
+        DBController.insertarInsumo(insumo);
+    }
+    @WebMethod(operationName = "actualizarInsumo")
+    public void actualizarInsumo(@WebParam(name = "insumo") Insumo insumo){
+        DBController.actualizarInsumo(insumo);
+    }
+    @WebMethod(operationName = "listarInsumo")
+    public ArrayList<Insumo> listarInsumo(){
+        return DBController.listarInsumo();
+    }
+    
     //DetalleAlmacenInsumo
     @WebMethod(operationName = "insertarDetalleAlmacenInsumo")
     public void insertarDetalleAlmacenInsumo(@WebParam(name = "detalleAlmacenInsumo") DetalleAlmacenInsumo detalleAlmacenInsumo){

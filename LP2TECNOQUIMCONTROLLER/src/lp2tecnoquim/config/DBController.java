@@ -34,6 +34,24 @@ public abstract class DBController {
           return daoFactory.getAlmacenDAO().listar();
       }
       
+      //Insumo
+      
+      public static void insertarInsumo(Insumo insumo){
+          daoFactory.getInsumoDAO().insertar(insumo);
+      }
+      
+      public static void actualizarInsumo(Insumo insumo){
+          daoFactory.getInsumoDAO().actualizar(insumo);
+      }
+      
+      public static void eliminarInsumo(int idInsumo){
+          daoFactory.getInsumoDAO().eliminar(idInsumo);
+      }
+      
+      public static ArrayList<Insumo> listarInsumo(){
+          return daoFactory.getInsumoDAO().listar();
+      }
+      
       // DetalleAlmacenInsumo
       
       public static void insertarDetalleAlmacenInsumo(DetalleAlmacenInsumo detalleAlmacenInsumo){
@@ -174,8 +192,8 @@ public abstract class DBController {
           daoFactory.getMaquinariaDAO().eliminar(idMaquinaria);
       }
       
-      public static ArrayList<Maquinaria> listarMaquinaria(){
-          return daoFactory.getMaquinariaDAO().listar();
+      public static ArrayList<Maquinaria> listarMaquinaria(String dato){
+          return daoFactory.getMaquinariaDAO().listar(dato);
       }
       
       // Mensaje
