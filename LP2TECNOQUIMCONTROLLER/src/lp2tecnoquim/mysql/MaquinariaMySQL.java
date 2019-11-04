@@ -82,7 +82,7 @@ public class MaquinariaMySQL implements MaquinariaDAO {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_MAQUINARIA()}");
+            cs = con.prepareCall("{call LISTAR_MAQUINARIA(?)}");
             cs.setString("_NOMBRE",dato);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
@@ -101,4 +101,6 @@ public class MaquinariaMySQL implements MaquinariaDAO {
         }
         return maquinarias;
     }
+
+    
 }

@@ -18,6 +18,6 @@ public interface MaquinariaDAO {
     void insertar(Maquinaria maquinaria);
     void actualizar(Maquinaria maquinaria);
     void eliminar(int id);
-    ArrayList<Maquinaria> listar();
+    ArrayList<Maquinaria> listar(String dato);
     
 }
