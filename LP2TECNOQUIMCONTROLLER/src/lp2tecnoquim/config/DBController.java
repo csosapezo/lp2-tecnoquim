@@ -30,8 +30,8 @@ public abstract class DBController {
           daoFactory.getAlmacenDAO().eliminar(idAlmacen);
       }
       
-      public static ArrayList<Almacen> listarAlmacen(){
-          return daoFactory.getAlmacenDAO().listar();
+      public static ArrayList<Almacen> listarAlmacen(String tipo){
+          return daoFactory.getAlmacenDAO().listar(tipo);
       }
       
       //Insumo
@@ -66,8 +66,8 @@ public abstract class DBController {
           daoFactory.getDetalleAlmacenInsumoDAO().eliminar(id);
       }
       
-      public static ArrayList<DetalleAlmacenInsumo> listarDetalleAlmacenInsumo(){
-          return daoFactory.getDetalleAlmacenInsumoDAO().listar();
+      public static ArrayList<DetalleAlmacenInsumo> listarDetalleAlmacenInsumo(int id){
+          return daoFactory.getDetalleAlmacenInsumoDAO().listar(id);
       }
       
       // DetalleAlmacenProducto
@@ -84,8 +84,8 @@ public abstract class DBController {
           daoFactory.getDetalleAlmacenProductoDAO().eliminar(id);
       }
       
-      public static ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(){
-          return daoFactory.getDetalleAlmacenProductoDAO().listar();
+      public static ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(int id){
+          return daoFactory.getDetalleAlmacenProductoDAO().listar(id);
       }
       
       // DetalleMaquinaria
@@ -228,6 +228,10 @@ public abstract class DBController {
           return daoFactory.getOrdenProduccionDAO().listar(idPMP);
       }
       
+      public static ArrayList<OrdenProduccion> listarOrdenesProduccion(java.util.Date fecha){
+          return daoFactory.getOrdenProduccionDAO().listar(fecha);
+      }
+      
       // PlanMaestroProduccion
       
       public static void insertarPMP(PlanMaestroProduccion plan){
@@ -242,8 +246,8 @@ public abstract class DBController {
           daoFactory.getPlanMaestroProduccionDAO().eliminar(idPMP);
       }
       
-      public static ArrayList<PlanMaestroProduccion> listarPMP(){
-          return daoFactory.getPlanMaestroProduccionDAO().listar();
+      public static ArrayList<PlanMaestroProduccion> listarPMP(java.util.Date periodo){
+          return daoFactory.getPlanMaestroProduccionDAO().listar(periodo);
       }
       
       // PoliticaStock
@@ -296,8 +300,8 @@ public abstract class DBController {
           daoFactory.getProyeccionVentaDAO().eliminar(idProyeccionVenta);
       }
       
-      public static ArrayList<ProyeccionVenta> listarProyeccionVenta(){
-          return daoFactory.getProyeccionVentaDAO().listar();
+      public static ArrayList<ProyeccionVenta> listarProyeccionVenta(java.util.Date periodo){
+          return daoFactory.getProyeccionVentaDAO().listar(periodo);
       }
       
       // Rol
@@ -310,8 +314,8 @@ public abstract class DBController {
           daoFactory.getRolDAO().actualizar(rol);
       }
       
-      public static ArrayList<Rol> listarRoles(){
-          return daoFactory.getRolDAO().listar();
+      public static ArrayList<Rol> listarRoles(String descripcion){
+          return daoFactory.getRolDAO().listar(descripcion);
       }
       
       // Trabajador
@@ -328,26 +332,26 @@ public abstract class DBController {
           daoFactory.getTrabajadorDAO().eliminar(idTrabajador);
       }
       
-      public static ArrayList<Trabajador> listarTrabajadores(){
-          return daoFactory.getTrabajadorDAO().listar();
+      public static ArrayList<Trabajador> listarTrabajadores(String nombres){
+          return daoFactory.getTrabajadorDAO().listar(nombres);
       }
       
       // Usuario
       
-      public static void insertarUsuario(Usuario usuario, int idTrabajador){
-          daoFactory.getUsuarioDAO().insertar(usuario, idTrabajador);
+      public static void insertarUsuario(Usuario usuario){
+          daoFactory.getUsuarioDAO().insertar(usuario);
       }
       
-      public static void actualizarUsuario(Usuario usuario, int idTrabajador){
-          daoFactory.getUsuarioDAO().actualizar(usuario, idTrabajador);
+      public static void actualizarUsuario(Usuario usuario){
+          daoFactory.getUsuarioDAO().actualizar(usuario);
       }
       
       public static void eliminarUsuario(int idUsuario){
           daoFactory.getUsuarioDAO().eliminar(idUsuario);
       }
       
-      public static ArrayList<Usuario> listarUsuarios(){
-          return daoFactory.getUsuarioDAO().listar();
+      public static ArrayList<Usuario> listarUsuarios(String username){
+          return daoFactory.getUsuarioDAO().listar(username);
       }
       
       public static Trabajador verificarUsuario(Usuario usuario){
