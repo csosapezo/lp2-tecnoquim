@@ -84,8 +84,32 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_ORDENPROD(?)}"); // Modificar el SQL
+            cs = con.prepareCall("{call LISTAR_ORDEN_POR_PLAN(?)}"); // Modificar el SQL
             cs.setInt("_FK_ID_PMP", idPMP);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                OrdenProduccion  o = new OrdenProduccion();
+                
+                o.setId(rs.getInt("ID_ORDENPROD"));
+                o.setFecha(new java.util.Date(rs.getDate("FECHA").getTime()));
+     
+                ordenProduccions.add(o);
+            }
+        }catch(ClassNotFoundException | SQLException ex){
+            System.out.println(ex.getMessage());
+        }finally{
+            try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
+        }
+        return ordenProduccions;
+    }
+    
+    @Override
+    public ArrayList<OrdenProduccion> listar(java.util.Date fecha) {
+       ArrayList<OrdenProduccion> ordenProduccions = new ArrayList<>();
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            cs = con.prepareCall("{call LISTAR_ORDEN_POR_PLAN(?)}"); // Modificar el SQL
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 OrdenProduccion  o = new OrdenProduccion();
