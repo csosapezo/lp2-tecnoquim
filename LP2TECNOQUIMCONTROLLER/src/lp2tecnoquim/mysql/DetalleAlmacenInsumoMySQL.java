@@ -89,12 +89,13 @@ public class DetalleAlmacenInsumoMySQL implements DetalleAlmacenInsumoDAO {
     }
 
     @Override
-    public ArrayList<DetalleAlmacenInsumo> listar() {
+    public ArrayList<DetalleAlmacenInsumo> listar(int id) {
         ArrayList<DetalleAlmacenInsumo> detalleAlmacenInsumo = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_DETALLE_ALMACEN_INSUMO()}");
+            cs = con.prepareCall("{call LISTAR_DETALLE_ALMACEN_INSUMO(?)}");
+            cs.setInt("_ID_DET_ALM_INS", id);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 DetalleAlmacenInsumo  d = new DetalleAlmacenInsumo();
