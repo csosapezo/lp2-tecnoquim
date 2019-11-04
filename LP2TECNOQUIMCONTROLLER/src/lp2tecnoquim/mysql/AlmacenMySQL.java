@@ -30,7 +30,7 @@ public class AlmacenMySQL implements AlmacenDAO{
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call INSERTAR_ALMACEN(?,?,?,?)}");
-            cs.setInt("_ID_TRABAJADOR", almacen.getTrabajador().getId());
+            cs.setInt("_FK_ID_TRABAJADOR", almacen.getTrabajador().getId());
             cs.setString("_DIRECCION",almacen.getDireccion());
             cs.setString("_TIPO", almacen.getTipo());
             
