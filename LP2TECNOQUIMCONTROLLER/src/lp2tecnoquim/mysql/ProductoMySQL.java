@@ -23,6 +23,7 @@ public class ProductoMySQL implements ProductoDAO{
             cs.setString("_NOMBRE", producto.getNombre());
             cs.setFloat("_GRANULARIDAD",producto.getGranularidad());
             cs.setString("_PRESENTACION",producto.getPresentacion());
+            cs.setBoolean("_RESTRICCION",producto.isRestriccion());
             cs.setInt("_FK_ID_INSTRUCTIVO",producto.getInstructivo().getId());
             
             cs.registerOutParameter("_ID_PROD", java.sql.Types.INTEGER);
@@ -44,6 +45,7 @@ public class ProductoMySQL implements ProductoDAO{
             cs.setString("_NOMBRE", producto.getNombre());
             cs.setFloat("_GRANULARIDAD",producto.getGranularidad());
             cs.setString("_PRESENTACION",producto.getPresentacion());
+            cs.setBoolean("_RESTRICCION",producto.isRestriccion());
             cs.setInt("_FK_ID_INSTRUCTIVO",producto.getInstructivo().getId());
                     
             cs.executeUpdate();
@@ -71,12 +73,13 @@ public class ProductoMySQL implements ProductoDAO{
     }
 
     @Override
-    public ArrayList<Producto> listar() {
+    public ArrayList<Producto> listar(String dato) {
         ArrayList<Producto> producto = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_PRODUCTOS()}");
+            cs = con.prepareCall("{call LISTAR_PRODUCTOS(?)}");
+            cs.setString("_NOMBRE", dato);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 Producto  a = new Producto();
@@ -84,6 +87,7 @@ public class ProductoMySQL implements ProductoDAO{
                 a.setNombre(rs.getString("NOMBRE"));
                 a.setGranularidad(rs.getFloat("GRANULARIDAD"));
                 a.setPresentacion(rs.getString("PRESENTACION"));
+                a.setRestriccion(rs.getBoolean("RESTRICCION"));
                 a.getInstructivo().setId(rs.getInt("FK_ID_INSTRUCTIVO"));
                 ///////////////////////////////////////////////
                 

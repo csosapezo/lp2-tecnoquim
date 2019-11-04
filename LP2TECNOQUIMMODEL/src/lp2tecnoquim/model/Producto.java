@@ -10,6 +10,20 @@ package lp2tecnoquim.model;
  * @author alulab14
  */
 public class Producto {
+
+    /**
+     * @return the restriccion
+     */
+    public boolean isRestriccion() {
+        return restriccion;
+    }
+
+    /**
+     * @param restriccion the restriccion to set
+     */
+    public void setRestriccion(boolean restriccion) {
+        this.restriccion = restriccion;
+    }
     
     
     private int idProducto;
@@ -17,6 +31,7 @@ public class Producto {
     private float granularidad;
     private String presentacion;
     private Instructivo instructivo;
+    private boolean restriccion;
     
     public Producto(){
         instructivo = new Instructivo();

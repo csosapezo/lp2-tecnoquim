@@ -48,8 +48,8 @@ public abstract class DBController {
           daoFactory.getInsumoDAO().eliminar(idInsumo);
       }
       
-      public static ArrayList<Insumo> listarInsumo(){
-          return daoFactory.getInsumoDAO().listar();
+      public static ArrayList<Insumo> listarInsumo(String dato){
+          return daoFactory.getInsumoDAO().listar(dato);
       }
       
       // DetalleAlmacenInsumo
@@ -278,8 +278,8 @@ public abstract class DBController {
           daoFactory.getProductoDAO().eliminar(idProducto);
       }
       
-      public static ArrayList<Producto> listarProductos(){
-          return daoFactory.getProductoDAO().listar();
+      public static ArrayList<Producto> listarProductos(String dato){
+          return daoFactory.getProductoDAO().listar(dato);
       }
       
       // ProyeccionVenta

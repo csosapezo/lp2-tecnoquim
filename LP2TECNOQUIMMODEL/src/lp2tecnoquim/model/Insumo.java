@@ -11,12 +11,27 @@ package lp2tecnoquim.model;
  */
 public class Insumo {
 
+    /**
+     * @return the restriccion
+     */
+    public boolean isRestriccion() {
+        return restriccion;
+    }
+
+    /**
+     * @param restriccion the restriccion to set
+     */
+    public void setRestriccion(boolean restriccion) {
+        this.restriccion = restriccion;
+    }
+
     private int id;
     private String nombre;
     private float granularidad;
     private String color;
     private float cantidad;
     private String unidad;
+    private boolean restriccion;
     
    
     public Insumo(){

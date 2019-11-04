@@ -35,6 +35,7 @@ public class InsumoMySQL implements InsumoDAO {
             cs.setString("_COLOR", insumo.getColor());
             cs.setFloat("_CANTIDAD", insumo.getCantidad());
             cs.setString("_UNIDAD", insumo.getUnidad());
+            cs.setBoolean("_RESTRICCION",insumo.isRestriccion());
             
             cs.registerOutParameter("_ID_INSUMO", java.sql.Types.INTEGER);
             cs.executeUpdate();
@@ -57,6 +58,7 @@ public class InsumoMySQL implements InsumoDAO {
             cs.setString("_COLOR", insumo.getColor());
             cs.setFloat("_CANTIDAD", insumo.getCantidad());
             cs.setString("_UNIDAD", insumo.getUnidad());
+            cs.setBoolean("_RESTRICCION",insumo.isRestriccion());
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -83,12 +85,13 @@ public class InsumoMySQL implements InsumoDAO {
 
 
     @Override
-    public ArrayList<Insumo> listar() {
+    public ArrayList<Insumo> listar(String dato) {
        ArrayList<Insumo> insumos = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_INSUMO()}");
+            cs = con.prepareCall("{call LISTAR_INSUMO(?)}");
+            cs.setString("_NOMBRE", dato);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 Insumo  i = new Insumo();
@@ -99,7 +102,7 @@ public class InsumoMySQL implements InsumoDAO {
                 i.setGranularidad(rs.getFloat("GRANULARIDAD"));
                 i.setCantidad(rs.getFloat("CANTIDAD"));
                 i.setUnidad(rs.getString("UNIDAD"));
-     
+                i.setRestriccion(rs.getBoolean("RESTRICCION"));
                 insumos.add(i);
             }
         }catch(ClassNotFoundException | SQLException ex){

@@ -17,6 +17,6 @@ public interface InsumoDAO {
     void insertar(Insumo insumo);
     void actualizar(Insumo insumo);
     void eliminar(int id);
-    ArrayList<Insumo> listar();
+    ArrayList<Insumo> listar(String dato);
     
 }

@@ -61,8 +61,8 @@ public class Servicio {
         DBController.actualizarInsumo(insumo);
     }
     @WebMethod(operationName = "listarInsumo")
-    public ArrayList<Insumo> listarInsumo(){
-        return DBController.listarInsumo();
+    public ArrayList<Insumo> listarInsumo(@WebParam(name = "dato") String dato){
+        return DBController.listarInsumo(dato);
     }
     
     //DetalleAlmacenInsumo
@@ -253,8 +253,8 @@ public class Servicio {
     }
     
     @WebMethod(operationName = "listarProductos")
-    public ArrayList<Producto> listarProductos(){
-        return DBController.listarProductos();        
+    public ArrayList<Producto> listarProductos(@WebParam(name = "dato") String dato){
+        return DBController.listarProductos(dato);        
     }
     //ProyeccionVenta
     @WebMethod(operationName = "insertarProyeccionVenta")

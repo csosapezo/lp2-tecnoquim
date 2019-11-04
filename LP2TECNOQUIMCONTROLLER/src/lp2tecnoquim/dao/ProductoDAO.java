@@ -18,6 +18,6 @@ public interface ProductoDAO {
     void insertar(Producto producto);
     void actualizar(Producto producto);
     void eliminar(int idProducto);
-    ArrayList<Producto> listar();
+    ArrayList<Producto> listar(String dato);
     
 }
