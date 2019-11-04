@@ -129,7 +129,7 @@ public class UsuarioMySQL implements UsuarioDAO {
         }
         
         if(resultado){
-            trabajadores = DBController.listarTrabajadores();
+            trabajadores = DBController.listarTrabajadores("");
             for (Trabajador trabajadorSel : trabajadores) { 		      
                 if(trabajadorSel.getId() == id_trabajador){
                     trabajador = trabajadorSel;
