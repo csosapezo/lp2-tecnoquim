@@ -19,13 +19,12 @@ public class UsuarioMySQL implements UsuarioDAO {
     CallableStatement cs;
     
     @Override
-    public void insertar(Usuario usuario, int idTrabajador) {
+    public void insertar(Usuario usuario) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call INSERTAR_USUARIO(?,?,?,?)}"); // Modificar el SQL
             cs.setString("_USERNAME", usuario.getUsername());
             cs.setString("_CONTRASENA",usuario.getPassword());
-            cs.setInt("_FK_ID__TRABAJADOR", idTrabajador);
             
             cs.registerOutParameter("_ID_USUARIO", java.sql.Types.INTEGER);
             cs.executeUpdate();
@@ -38,12 +37,11 @@ public class UsuarioMySQL implements UsuarioDAO {
     }
 
     @Override
-    public void actualizar(Usuario usuario, int idTrabajador) {
+    public void actualizar(Usuario usuario) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call ACTUALIZAR_USUARIO(?,?,?,?)}"); // Modificar el SQL
             cs.setInt("_ID_USUARIO", usuario.getIdUsuario());
-            cs.setInt("_FK_ID__TRABAJADOR", idTrabajador);
             cs.setString("_USERNAME", usuario.getUsername());
             cs.setString("_CONTRASENA",usuario.getPassword());
                     
@@ -72,12 +70,13 @@ public class UsuarioMySQL implements UsuarioDAO {
     }
 
     @Override
-    public ArrayList<Usuario> listar() {
+    public ArrayList<Usuario> listar(String username) {
         ArrayList<Usuario> usuario = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_USUARIO()}");
+            cs = con.prepareCall("{call LISTAR_USUARIO(?)}");
+            cs.setString("_USERNAME", username);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 Usuario  a = new Usuario();
