@@ -60,6 +60,10 @@ public class Servicio {
     public void actualizarInsumo(@WebParam(name = "insumo") Insumo insumo){
         DBController.actualizarInsumo(insumo);
     }
+    @WebMethod(operationName = "eliminarInsumo")
+    public void eliminarInsumo(@WebParam(name = "id") int id){
+        DBController.eliminarInsumo(id);
+    }
     @WebMethod(operationName = "listarInsumo")
     public ArrayList<Insumo> listarInsumo(@WebParam(name = "dato") String dato){
         return DBController.listarInsumo(dato);
@@ -179,6 +183,10 @@ public class Servicio {
     public void actualizarMaquinaria(@WebParam(name = "maquinaria") Maquinaria maquinaria){
         DBController.actualizarMaquinaria(maquinaria);
     }
+    @WebMethod(operationName = "eliminarMaquinaria")
+    public void eliminarMaquinaria(@WebParam(name = "id") int id){
+        DBController.eliminarMaquinaria(id);
+    }
     @WebMethod(operationName = "listarMaquinaria")
     public ArrayList<Maquinaria> listarMaquinaria(@WebParam(name = "dato") String dato){
         return DBController.listarMaquinaria(dato);
@@ -251,7 +259,10 @@ public class Servicio {
     public void actualizarProducto(@WebParam(name = "producto") Producto producto){
         DBController.insertarProducto(producto);        
     }
-    
+    @WebMethod(operationName = "eliminarProducto")
+    public void eliminarProducto(@WebParam(name = "id") int id){
+        DBController.eliminarProducto(id);
+    }
     @WebMethod(operationName = "listarProductos")
     public ArrayList<Producto> listarProductos(@WebParam(name = "dato") String dato){
         return DBController.listarProductos(dato);        

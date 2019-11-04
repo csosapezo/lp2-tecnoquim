@@ -51,7 +51,7 @@ public class MaquinariaMySQL implements MaquinariaDAO {
             cs.setInt("_ID_MAQUINARIA", maquinaria.getId());
             cs.setString("_NOMBRE", maquinaria.getNombre());
             cs.setString("_TIPO", maquinaria.getTipo());
-            
+            cs.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{
@@ -67,7 +67,7 @@ public class MaquinariaMySQL implements MaquinariaDAO {
             cs = con.prepareCall("{call ELIMINAR_MAQUINARIA(?)}");
             cs.setInt("_ID_MAQUINARIA", id);
             
-           
+           cs.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{

@@ -19,7 +19,7 @@ public class ProductoMySQL implements ProductoDAO{
     public void insertar(Producto producto) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_PRODUCTO(?,?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_PRODUCTO(?,?,?,?,?,?)}");
             cs.setString("_NOMBRE", producto.getNombre());
             cs.setFloat("_GRANULARIDAD",producto.getGranularidad());
             cs.setString("_PRESENTACION",producto.getPresentacion());
@@ -40,7 +40,7 @@ public class ProductoMySQL implements ProductoDAO{
     public void actualizar(Producto producto) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_PRODUCTO(?,?,?,?,?)}");
+            cs = con.prepareCall("{call ACTUALIZAR_PRODUCTO(?,?,?,?,?,?)}");
             cs.setInt("_ID_PROD", producto.getIdProducto());
             cs.setString("_NOMBRE", producto.getNombre());
             cs.setFloat("_GRANULARIDAD",producto.getGranularidad());
@@ -63,7 +63,7 @@ public class ProductoMySQL implements ProductoDAO{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call ELIMINAR_PRODUCTO(?)}");
             cs.setInt("_ID_PROD", idProducto);
-            
+            cs.executeUpdate();
            
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -89,8 +89,6 @@ public class ProductoMySQL implements ProductoDAO{
                 a.setPresentacion(rs.getString("PRESENTACION"));
                 a.setRestriccion(rs.getBoolean("RESTRICCION"));
                 a.getInstructivo().setId(rs.getInt("FK_ID_INSTRUCTIVO"));
-                ///////////////////////////////////////////////
-                
                 producto.add(a);
             }
         }catch(ClassNotFoundException | SQLException ex){

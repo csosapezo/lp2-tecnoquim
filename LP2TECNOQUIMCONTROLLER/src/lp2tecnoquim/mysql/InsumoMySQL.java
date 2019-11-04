@@ -29,7 +29,7 @@ public class InsumoMySQL implements InsumoDAO {
     public void insertar(Insumo insumo) {
          try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_INSUMO(?,?,?,?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_INSUMO(?,?,?,?,?,?,?)}");
             cs.setString("_NOMBRE", insumo.getNombre());
             cs.setFloat("_GRANULARIDAD", insumo.getGranularidad());
             cs.setString("_COLOR", insumo.getColor());
@@ -51,7 +51,7 @@ public class InsumoMySQL implements InsumoDAO {
     public void actualizar(Insumo insumo) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_INSUMO(?,?,?,?,?,?)}");
+            cs = con.prepareCall("{call ACTUALIZAR_INSUMO(?,?,?,?,?,?,?)}");
             cs.setInt("_ID_INSUMO", insumo.getId());
             cs.setString("_NOMBRE", insumo.getNombre());
             cs.setFloat("_GRANULARIDAD", insumo.getGranularidad());
@@ -59,7 +59,7 @@ public class InsumoMySQL implements InsumoDAO {
             cs.setFloat("_CANTIDAD", insumo.getCantidad());
             cs.setString("_UNIDAD", insumo.getUnidad());
             cs.setBoolean("_RESTRICCION",insumo.isRestriccion());
-            
+            cs.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{
@@ -74,7 +74,7 @@ public class InsumoMySQL implements InsumoDAO {
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call ELIMINAR_INSUMO(?)}");
             cs.setInt("_ID_INSUMO", id);
-            
+            cs.executeUpdate();
            
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
