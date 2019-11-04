@@ -77,12 +77,13 @@ public class TrabajadorMySQL implements TrabajadorDAO{
     }
 
     @Override
-    public ArrayList<Trabajador> listar() {
+    public ArrayList<Trabajador> listar(String nombres) {
         ArrayList<Trabajador> trabajador = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call LISTAR_TRABAJADOR()}");
+            cs.setString("_NOMBRES", nombres);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 Trabajador  a = new Trabajador();
