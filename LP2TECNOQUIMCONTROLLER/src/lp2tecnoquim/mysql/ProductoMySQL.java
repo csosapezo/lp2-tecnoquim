@@ -19,13 +19,13 @@ public class ProductoMySQL implements ProductoDAO{
     public void insertar(Producto producto) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_PRODUCTO(?,?,?,?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_PRODUCTO(?,?,?,?,?)}");
             cs.setString("_NOMBRE", producto.getNombre());
             cs.setFloat("_GRANULARIDAD",producto.getGranularidad());
             cs.setString("_PRESENTACION",producto.getPresentacion());
             cs.setBoolean("_RESTRICCION",producto.isRestriccion());
-            cs.setInt("_FK_ID_INSTRUCTIVO",producto.getInstructivo().getId());
-            
+            //cs.setInt("_FK_ID_INSTRUCTIVO",producto.getInstructivo().getId());
+            //cs.setString("_ACTIVIDADES",producto.getInstructivo().getActividades());
             cs.registerOutParameter("_ID_PROD", java.sql.Types.INTEGER);
             cs.executeUpdate();
             producto.setIdProducto(cs.getInt("_ID_PROD"));
@@ -40,13 +40,13 @@ public class ProductoMySQL implements ProductoDAO{
     public void actualizar(Producto producto) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_PRODUCTO(?,?,?,?,?,?)}");
+            cs = con.prepareCall("{call ACTUALIZAR_PRODUCTO(?,?,?,?,?)}");
             cs.setInt("_ID_PROD", producto.getIdProducto());
             cs.setString("_NOMBRE", producto.getNombre());
             cs.setFloat("_GRANULARIDAD",producto.getGranularidad());
             cs.setString("_PRESENTACION",producto.getPresentacion());
             cs.setBoolean("_RESTRICCION",producto.isRestriccion());
-            cs.setInt("_FK_ID_INSTRUCTIVO",producto.getInstructivo().getId());
+            //cs.setInt("_FK_ID_INSTRUCTIVO",producto.getInstructivo().getId());
                     
             cs.executeUpdate();
             
@@ -88,7 +88,6 @@ public class ProductoMySQL implements ProductoDAO{
                 a.setGranularidad(rs.getFloat("GRANULARIDAD"));
                 a.setPresentacion(rs.getString("PRESENTACION"));
                 a.setRestriccion(rs.getBoolean("RESTRICCION"));
-                a.getInstructivo().setId(rs.getInt("FK_ID_INSTRUCTIVO"));
                 producto.add(a);
             }
         }catch(ClassNotFoundException | SQLException ex){

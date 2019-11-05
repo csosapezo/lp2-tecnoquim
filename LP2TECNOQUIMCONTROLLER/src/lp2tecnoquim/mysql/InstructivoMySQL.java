@@ -32,7 +32,7 @@ public class InstructivoMySQL implements InstructivoDAO {
             cs = con.prepareCall("{call INSERTAR_INSTRUCTIVO(?,?,?)}"); // Modificar el SQL
              
             cs.setString("_ACTIVIDADES", instructivo.getActividades());
-            cs.setInt("_FK_ID_PRODUCTO", idProducto);
+            cs.setInt("_FK_ID_PROD", idProducto);
             
             cs.registerOutParameter("_ID_INSTRUCTIVO", java.sql.Types.INTEGER);
             cs.executeUpdate();
