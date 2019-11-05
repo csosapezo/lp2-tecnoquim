@@ -213,13 +213,13 @@ public class Servicio {
         DBController.insertarOrdenProduccion(ordenProduccion, idPMP);        
     }
     
-    @WebMethod(operationName = "listarOrdenesProduccion")
-    public ArrayList<OrdenProduccion> listarOrdenesProduccion(@WebParam(name = "idPMP") int idPMP){
+    @WebMethod(operationName = "listarOrdenesProduccionPlan")
+    public ArrayList<OrdenProduccion> listarOrdenesProduccionPlan(@WebParam(name = "idPMP") int idPMP){
         return DBController.listarOrdenesProduccion(idPMP);        
     }
     
-    @WebMethod(operationName = "listarOrdenesProduccion")
-    public ArrayList<OrdenProduccion> listarOrdenesProduccion(@WebParam(name = "fecha")java.util.Date fecha){
+    @WebMethod(operationName = "listarOrdenesProduccionFecha")
+    public ArrayList<OrdenProduccion> listarOrdenesProduccionFecha(@WebParam(name = "fecha")java.util.Date fecha){
         return DBController.listarOrdenesProduccion(fecha);        
     }
     
