@@ -82,7 +82,7 @@ public class TrabajadorMySQL implements TrabajadorDAO{
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_TRABAJADOR()}");
+            cs = con.prepareCall("{call LISTAR_TRABAJADOR(?)}");
             cs.setString("_NOMBRES", nombres);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
@@ -92,12 +92,11 @@ public class TrabajadorMySQL implements TrabajadorDAO{
                 a.setApellidos(rs.getString("APELLIDOS"));
                 a.setDni(rs.getString("DNI"));
                 a.setCorreo(rs.getString("CORREO"));
-                Rol rol = new Rol();
-                rol.setIdRol(rs.getInt("FK_ID_ROL"));
-                a.setRol(rol);
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(rs.getInt("FK_ID_USUARIO"));
-                a.setUsuario(usuario);
+                a.getRol().setIdRol(rs.getInt("FK_ID_ROL"));
+                a.getRol().setDescripcion(rs.getString("DESCRIPCION"));
+                a.getUsuario().setIdUsuario(rs.getInt("FK_ID_USUARIO"));
+                a.getUsuario().setPassword("CONTRASENA");
+                a.getUsuario().setUsername("USERNAME");
                 ///////////////////////////////////////////////
                 
                 
