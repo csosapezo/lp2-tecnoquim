@@ -317,6 +317,11 @@ public class Servicio {
     public ArrayList<Trabajador> listarTrabajadores(@WebParam(name = "nombres")String nombres){
         return DBController.listarTrabajadores(nombres);        
     }
+    
+    @WebMethod(operationName = "eliminarTrabajador")
+    public void eliminarTrabajador(@WebParam(name = "id") int id){
+        DBController.eliminarTrabajador(id);
+    }
     //Usuario
     @WebMethod(operationName = "insertarUsuario")
     public void insertarUsuario(@WebParam(name = "usuario") Usuario usuario){
