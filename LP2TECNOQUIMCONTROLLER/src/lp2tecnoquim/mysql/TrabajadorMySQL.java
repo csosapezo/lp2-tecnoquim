@@ -8,9 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.TrabajadorDAO;
-import lp2tecnoquim.model.Rol;
 import lp2tecnoquim.model.Trabajador;
-import lp2tecnoquim.model.Usuario;
 
 public class TrabajadorMySQL implements TrabajadorDAO{
 
