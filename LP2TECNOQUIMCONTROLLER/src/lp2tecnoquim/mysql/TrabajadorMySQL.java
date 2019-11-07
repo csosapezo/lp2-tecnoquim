@@ -93,8 +93,8 @@ public class TrabajadorMySQL implements TrabajadorDAO{
                 a.getRol().setIdRol(rs.getInt("FK_ID_ROL"));
                 a.getRol().setDescripcion(rs.getString("DESCRIPCION"));
                 a.getUsuario().setIdUsuario(rs.getInt("FK_ID_USUARIO"));
-                a.getUsuario().setPassword("CONTRASENA");
-                a.getUsuario().setUsername("USERNAME");
+                a.getUsuario().setPassword(rs.getString("CONTRASENA"));
+                a.getUsuario().setUsername(rs.getString("USERNAME"));
                 ///////////////////////////////////////////////
                 
                 
