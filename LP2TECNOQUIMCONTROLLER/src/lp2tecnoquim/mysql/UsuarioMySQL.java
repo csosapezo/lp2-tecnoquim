@@ -22,7 +22,7 @@ public class UsuarioMySQL implements UsuarioDAO {
     public void insertar(Usuario usuario) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_USUARIO(?,?,?,?)}"); // Modificar el SQL
+            cs = con.prepareCall("{call INSERTAR_USUARIO(?,?,?)}"); // Modificar el SQL
             cs.setString("_USERNAME", usuario.getUsername());
             cs.setString("_CONTRASENA",usuario.getPassword());
             

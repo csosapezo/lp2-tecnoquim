@@ -19,7 +19,7 @@ public class TrabajadorMySQL implements TrabajadorDAO{
     public void insertar(Trabajador trabajador) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_TRABAJADOR(?,?,?,?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_TRABAJADOR(?,?,?,?,?,?,?)}");
             cs.setString("_NOMBRES", trabajador.getNombres());
             cs.setString("_APELLIDOS",trabajador.getApellidos());
             cs.setString("_DNI",trabajador.getDni());
@@ -95,12 +95,6 @@ public class TrabajadorMySQL implements TrabajadorDAO{
                 a.getUsuario().setIdUsuario(rs.getInt("FK_ID_USUARIO"));
                 a.getUsuario().setPassword(rs.getString("CONTRASENA"));
                 a.getUsuario().setUsername(rs.getString("USERNAME"));
-                ///////////////////////////////////////////////
-                
-                
-                
-                
-                
                 trabajador.add(a);
             }
         }catch(ClassNotFoundException | SQLException ex){
