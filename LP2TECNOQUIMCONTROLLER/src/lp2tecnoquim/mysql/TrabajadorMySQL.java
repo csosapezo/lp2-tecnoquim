@@ -65,7 +65,7 @@ public class TrabajadorMySQL implements TrabajadorDAO{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call ELIMINAR_TRABAJADOR(?)}");
             cs.setInt("_ID_TRABAJADOR", id);
-            
+            cs.executeUpdate();
            
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
