@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/dao/DetalleMaquinariaDAO.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/LineaInsumoMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/DetalleMaquinariaMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/config/DBController.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/MaquinariaMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/dao/InstructivoDAO.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/AlmacenMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/ProductoMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/TrabajadorMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/dao/MaquinariaDAO.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/dao/ProductoDAO.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/DetalleAlmacenProductoMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/InstructivoMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/DetalleAlmacenInsumoMySQL.java</file>
+        </group>
     </open-files>
 </project-private>

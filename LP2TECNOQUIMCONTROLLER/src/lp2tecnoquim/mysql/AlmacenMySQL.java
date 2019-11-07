@@ -29,11 +29,10 @@ public class AlmacenMySQL implements AlmacenDAO{
     public void insertar(Almacen almacen) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_ALMACEN(?,?,?,?)}");
-            cs.setInt("_FK_ID_TRABAJADOR", almacen.getTrabajador().getId());
+            cs = con.prepareCall("{call INSERTAR_ALMACEN(?,?,?)}");
+            //cs.setInt("_FK_ID_TRABAJADOR", almacen.getTrabajador().getId());
             cs.setString("_DIRECCION",almacen.getDireccion());
-            cs.setString("_TIPO", almacen.getTipo());
-            
+            cs.setString("_TIPO", almacen.getTipo());            
             cs.registerOutParameter("_ID_ALMACEN", java.sql.Types.INTEGER);
             cs.executeUpdate();
             almacen.setIdAlmacen(cs.getInt("_ID_ALMACEN"));
@@ -84,7 +83,7 @@ public class AlmacenMySQL implements AlmacenDAO{
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_ALMACEN()}");
+            cs = con.prepareCall("{call LISTAR_ALMACEN(?)}");
             cs.setString("_TIPO", tipo);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
@@ -92,13 +91,8 @@ public class AlmacenMySQL implements AlmacenDAO{
                 a.setIdAlmacen(rs.getInt("ID_ALMACEN"));
                 a.setDireccion(rs.getString("DIRECCION"));
                 a.setTipo(rs.getString("TIPO"));
-                a.getTrabajador().setId(rs.getInt("ID_"));
-                ///////////////////////////////////////////////
-                
-                
-                
-                
-                
+                //a.getTrabajador().setId(rs.getInt("FK_ID_TRABAJADOR"));
+                ///////////////////////////////////////////////                
                 almacen.add(a);
             }
         }catch(ClassNotFoundException | SQLException ex){

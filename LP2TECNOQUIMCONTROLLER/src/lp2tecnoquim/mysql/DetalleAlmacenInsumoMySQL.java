@@ -55,17 +55,10 @@ public class DetalleAlmacenInsumoMySQL implements DetalleAlmacenInsumoDAO {
     public void actualizar(DetalleAlmacenInsumo detalleAlmacenInsumo) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_DETALLE_ALMACEN_INSUMO(?,?,?,?,?,?)}");
-            cs.setInt("_ID_DET_ALM_INS", detalleAlmacenInsumo.getId());
+            cs = con.prepareCall("{call ACTUALIZAR_DETALLE_ALMACEN_INSUMO(?,?)}");
             cs.setInt("_FK_ID_INSUMO", detalleAlmacenInsumo.getInsumo().getId());
-            cs.setInt("_FK_ID_ALMACEN", detalleAlmacenInsumo.getAlmacen().getIdAlmacen());
-            cs.setInt("_NUM_LOTE", detalleAlmacenInsumo.getnLote());
-            cs.setDate("_PERIODO", new java.sql.Date(detalleAlmacenInsumo.getPeriodo().getTime()));
-            cs.setInt("_STOCK", detalleAlmacenInsumo.getStock());
-            cs.setInt("_CALIDAD", detalleAlmacenInsumo.getEstado().ordinal());
-                    
-            cs.executeUpdate();
-            
+            cs.setInt("_STOCK", detalleAlmacenInsumo.getStock());                    
+            cs.executeUpdate();            
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{

@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/DetalleMaquinaria.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/Producto.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/Instructivo.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/DetalleAlmacenInsumo.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/LineaInsumo.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/DetalleAlmacenProducto.java</file>
+        </group>
     </open-files>
 </project-private>

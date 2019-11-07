@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.LineaInsumoDAO;
+import lp2tecnoquim.model.Insumo;
 import lp2tecnoquim.model.LineaInsumo;
 
 /**
@@ -95,16 +96,19 @@ public class LineaInsumoMySQL implements LineaInsumoDAO {
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 LineaInsumo  l = new LineaInsumo();
-                
                 l.setIdLineaI(cs.getInt("ID_LINEA_INS"));
-                l.setCantInsumo(cs.getInt("CANTIDAD"));
-                //l.setCantInsumo(cs.getFloat("CANTIDAD"));
+                l.setCantInsumo(cs.getInt("CANT"));
                 l.setEstado(cs.getBoolean("ESTADO"));
-                l.getInsumo().setId(cs.getInt("ID_INSUMO"));
-                l.getInsumo().setNombre(cs.getString("NOMBRE"));
-                l.getInsumo().setColor(cs.getString("COLOR"));
-                l.getInsumo().setGranularidad(cs.getFloat("GRANULARIDAD"));
-                l.getInsumo().setUnidad(cs.getString("UNIDAD"));
+
+                Insumo in=new Insumo();
+                in.setId(cs.getInt("ID_INSUMO"));
+                in.setNombre(cs.getString("NOMBRE"));
+                in.setColor(cs.getString("COLOR"));
+                in.setGranularidad(cs.getFloat("GRANULARIDAD"));
+                in.setCantidad(cs.getInt("CANTIDAD"));
+                in.setUnidad(cs.getString("UNIDAD"));
+                in.setRestriccion(cs.getBoolean("RESTRICCION"));
+                l.setInsumo(in);
      
                 lineaInsumos.add(l);
             }

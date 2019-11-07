@@ -90,12 +90,12 @@ public abstract class DBController {
       
       // DetalleMaquinaria
       
-      public static void insertarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria, int idPMP){
-          daoFactory.getDetalleMaquinariaDAO().insertar(detalleMaquinaria, idPMP);
+      public static void insertarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria){
+          daoFactory.getDetalleMaquinariaDAO().insertar(detalleMaquinaria);
       }
       
-      public static void actualizarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria, int idPMP){
-          daoFactory.getDetalleMaquinariaDAO().actualizar(detalleMaquinaria,idPMP);
+      public static void actualizarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria){
+          daoFactory.getDetalleMaquinariaDAO().actualizar(detalleMaquinaria);
       }
       
       public static void eliminarDetalleMaquinaria(int id){
@@ -108,8 +108,8 @@ public abstract class DBController {
       
       // Instructivo
       
-      public static void insertarInstructivo(Instructivo instructivo, int idProducto){
-          daoFactory.getInstructivoDAO().insertar(instructivo, idProducto);
+      public static int insertarInstructivo(Instructivo instructivo, int idProducto){
+          return daoFactory.getInstructivoDAO().insertar(instructivo, idProducto);
       }
       
       public static void actualizarInstructivo(Instructivo instructivo, int idProducto){
@@ -270,8 +270,8 @@ public abstract class DBController {
       
       // Producto
       
-      public static void insertarProducto(Producto producto){
-          daoFactory.getProductoDAO().insertar(producto);
+      public static int insertarProducto(Producto producto){
+          return daoFactory.getProductoDAO().insertar(producto);
       }
       
       public static void actualizarProducto(Producto producto){

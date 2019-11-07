@@ -97,14 +97,12 @@ public class Servicio {
     }
     //DetalleMaquinaria
     @WebMethod(operationName = "insertarDetalleMaquinaria")
-    public void insertarDetalleMaquinaria(@WebParam(name = "maquinaria") DetalleMaquinaria maquinaria,
-            @WebParam(name = "idPMP") int idPMP){
-        DBController.insertarDetalleMaquinaria(maquinaria,idPMP);
+    public void insertarDetalleMaquinaria(@WebParam(name = "maquinaria") DetalleMaquinaria maquinaria){
+        DBController.insertarDetalleMaquinaria(maquinaria);
     }
     @WebMethod(operationName = "actualizarDetalleMaquinaria")
-    public void actualizarDetalleMaquinaria(@WebParam(name = "maquinaria") DetalleMaquinaria maquinaria,
-            @WebParam(name = "idPMP") int idPMP){        
-        DBController.actualizarDetalleMaquinaria(maquinaria,idPMP);
+    public void actualizarDetalleMaquinaria(@WebParam(name = "maquinaria") DetalleMaquinaria maquinaria){        
+        DBController.actualizarDetalleMaquinaria(maquinaria);
     }
     @WebMethod(operationName = "listarDetalleMaquinaria")
     public ArrayList<DetalleMaquinaria> listarDetalleMaquinaria(@WebParam(name = "idPMP") int idPMP){
@@ -112,9 +110,9 @@ public class Servicio {
     }
      //Instructivo
     @WebMethod(operationName = "insertarInstructivo")
-    public void insertarInstructivo(@WebParam(name = "instructivo") Instructivo instructivo,
+    public int insertarInstructivo(@WebParam(name = "instructivo") Instructivo instructivo,
             @WebParam(name = "idProducto") int idProducto){
-        DBController.insertarInstructivo(instructivo,idProducto);
+        return DBController.insertarInstructivo(instructivo,idProducto);
     }
     @WebMethod(operationName = "actualizarInstructivo")
     public void actualizarInstructivo(@WebParam(name = "instructivo") Instructivo instructivo,
@@ -256,8 +254,8 @@ public class Servicio {
     }
     //Producto
     @WebMethod(operationName = "insertarProducto")
-    public void insertarProducto(@WebParam(name = "producto") Producto producto){
-        DBController.insertarProducto(producto);        
+    public int insertarProducto(@WebParam(name = "producto") Producto producto){
+        return DBController.insertarProducto(producto);        
     }
 
     @WebMethod(operationName = "actualizarProducto")
