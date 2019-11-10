@@ -5,10 +5,6 @@
  */
 package lp2tecnoquim.model;
 
-/**
- *
- * @author alulab14
- */
 public enum Estado {
     Aprobado, Rechazado,Pendiente
 }

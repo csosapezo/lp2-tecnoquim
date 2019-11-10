@@ -228,12 +228,12 @@ public class Servicio {
     }
 
     @WebMethod(operationName = "actualizarPMP")
-    public void actualizarPMP(@WebParam(name = "politicaStock") PlanMaestroProduccion politicaStock){
-        DBController.insertarPMP(politicaStock);        
+    public void actualizarPMP(@WebParam(name = "PlanMaestroProduccion") PlanMaestroProduccion pmp){
+        //DBController.insertarPMP(politicaStock);        
     }
     
     @WebMethod(operationName = "listarPMP")
-    public ArrayList<PlanMaestroProduccion> listarPMP(@WebParam(name = "periodo") java.util.Date periodo){
+    public ArrayList<PlanMaestroProduccion> listarPMP(@WebParam(name = "periodo") String periodo){
         return DBController.listarPMP(periodo);        
     }
     

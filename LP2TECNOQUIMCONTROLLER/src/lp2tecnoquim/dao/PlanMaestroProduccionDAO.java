@@ -18,6 +18,6 @@ public interface PlanMaestroProduccionDAO {
     void insertar(PlanMaestroProduccion plan);
     void actualizar(PlanMaestroProduccion plan);
     void eliminar(int id);
-    ArrayList<PlanMaestroProduccion> listar(java.util.Date periodo);
+    ArrayList<PlanMaestroProduccion> listar(String periodo);
     
 }
