@@ -32,7 +32,6 @@ public class MensajeMySQL implements MensajeDAO{
             cs.setInt("_ID_EMISOR", mensaje.getEmisor().getId());
             cs.setInt("_ID_RECEPTOR", mensaje.getReceptor().getId());
             cs.setString("_DESCRIPCION",mensaje.getDescripcion());
-            cs.setDate("_FECHA_ENVIO", new java.sql.Date(mensaje.getFechaEnvio().getTime()));
             
             cs.registerOutParameter("_ID_MENSAJE", java.sql.Types.INTEGER);
             cs.executeUpdate();
