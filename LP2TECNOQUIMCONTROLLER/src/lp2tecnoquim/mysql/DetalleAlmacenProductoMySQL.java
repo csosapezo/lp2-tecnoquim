@@ -52,8 +52,9 @@ public class DetalleAlmacenProductoMySQL implements DetalleAlmacenProductoDAO {
     public void actualizar(DetalleAlmacenProducto detalleAlmacenProducto) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_DETALLE_ALMACEN_PRODUCTO(?,?)}");
+            cs = con.prepareCall("{call ACTUALIZAR_DETALLE_ALMACEN_PRODUCTO(?,?,?)}");
             cs.setInt("_FK_ID_PRODUCTO", detalleAlmacenProducto.getProducto().getIdProducto());
+            cs.setInt("_NO_LOTE", detalleAlmacenProducto.getnLote());
             cs.setInt("_STOCK", detalleAlmacenProducto.getStock());
             cs.executeUpdate();            
         }catch(SQLException ex){
@@ -79,19 +80,19 @@ public class DetalleAlmacenProductoMySQL implements DetalleAlmacenProductoDAO {
     }
 
     @Override
-    public ArrayList<DetalleAlmacenProducto> listar(int id) {
+    public ArrayList<DetalleAlmacenProducto> listar(String dato) {
         ArrayList<DetalleAlmacenProducto> detalleAlmacenProducto = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_DETALLE_ALMACEN_PRODUCTO(?)}");
-            cs.setInt("_ID_DET_ALM_PROD", id);
+            cs = con.prepareCall("{call LISTAR_DETALLE_PRODUCTO(?)}");
+            cs.setString("_NOMBRE", dato);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 DetalleAlmacenProducto  d = new DetalleAlmacenProducto();
                 d.setId(rs.getInt("ID_DET_ALM_PROD"));
                 /* Guardar insumo */
-                d.getProducto().setIdProducto(rs.getInt("ID_PRODUCTO"));
+                d.getProducto().setIdProducto(rs.getInt("ID_PROD"));
                 d.getProducto().setNombre(rs.getString("NOMBRE"));
                 d.getProducto().setGranularidad(rs.getFloat("GRANULARIDAD"));
                 d.getProducto().setPresentacion(rs.getString("PRESENTACION"));
@@ -100,18 +101,18 @@ public class DetalleAlmacenProductoMySQL implements DetalleAlmacenProductoDAO {
                 d.setPeriodo(new java.util.Date(rs.getDate("PERIODO").getTime()));
                 d.setStock(rs.getInt("STOCK"));
                 /* Guardar Almacen */
-                d.getAlmacen().setIdAlmacen(rs.getInt("ID_ALMACEN"));
-                d.getAlmacen().setTipo(rs.getString("TIPO"));
-                d.getAlmacen().setDireccion(rs.getString("DIRECCION"));
+//                d.getAlmacen().setIdAlmacen(rs.getInt("ID_ALMACEN"));
+//                d.getAlmacen().setTipo(rs.getString("TIPO"));
+//                d.getAlmacen().setDireccion(rs.getString("DIRECCION"));
                 /* --- Guardar Trabajador */
-                d.getAlmacen().getTrabajador().setId(rs.getInt("ID_TRABAJADOR"));
-                d.getAlmacen().getTrabajador().setNombres(rs.getString("NOMBRES"));
-                d.getAlmacen().getTrabajador().setApellidos(rs.getString("APELLIDOS"));
-                d.getAlmacen().getTrabajador().setDni(rs.getString("DNI"));
-                d.getAlmacen().getTrabajador().setCorreo(rs.getString("CORREO"));
-                /* ........ Guardar Rol */
-                d.getAlmacen().getTrabajador().getRol().setIdRol(rs.getInt("ID_ROL"));
-                d.getAlmacen().getTrabajador().getRol().setDescripcion(rs.getString("DESCRIPCION"));
+//                d.getAlmacen().getTrabajador().setId(rs.getInt("ID_TRABAJADOR"));
+//                d.getAlmacen().getTrabajador().setNombres(rs.getString("NOMBRES"));
+//                d.getAlmacen().getTrabajador().setApellidos(rs.getString("APELLIDOS"));
+//                d.getAlmacen().getTrabajador().setDni(rs.getString("DNI"));
+//                d.getAlmacen().getTrabajador().setCorreo(rs.getString("CORREO"));
+//                /* ........ Guardar Rol */
+//                d.getAlmacen().getTrabajador().getRol().setIdRol(rs.getInt("ID_ROL"));
+//                d.getAlmacen().getTrabajador().getRol().setDescripcion(rs.getString("DESCRIPCION"));
                 /* ........ Fin Guardar Rol */
                 /* --- Fin Guardar Trabajador */
                 /* Fin Guardar Almacen */

@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Users/alulab14.INF/Desktop/lp2/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/MaquinariaMySQL.java</file>
-            <file>file:/D:/Users/alulab14.INF/Desktop/lp2/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/TrabajadorMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/InsumoMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/dao/DetalleAlmacenProductoDAO.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/LineaInsumoMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/DetalleAlmacenInsumoMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/dao/DetalleAlmacenInsumoDAO.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/ProductoMySQL.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/config/DBController.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/dao/InsumoDAO.java</file>
+            <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/DetalleAlmacenProductoMySQL.java</file>
         </group>
     </open-files>
 </project-private>

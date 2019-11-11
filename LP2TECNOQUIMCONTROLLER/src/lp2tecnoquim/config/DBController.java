@@ -36,8 +36,8 @@ public abstract class DBController {
       
       //Insumo
       
-      public static void insertarInsumo(Insumo insumo){
-          daoFactory.getInsumoDAO().insertar(insumo);
+      public static int insertarInsumo(Insumo insumo){
+         return daoFactory.getInsumoDAO().insertar(insumo);
       }
       
       public static void actualizarInsumo(Insumo insumo){
@@ -54,8 +54,8 @@ public abstract class DBController {
       
       // DetalleAlmacenInsumo
       
-      public static void insertarDetalleAlmacenInsumo(DetalleAlmacenInsumo detalleAlmacenInsumo){
-          daoFactory.getDetalleAlmacenInsumoDAO().insertar(detalleAlmacenInsumo);
+      public static void insertarDetalleAlmacenInsumo(DetalleAlmacenInsumo detalleAlmacenInsumo,int idInsumo){
+          daoFactory.getDetalleAlmacenInsumoDAO().insertar(detalleAlmacenInsumo,idInsumo);
       }
       
       public static void actualizarDetalleAlmacenInsumo(DetalleAlmacenInsumo detalleAlmacenInsumo){
@@ -66,8 +66,8 @@ public abstract class DBController {
           daoFactory.getDetalleAlmacenInsumoDAO().eliminar(id);
       }
       
-      public static ArrayList<DetalleAlmacenInsumo> listarDetalleAlmacenInsumo(int id){
-          return daoFactory.getDetalleAlmacenInsumoDAO().listar(id);
+      public static ArrayList<DetalleAlmacenInsumo> listarDetalleAlmacenInsumo(String dato){
+          return daoFactory.getDetalleAlmacenInsumoDAO().listar(dato);
       }
       
       // DetalleAlmacenProducto
@@ -84,8 +84,8 @@ public abstract class DBController {
           daoFactory.getDetalleAlmacenProductoDAO().eliminar(id);
       }
       
-      public static ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(int id){
-          return daoFactory.getDetalleAlmacenProductoDAO().listar(id);
+      public static ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(String dato){
+          return daoFactory.getDetalleAlmacenProductoDAO().listar(dato);
       }
       
       // DetalleMaquinaria

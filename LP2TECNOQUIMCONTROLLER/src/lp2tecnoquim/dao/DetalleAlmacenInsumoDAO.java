@@ -14,8 +14,8 @@ import lp2tecnoquim.model.DetalleAlmacenInsumo;
  * @author alulab14
  */
 public interface DetalleAlmacenInsumoDAO {
-    void insertar(DetalleAlmacenInsumo detalleAlmacenInsumo);
+    void insertar(DetalleAlmacenInsumo detalleAlmacenInsumo,int idInsumo);
     void actualizar(DetalleAlmacenInsumo detalleAlmacenInsumo);
     void eliminar(int id);
-    ArrayList<DetalleAlmacenInsumo> listar(int id);
+    ArrayList<DetalleAlmacenInsumo> listar(String dato);
 }

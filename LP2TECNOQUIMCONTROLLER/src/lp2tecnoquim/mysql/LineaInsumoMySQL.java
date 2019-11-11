@@ -99,7 +99,6 @@ public class LineaInsumoMySQL implements LineaInsumoDAO {
                 l.setIdLineaI(cs.getInt("ID_LINEA_INS"));
                 l.setCantInsumo(cs.getInt("CANT"));
                 l.setEstado(cs.getBoolean("ESTADO"));
-
                 Insumo in=new Insumo();
                 in.setId(cs.getInt("ID_INSUMO"));
                 in.setNombre(cs.getString("NOMBRE"));
@@ -108,8 +107,7 @@ public class LineaInsumoMySQL implements LineaInsumoDAO {
                 in.setCantidad(cs.getInt("CANTIDAD"));
                 in.setUnidad(cs.getString("UNIDAD"));
                 in.setRestriccion(cs.getBoolean("RESTRICCION"));
-                l.setInsumo(in);
-     
+                l.setInsumo(in);     
                 lineaInsumos.add(l);
             }
         }catch(ClassNotFoundException | SQLException ex){

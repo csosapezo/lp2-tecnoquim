@@ -53,8 +53,8 @@ public class Servicio {
     
     //Insumo
     @WebMethod(operationName = "insertarInsumo")
-    public void insertarInsumo(@WebParam(name = "insumo") Insumo insumo){
-        DBController.insertarInsumo(insumo);
+    public int insertarInsumo(@WebParam(name = "insumo") Insumo insumo){
+        return DBController.insertarInsumo(insumo);
     }
     @WebMethod(operationName = "actualizarInsumo")
     public void actualizarInsumo(@WebParam(name = "insumo") Insumo insumo){
@@ -71,16 +71,17 @@ public class Servicio {
     
     //DetalleAlmacenInsumo
     @WebMethod(operationName = "insertarDetalleAlmacenInsumo")
-    public void insertarDetalleAlmacenInsumo(@WebParam(name = "detalleAlmacenInsumo") DetalleAlmacenInsumo detalleAlmacenInsumo){
-        DBController.insertarDetalleAlmacenInsumo(detalleAlmacenInsumo);
+    public void insertarDetalleAlmacenInsumo(@WebParam(name = "detalleAlmacenInsumo") DetalleAlmacenInsumo detalleAlmacenInsumo,
+            @WebParam(name = "idInsumo") int idInsumo){
+        DBController.insertarDetalleAlmacenInsumo(detalleAlmacenInsumo,idInsumo);
     }
     @WebMethod(operationName = "actualizarDetalleAlmacenInsumo")
     public void actualizarDetalleAlmacenInsumo(@WebParam(name = "detalleAlmacenInsumo") DetalleAlmacenInsumo detalleAlmacenInsumo){
         DBController.actualizarDetalleAlmacenInsumo(detalleAlmacenInsumo);
     }
     @WebMethod(operationName = "listarDetalleAlmacenInsumo")
-    public ArrayList<DetalleAlmacenInsumo> listarDetalleAlmacenInsumo(@WebParam(name = "id") int id){
-        return DBController.listarDetalleAlmacenInsumo(id);
+    public ArrayList<DetalleAlmacenInsumo> listarDetalleAlmacenInsumo(@WebParam(name = "dato") String dato){
+        return DBController.listarDetalleAlmacenInsumo(dato);
     }
     //DetalleAlmacenProducto
     @WebMethod(operationName = "insertarDetalleAlmacenProducto")
@@ -92,8 +93,8 @@ public class Servicio {
         DBController.actualizarDetalleAlmacenProducto(detalleAlmacenProducto);
     }
     @WebMethod(operationName = "listarDetalleAlmacenProducto")
-    public ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(@WebParam(name = "id") int id){
-        return DBController.listarDetalleAlmacenProducto(id);
+    public ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(@WebParam(name = "dato") String dato){
+        return DBController.listarDetalleAlmacenProducto(dato);
     }
     //DetalleMaquinaria
     @WebMethod(operationName = "insertarDetalleMaquinaria")

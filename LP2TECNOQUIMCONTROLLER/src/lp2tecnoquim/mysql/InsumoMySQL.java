@@ -26,7 +26,7 @@ public class InsumoMySQL implements InsumoDAO {
     CallableStatement cs;
     
     @Override
-    public void insertar(Insumo insumo) {
+    public int insertar(Insumo insumo) {
          try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call INSERTAR_INSUMO(?,?,?,?,?,?,?)}");
@@ -45,6 +45,7 @@ public class InsumoMySQL implements InsumoDAO {
         }finally{
             try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
         }
+         return insumo.getId();
     }
 
     @Override
