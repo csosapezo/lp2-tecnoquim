@@ -246,7 +246,7 @@ public abstract class DBController {
           daoFactory.getPlanMaestroProduccionDAO().eliminar(idPMP);
       }
       
-      public static ArrayList<PlanMaestroProduccion> listarPMP(java.util.Date periodo){
+      public static ArrayList<PlanMaestroProduccion> listarPMP(String periodo){
           return daoFactory.getPlanMaestroProduccionDAO().listar(periodo);
       }
       

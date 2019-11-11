@@ -5,11 +5,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.PlanMaestroProduccionDAO;
 import lp2tecnoquim.model.PlanMaestroProduccion;
 import lp2tecnoquim.model.Estado;
+import lp2tecnoquim.model.Trabajador;
 
 public class PlanMaestroProduccionMySQL implements PlanMaestroProduccionDAO{
 
@@ -63,7 +69,6 @@ public class PlanMaestroProduccionMySQL implements PlanMaestroProduccionDAO{
             cs = con.prepareCall("{call ELIMINAR_PLAN(?)}");
             cs.setInt("_ID_PMP", id);
             
-           
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{
@@ -72,26 +77,33 @@ public class PlanMaestroProduccionMySQL implements PlanMaestroProduccionDAO{
     }
 
     @Override
-    public ArrayList<PlanMaestroProduccion> listar(java.util.Date periodo) {
+    public ArrayList<PlanMaestroProduccion> listar(String periodo) {
         ArrayList<PlanMaestroProduccion> plan = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call LISTAR_PLAN(?)}");
-            cs.setDate("_PERIODO", new java.sql.Date(periodo.getTime()));
+            Date dperiodo = new SimpleDateFormat("yyyy-MM-dd").parse(periodo);
+            cs.setDate("_PERIODO", new java.sql.Date(dperiodo.getTime()));
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 PlanMaestroProduccion  a = new PlanMaestroProduccion();
-                a.setId(rs.getInt("_ID_PMP"));
+                a.setId(rs.getInt("ID_PMP"));
                 a.setPeriodo(rs.getDate("PERIODO"));
+                int nEstado = rs.getInt("ESTADO");
+                if (nEstado == 0) a.setEstado(Estado.Aprobado);
+                else if (nEstado == 1) a.setEstado(Estado.Rechazado);
+                else if (nEstado == 2) a.setEstado(Estado.Pendiente);
                 a.getResponsable().setId(rs.getInt("FK_ID_TRABAJADOR"));
-                ///////////////////////////////////////////////
-                
-                
+                a.getResponsable().setNombres(rs.getString("NOMBRES"));
+                a.getResponsable().setApellidos(rs.getString("APELLIDOS"));
+                //a.getResponsable().getRol().setIdRol(rs.getString("FK_ID_ROL")));
                 plan.add(a);
             }
         }catch(ClassNotFoundException | SQLException ex){
             System.out.println(ex.getMessage());
+        } catch (ParseException ex) {
+            Logger.getLogger(PlanMaestroProduccionMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
         }

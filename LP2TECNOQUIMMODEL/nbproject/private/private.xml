@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/DetalleAlmacenInsumo.java</file>
             <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/LineaInsumo.java</file>
             <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/DetalleAlmacenProducto.java</file>
+=======
+            <file>file:/C:/Users/Valeria/Desktop/PUCP/2019-2/LP2/TA/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/Trabajador.java</file>
+            <file>file:/C:/Users/Valeria/Desktop/PUCP/2019-2/LP2/TA/lp2-tecnoquim-back-end/LP2TECNOQUIMMODEL/src/lp2tecnoquim/model/Estado.java</file>
+>>>>>>> fc3ce8c2ca1a19d03ca84c6d2cd870a02220667b
         </group>
     </open-files>
 </project-private>
