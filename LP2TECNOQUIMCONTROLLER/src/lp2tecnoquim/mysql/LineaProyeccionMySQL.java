@@ -92,11 +92,11 @@ public class LineaProyeccionMySQL implements LineaProyeccionDAO{
             while(rs.next()){
                 LineaProyeccion  l = new LineaProyeccion();
                 
-                l.setId(cs.getInt("ID_LIN_PROY"));
-                l.setCantidad(cs.getInt("CANTIDAD"));
-                l.getProducto().setIdProducto(cs.getInt("ID_PRODUCTO"));
-                l.getProducto().setNombre(cs.getString("NOMBRE"));
-                l.getProducto().setPresentacion(cs.getString("PRESENTACION"));
+                l.setId(rs.getInt("ID_LIN_PROY"));
+                l.setCantidad(rs.getInt("CANTIDAD"));
+                l.getProducto().setIdProducto(rs.getInt("ID_PRODUCTO"));
+                l.getProducto().setNombre(rs.getString("NOMBRE"));
+                l.getProducto().setPresentacion(rs.getString("PRESENTACION"));
      
                 lineasProyeccion.add(l);
             }

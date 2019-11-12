@@ -180,6 +180,10 @@ public class Servicio {
     public ArrayList<LineaProyeccion> listarLineaProyeccion(@WebParam(name = "idProyeccion") int idProyeccion){
         return DBController.listarLineaProyeccion(idProyeccion);
     }
+    @WebMethod(operationName = "eliminarLineaProyeccion")
+    public void eliminarLineaProyeccion(@WebParam(name = "idProyeccion") int idProyeccion){
+        DBController.eliminarLineaProyeccion(idProyeccion);
+    }
     
     //Maquinaria
     @WebMethod(operationName = "insertarMaquinaria")
@@ -291,7 +295,7 @@ public class Servicio {
     }
     
     @WebMethod(operationName = "listarProyeccionVenta")
-    public ArrayList<ProyeccionVenta> listarProyeccionVenta(@WebParam(name = "periodo")java.util.Date periodo){
+    public ArrayList<ProyeccionVenta> listarProyeccionVenta(@WebParam(name = "periodo")String periodo){
         return DBController.listarProyeccionVenta(periodo);        
     }
     //Rol

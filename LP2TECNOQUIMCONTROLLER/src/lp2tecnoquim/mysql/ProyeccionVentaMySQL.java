@@ -66,18 +66,18 @@ public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
     }
 
     @Override
-    public ArrayList<ProyeccionVenta> listar(java.util.Date periodo) {
+    public ArrayList<ProyeccionVenta> listar(String periodo) {
         ArrayList<ProyeccionVenta> proyeccion = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call LISTAR_PROYECCION(?)}");
-            cs.setDate("_PERIODO", new java.sql.Date(periodo.getTime()));
+            cs.setString("_PERIODO", periodo);
             
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 ProyeccionVenta  a = new ProyeccionVenta();
-                a.setId(rs.getInt("ID_TRABAJADOR"));
+                a.setId(rs.getInt("ID_PROY_VENTA"));
                 a.setPeriodo(rs.getDate("PERIODO"));
                 ///////////////////////////////////////////////
                 

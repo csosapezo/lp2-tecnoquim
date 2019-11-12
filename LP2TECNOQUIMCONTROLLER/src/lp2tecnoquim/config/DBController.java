@@ -300,7 +300,7 @@ public abstract class DBController {
           daoFactory.getProyeccionVentaDAO().eliminar(idProyeccionVenta);
       }
       
-      public static ArrayList<ProyeccionVenta> listarProyeccionVenta(java.util.Date periodo){
+      public static ArrayList<ProyeccionVenta> listarProyeccionVenta(String periodo){
           return daoFactory.getProyeccionVentaDAO().listar(periodo);
       }
       

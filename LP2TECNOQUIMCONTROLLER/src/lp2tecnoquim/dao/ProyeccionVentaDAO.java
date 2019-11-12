@@ -18,6 +18,6 @@ public interface ProyeccionVentaDAO {
     void insertar(ProyeccionVenta proyeccion);
     void actualizar(ProyeccionVenta proyeccion);
     void eliminar(int id);
-    ArrayList<ProyeccionVenta> listar(java.util.Date periodo);
+    ArrayList<ProyeccionVenta> listar(String periodo);
     
 }
