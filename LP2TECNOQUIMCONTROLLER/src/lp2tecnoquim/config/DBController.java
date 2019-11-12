@@ -212,8 +212,8 @@ public abstract class DBController {
       
       // OrdenProduccion
       
-      public static void insertarOrdenProduccion(OrdenProduccion ordenProduccion, int idPMP){
-          daoFactory.getOrdenProduccionDAO().insertar(ordenProduccion, idPMP);
+      public static int insertarOrdenProduccion(OrdenProduccion ordenProduccion, int idPMP){
+          return daoFactory.getOrdenProduccionDAO().insertar(ordenProduccion, idPMP);
       }
       
       public static void actualizarOrdenProduccion(OrdenProduccion ordenProduccion, int idPMP){

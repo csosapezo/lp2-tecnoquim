@@ -207,8 +207,8 @@ public class Servicio {
     
     //Orden de Produccion
     @WebMethod(operationName = "insertarOrdenProduccion")
-    public void insertarOrdenProduccion(@WebParam(name = "ordenProduccion") OrdenProduccion ordenProduccion,int idPMP){
-        DBController.insertarOrdenProduccion(ordenProduccion, idPMP);        
+    public int insertarOrdenProduccion(@WebParam(name = "ordenProduccion") OrdenProduccion ordenProduccion,int idPMP){
+        return DBController.insertarOrdenProduccion(ordenProduccion, idPMP);        
     }
 
     @WebMethod(operationName = "actualizarOrdenProduccion")

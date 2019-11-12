@@ -26,7 +26,7 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
     CallableStatement cs;
     
     @Override
-    public void insertar(OrdenProduccion ordenProduccion, int idPMP) {
+    public int insertar(OrdenProduccion ordenProduccion, int idPMP) {
          try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call INSERTAR_ORDENPROD(?,?,?)}"); // Modificar el SQL
@@ -42,6 +42,7 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
         }finally{
             try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
         }
+        return ordenProduccion.getId();
     }
 
     @Override
