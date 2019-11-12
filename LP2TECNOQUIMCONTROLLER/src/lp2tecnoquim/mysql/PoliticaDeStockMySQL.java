@@ -82,6 +82,7 @@ public class PoliticaDeStockMySQL implements PoliticaStockDAO{
                 a.setCantMax(rs.getInt("CANT_MAX"));
                 a.setCantMin(rs.getInt("CANT_MIN"));
                 a.getProducto().setIdProducto(rs.getInt("FK_ID_PROD"));
+                a.getProducto().setNombre(rs.getString("NOMBRE"));
                 ///////////////////////////////////////////////
                 
                 politica.add(a);

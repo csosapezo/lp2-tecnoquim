@@ -31,7 +31,7 @@ public class LineaOrdenMySQL implements LineaOrdenDAO {
     public void insertar(LineaOrden lineaOrden, int idOrden) {
          try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_LINEA_ORDEN_PROD(?,?,?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_LINEA_ORDEN(?,?,?,?,?)}");
             
             cs.setInt("_FK_ID_PROD", lineaOrden.getProducto().getIdProducto());
             cs.setInt("_FK_ORDEN_PROD", idOrden);
@@ -73,7 +73,7 @@ public class LineaOrdenMySQL implements LineaOrdenDAO {
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call ELIMINAR_LINEA_ORDEN_PROD(?)}");
             cs.setInt("_ID_LINEAORD", id);
-            
+            cs.execute();
            
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -96,16 +96,16 @@ public class LineaOrdenMySQL implements LineaOrdenDAO {
             while(rs.next()){
                 LineaOrden  l = new LineaOrden();
                 
-                l.setIdLineaOrden(cs.getInt("ID_LINEAORD"));
-                l.setCantProducto(cs.getInt("CANT_PROD"));
-                l.getProducto().setIdProducto(cs.getInt("ID_PROD"));
-                l.getProducto().setNombre(cs.getString("NOMBRE"));
-                l.getProducto().setPresentacion(cs.getString("PRESENTACION"));
-                l.getProducto().setGranularidad(cs.getFloat("GRANULARIDAD"));
-                l.getProducto().getInstructivo().setId(cs.getInt("ID_INSTRUCTIVO"));
-                l.getProducto().getInstructivo().setActividades(cs.getString("ACTIVIDADES"));
+                l.setIdLineaOrden(rs.getInt("ID_LINEAORD"));
+                l.setCantProducto(rs.getInt("CANT_PROD"));
+                l.getProducto().setIdProducto(rs.getInt("ID_PROD"));
+                l.getProducto().setNombre(rs.getString("NOMBRE"));
+                l.getProducto().setPresentacion(rs.getString("PRESENTACION"));
+                l.getProducto().setGranularidad(rs.getFloat("GRANULARIDAD"));
+                l.getProducto().getInstructivo().setId(rs.getInt("ID_INSTRUCTIVO"));
+                l.getProducto().getInstructivo().setActividades(rs.getString("ACTIVIDADES"));
                 
-                estado = cs.getInt("ESTADO_CALIDAD");
+                estado = rs.getInt("ESTADO_CALIDAD");
                 
                 switch (estado) {
                     case 0:

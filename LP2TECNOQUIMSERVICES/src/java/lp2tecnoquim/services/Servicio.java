@@ -156,6 +156,10 @@ public class Servicio {
             @WebParam(name = "idOrden") int idOrden){
         DBController.actualizarLineaOrden(lineaOrden,idOrden);
     }
+    @WebMethod(operationName = "eliminarLineaOrden")
+    public void eliminarLineaOrden(@WebParam(name = "idOrden") int idOrden){
+        DBController.eliminarLineaOrden(idOrden);
+    }
     @WebMethod(operationName = "listarLineaOrden")
     public ArrayList<LineaOrden> listarLineaOrden(@WebParam(name = "idOrden") int idOrden){
         return DBController.listarLineaOrden(idOrden);
