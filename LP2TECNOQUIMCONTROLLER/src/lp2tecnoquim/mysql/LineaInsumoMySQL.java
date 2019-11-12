@@ -75,8 +75,7 @@ public class LineaInsumoMySQL implements LineaInsumoDAO {
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call ELIMINAR_LINEA_INSUMO(?)}");
             cs.setInt("_ID_LINEA_INS", id);
-            
-           
+            cs.execute();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{
@@ -96,17 +95,17 @@ public class LineaInsumoMySQL implements LineaInsumoDAO {
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 LineaInsumo  l = new LineaInsumo();
-                l.setIdLineaI(cs.getInt("ID_LINEA_INS"));
-                l.setCantInsumo(cs.getInt("CANT"));
-                l.setEstado(cs.getBoolean("ESTADO"));
+                l.setIdLineaI(rs.getInt("ID_LINEA_INS"));
+                l.setCantInsumo(rs.getInt("CANT"));
+                l.setEstado(rs.getBoolean("ESTADO"));
                 Insumo in=new Insumo();
-                in.setId(cs.getInt("ID_INSUMO"));
-                in.setNombre(cs.getString("NOMBRE"));
-                in.setColor(cs.getString("COLOR"));
-                in.setGranularidad(cs.getFloat("GRANULARIDAD"));
-                in.setCantidad(cs.getInt("CANTIDAD"));
-                in.setUnidad(cs.getString("UNIDAD"));
-                in.setRestriccion(cs.getBoolean("RESTRICCION"));
+                in.setId(rs.getInt("ID_INSUMO"));
+                in.setNombre(rs.getString("NOMBRE"));
+                in.setColor(rs.getString("COLOR"));
+                in.setGranularidad(rs.getFloat("GRANULARIDAD"));
+                in.setCantidad(rs.getInt("CANTIDAD"));
+                in.setUnidad(rs.getString("UNIDAD"));
+                in.setRestriccion(rs.getBoolean("RESTRICCION"));
                 l.setInsumo(in);     
                 lineaInsumos.add(l);
             }

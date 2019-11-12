@@ -136,6 +136,10 @@ public class Servicio {
             @WebParam(name = "idInstructivo") int idInstructivo){
         DBController.actualizarLineaInsumo(lineaInsumo,idInstructivo);
     }
+    @WebMethod(operationName = "eliminarLineaInsumo")
+    public void eliminarLineaInsumo(@WebParam(name = "idInstructivo") int idInstructivo){
+        DBController.eliminarLineaInsumo(idInstructivo);
+    }
     @WebMethod(operationName = "listarLineaInsumo")
     public ArrayList<LineaInsumo> listarLineaInsumo(@WebParam(name = "idInstructivo") int idInstructivo){
         return DBController.listarLineaInsumo(idInstructivo);
