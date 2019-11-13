@@ -230,7 +230,7 @@ public class Servicio {
     }
     
     @WebMethod(operationName = "listarOrdenesProduccionFecha")
-    public ArrayList<OrdenProduccion> listarOrdenesProduccionFecha(@WebParam(name = "fecha")java.util.Date fecha){
+    public ArrayList<OrdenProduccion> listarOrdenesProduccionFecha(@WebParam(name = "fecha")String fecha){
         return DBController.listarOrdenesProduccion(fecha);        
     }
     

@@ -52,6 +52,10 @@ public abstract class DBController {
           return daoFactory.getInsumoDAO().listar(dato);
       }
       
+      public static ArrayList<Insumo> listarInsumoIns(int idIns){
+          return daoFactory.getInsumoDAO().listar(idIns);
+      }
+      
       // DetalleAlmacenInsumo
       
       public static void insertarDetalleAlmacenInsumo(DetalleAlmacenInsumo detalleAlmacenInsumo,int idInsumo){
@@ -228,7 +232,7 @@ public abstract class DBController {
           return daoFactory.getOrdenProduccionDAO().listar(idPMP);
       }
       
-      public static ArrayList<OrdenProduccion> listarOrdenesProduccion(java.util.Date fecha){
+      public static ArrayList<OrdenProduccion> listarOrdenesProduccion(String fecha){
           return daoFactory.getOrdenProduccionDAO().listar(fecha);
       }
       

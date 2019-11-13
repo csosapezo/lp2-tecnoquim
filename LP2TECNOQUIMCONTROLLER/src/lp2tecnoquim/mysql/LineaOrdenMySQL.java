@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import lp2tecnoquim.config.DBController;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.LineaOrdenDAO;
 import lp2tecnoquim.model.EstadoMaterial;
@@ -102,6 +103,7 @@ public class LineaOrdenMySQL implements LineaOrdenDAO {
                 l.getProducto().setGranularidad(rs.getFloat("GRANULARIDAD"));
                 l.getProducto().getInstructivo().setId(rs.getInt("ID_INSTRUCTIVO"));
                 l.getProducto().getInstructivo().setActividades(rs.getString("ACTIVIDADES"));
+                l.getProducto().getInstructivo().setInsumos(DBController.listarLineaInsumo(l.getProducto().getInstructivo().getId()));
                 
                 estado = rs.getInt("ESTADO_CALIDAD");
                 

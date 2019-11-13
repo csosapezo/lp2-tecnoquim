@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import lp2tecnoquim.config.DBController;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.OrdenProduccionDAO;
 import lp2tecnoquim.model.OrdenProduccion;
@@ -92,7 +93,8 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
                 OrdenProduccion  o = new OrdenProduccion();
                 
                 o.setId(rs.getInt("ID_ORDENPROD"));
-                o.setFecha(new java.util.Date(rs.getDate("FECHA").getTime()));
+                o.setFecha(rs.getDate("FECHA"));
+                o.setLineasOrden(DBController.listarLineaOrden(o.getId()));
      
                 ordenProduccions.add(o);
             }
@@ -105,20 +107,20 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
     }
     
     @Override
-    public ArrayList<OrdenProduccion> listar(java.util.Date fecha) {
+    public ArrayList<OrdenProduccion> listar(String fecha) {
        ArrayList<OrdenProduccion> ordenProduccions = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call LISTAR_ORDEN_POR_FECHA(?)}"); // Modificar el SQL
-            cs.setDate("_FECHA", new java.sql.Date(fecha.getTime()));
+            cs.setString("_FECHA", fecha);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 OrdenProduccion  o = new OrdenProduccion();
                 
                 o.setId(rs.getInt("ID_ORDENPROD"));
-                o.setFecha(new java.util.Date(rs.getDate("FECHA").getTime()));
-     
+                o.setFecha(rs.getDate("FECHA"));
+                o.setLineasOrden(DBController.listarLineaOrden(o.getId()));
                 ordenProduccions.add(o);
             }
         }catch(ClassNotFoundException | SQLException ex){

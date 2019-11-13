@@ -96,29 +96,7 @@ public class ProductoMySQL implements ProductoDAO{
                 Instructivo i=new Instructivo();
                 i.setId(rs.getInt("ID_INSTRUCTIVO"));
                 i.setActividades(rs.getString("ACTIVIDADES"));
-                
-//                ArrayList<LineaInsumo> lineas = new ArrayList<>();
-//                cs1 = con.prepareCall("{call LISTAR_LINEA_INSUMO(?)}");
-//                cs1.setInt("_FK_ID_INSTRUCTIVO", i.getId());
-//                ResultSet rs1 = cs1.executeQuery();
-//                while(rs1.next()){
-//                    LineaInsumo  l = new LineaInsumo();
-//                    l.setIdLineaI(cs1.getInt("ID_LINEA_INS"));
-//                    l.setCantInsumo(cs1.getInt("CANT"));
-//                    l.setEstado(cs1.getBoolean("ESTADO"));
-//                    
-//                    Insumo in=new Insumo();
-//                    in.setId(cs1.getInt("ID_INSUMO"));
-//                    in.setNombre(cs1.getString("NOMBRE"));
-//                    in.setColor(cs1.getString("COLOR"));
-//                    in.setGranularidad(cs1.getFloat("GRANULARIDAD"));
-//                    in.setCantidad(cs1.getInt("CANTIDAD"));
-//                    in.setUnidad(cs1.getString("UNIDAD"));
-//                    in.setRestriccion(cs1.getBoolean("RESTRICCION"));
-//                    l.setInsumo(in);
-//                    lineas.add(l);
-//                }
-//                i.setInsumos(lineas);
+                i.setInsumos(DBController.listarLineaInsumo(i.getId()));
                 a.setInstructivo(i);
                 producto.add(a);
             }

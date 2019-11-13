@@ -18,6 +18,6 @@ public interface OrdenProduccionDAO {
     void actualizar(OrdenProduccion orden, int idPMP);
     void eliminar(int id);
     ArrayList<OrdenProduccion> listar(int idPMP);
-    ArrayList<OrdenProduccion> listar(java.util.Date fecha);
+    ArrayList<OrdenProduccion> listar(String fecha);
     
 }

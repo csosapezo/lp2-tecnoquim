@@ -113,4 +113,33 @@ public class InsumoMySQL implements InsumoDAO {
         }
         return insumos;
     }
+
+    @Override
+    public ArrayList<Insumo> listar(int idIns) {
+        ArrayList<Insumo> insumos = new ArrayList<>();
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            cs = con.prepareCall("{call LISTAR_INSUMO_INS(?)}");
+            cs.setInt("_FK_ID_INS", idIns);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                Insumo  i = new Insumo();
+                
+                i.setId(rs.getInt("ID_INSUMO"));
+                i.setNombre(rs.getString("NOMBRE"));
+                i.setColor(rs.getString("COLOR"));
+                i.setGranularidad(rs.getFloat("GRANULARIDAD"));
+                i.setCantidad(rs.getFloat("CANTIDAD"));
+                i.setUnidad(rs.getString("UNIDAD"));
+                i.setRestriccion(rs.getBoolean("RESTRICCION"));
+                insumos.add(i);
+            }
+        }catch(ClassNotFoundException | SQLException ex){
+            System.out.println(ex.getMessage());
+        }finally{
+            try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
+        }
+        return insumos;
+    }
 }

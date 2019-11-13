@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import lp2tecnoquim.config.DBController;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.ProyeccionVentaDAO;
 import lp2tecnoquim.model.ProyeccionVenta;
@@ -83,6 +84,7 @@ public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
                 ProyeccionVenta  a = new ProyeccionVenta();
                 a.setId(rs.getInt("ID_PROY_VENTA"));
                 a.setPeriodo(rs.getDate("PERIODO"));
+                a.setProyecciones(DBController.listarLineaProyeccion(a.getId()));
                 ///////////////////////////////////////////////
                 
                 
