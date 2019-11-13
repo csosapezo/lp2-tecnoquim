@@ -157,12 +157,12 @@ public class Servicio {
         DBController.actualizarLineaOrden(lineaOrden,idOrden);
     }
     @WebMethod(operationName = "eliminarLineaOrden")
-    public void eliminarLineaOrden(@WebParam(name = "idOrden") int idOrden){
-        DBController.eliminarLineaOrden(idOrden);
+    public void eliminarLineaOrden(@WebParam(name = "idLineaOrden") int idLineaOrden){
+        DBController.eliminarLineaOrden(idLineaOrden);
     }
     @WebMethod(operationName = "listarLineaOrden")
-    public ArrayList<LineaOrden> listarLineaOrden(@WebParam(name = "idOrden") int idOrden){
-        return DBController.listarLineaOrden(idOrden);
+    public ArrayList<LineaOrden> listarLineaOrden(@WebParam(name = "idLineaOrden") int idLineaOrden){
+        return DBController.listarLineaOrden(idLineaOrden);
     }
     
     //LineaProyeccion

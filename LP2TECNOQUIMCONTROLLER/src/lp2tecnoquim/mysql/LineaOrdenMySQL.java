@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.LineaOrdenDAO;
@@ -58,7 +56,7 @@ public class LineaOrdenMySQL implements LineaOrdenDAO {
             cs.setInt("_FK_ORDEN_PROD", idOrden);
             cs.setInt("_CANT_PROD", lineaOrden.getCantProducto());
             cs.setInt("_ESTADO_CALIDAD", lineaOrden.getEstadoCalidad().ordinal());
-            
+            cs.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{
@@ -73,7 +71,7 @@ public class LineaOrdenMySQL implements LineaOrdenDAO {
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call ELIMINAR_LINEA_ORDEN_PROD(?)}");
             cs.setInt("_ID_LINEAORD", id);
-            cs.execute();
+            cs.executeUpdate();
            
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
