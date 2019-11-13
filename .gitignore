@@ -31,10 +31,15 @@ LP2TECNOQUIMMODEL/target/
 LP2TECNOQUIM/target/
 
 # NetBeans specific
-LP2TECNOQUIMSERVICES/nbproject/private/
-LP2TECNOQUIMCONTROLLER/nbproject/private/
-LP2TECNOQUIMMODEL/nbproject/private/
-LP2TECNOQUIM/nbproject/private/
+LP2TECNOQUIMSERVICES/nbproject/private/*
+LP2TECNOQUIMCONTROLLER/nbproject/private/*
+LP2TECNOQUIMMODEL/nbproject/private/*
+LP2TECNOQUIM/nbproject/private/*
+
+LP2TECNOQUIMSERVICES/nbproject/private/*
+LP2TECNOQUIMCONTROLLER/nbproject/private/*
+LP2TECNOQUIMMODEL/nbproject/private/*
+LP2TECNOQUIM/nbproject/private/*
 
 LP2TECNOQUIMSERVICES/build/
 LP2TECNOQUIMCONTROLLER/build/
