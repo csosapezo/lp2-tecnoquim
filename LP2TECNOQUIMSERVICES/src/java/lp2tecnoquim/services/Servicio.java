@@ -291,7 +291,7 @@ public class Servicio {
 
     @WebMethod(operationName = "actualizarProyeccionVenta")
     public void actualizarProyeccionVenta(@WebParam(name = "proyeccionVenta") ProyeccionVenta proyeccionVenta){
-        DBController.insertarProyeccionVenta(proyeccionVenta);        
+        DBController.actualizarProyeccionVenta(proyeccionVenta);        
     }
     
     @WebMethod(operationName = "listarProyeccionVenta")

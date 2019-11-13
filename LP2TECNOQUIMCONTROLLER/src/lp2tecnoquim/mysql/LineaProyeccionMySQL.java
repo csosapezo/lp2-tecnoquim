@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.LineaProyeccionDAO;
@@ -70,7 +68,7 @@ public class LineaProyeccionMySQL implements LineaProyeccionDAO{
             cs = con.prepareCall("{call ELIMINAR_LINEA_PROYECCION(?)}");
             cs.setInt("_ID_LIN_PROY", id);
             
-           
+            cs.execute();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{

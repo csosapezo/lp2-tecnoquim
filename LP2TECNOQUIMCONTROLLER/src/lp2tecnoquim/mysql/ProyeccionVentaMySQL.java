@@ -18,9 +18,11 @@ public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
     public void insertar(ProyeccionVenta proyeccion) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_PROYECCION(?)}");
-            java.sql.Date sqlDate = new java.sql.Date(proyeccion.getPeriodo().getTime());
-            cs.setDate("_PERIODO", sqlDate);
+            cs = con.prepareCall("{call INSERTAR_PROYECCION(?,?)}");
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            String currentTime = sdf.format(proyeccion.getPeriodo());
+            java.sql.Date sql = java.sql.Date.valueOf(currentTime);
+            cs.setDate("_PERIODO", sql);
             
             cs.registerOutParameter("_ID_PROY_VENTA", java.sql.Types.INTEGER);
             cs.executeUpdate();
@@ -38,8 +40,10 @@ public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call ACTUALIZAR_PROYECCION(?,?)}");
             cs.setInt("_ID_PROY_VENTA", proyeccion.getId());
-            java.sql.Date sqlDate = new java.sql.Date(proyeccion.getPeriodo().getTime());
-            cs.setDate("_PERIODO", sqlDate);
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            String currentTime = sdf.format(proyeccion.getPeriodo());
+            java.sql.Date sql = java.sql.Date.valueOf(currentTime);
+            cs.setDate("_PERIODO", sql);
                     
             cs.executeUpdate();
             
