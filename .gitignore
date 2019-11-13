@@ -25,16 +25,46 @@ tomcat
 *.class
 
 # Maven 
-target/
+LP2TECNOQUIMSERVICES/target/
+LP2TECNOQUIMCONTROLLER/target/
+LP2TECNOQUIMMODEL/target/
+LP2TECNOQUIM/target/
 
 # NetBeans specific
-*/nbproject/private/
-*/build/
-*/nbbuild/
-*/dist/
-*/nbdist/
-*/nbactions.xml
-*/nb-configuration.xml
+LP2TECNOQUIMSERVICES/nbproject/private/
+LP2TECNOQUIMCONTROLLER/nbproject/private/
+LP2TECNOQUIMMODEL/nbproject/private/
+LP2TECNOQUIM/nbproject/private/
+
+LP2TECNOQUIMSERVICES/build/
+LP2TECNOQUIMCONTROLLER/build/
+LP2TECNOQUIMMODEL/build/
+LP2TECNOQUIM/build/
+
+LP2TECNOQUIMSERVICES/nbbuild/
+LP2TECNOQUIMCONTROLLER/nbbuild/
+LP2TECNOQUIMMODEL/nbbuild/
+LP2TECNOQUIM/nbbuild/
+
+LP2TECNOQUIMSERVICES/dist/
+LP2TECNOQUIMCONTROLLER/dist/
+LP2TECNOQUIMMODEL/dist/
+LP2TECNOQUIM/dist/
+
+LP2TECNOQUIMSERVICES/ndist/
+LP2TECNOQUIMCONTROLLER/ndist/
+LP2TECNOQUIMMODEL/ndist/
+LP2TECNOQUIM/ndist/
+
+LP2TECNOQUIMSERVICES/nbactions.xml
+LP2TECNOQUIMCONTROLLER/nbactions.xml
+LP2TECNOQUIMMODEL/nbactions.xml
+LP2TECNOQUIM/nbactions.xml
+
+LP2TECNOQUIMSERVICES/nb-configuration.xml
+LP2TECNOQUIMCONTROLLER/nb-configuration.xml
+LP2TECNOQUIMMODEL/nb-configuration.xml
+LP2TECNOQUIM/nb-configuration.xml
 
 
 # OS
