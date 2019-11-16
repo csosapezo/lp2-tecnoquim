@@ -103,7 +103,7 @@ public class LineaOrdenMySQL implements LineaOrdenDAO {
                 l.getProducto().setGranularidad(rs.getFloat("GRANULARIDAD"));
                 l.getProducto().getInstructivo().setId(rs.getInt("ID_INSTRUCTIVO"));
                 l.getProducto().getInstructivo().setActividades(rs.getString("ACTIVIDADES"));
-                l.getProducto().getInstructivo().setInsumos(DBController.listarLineaInsumo(l.getProducto().getInstructivo().getId()));
+//                l.getProducto().getInstructivo().setInsumos(DBController.listarLineaInsumo(l.getProducto().getInstructivo().getId()));
                 
                 estado = rs.getInt("ESTADO_CALIDAD");
                 

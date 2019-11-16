@@ -94,7 +94,7 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
                 
                 o.setId(rs.getInt("ID_ORDENPROD"));
                 o.setFecha(rs.getDate("FECHA"));
-                o.setLineasOrden(DBController.listarLineaOrden(o.getId()));
+//                o.setLineasOrden(DBController.listarLineaOrden(o.getId()));
      
                 ordenProduccions.add(o);
             }
@@ -120,7 +120,7 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
                 
                 o.setId(rs.getInt("ID_ORDENPROD"));
                 o.setFecha(rs.getDate("FECHA"));
-                o.setLineasOrden(DBController.listarLineaOrden(o.getId()));
+                //o.setLineasOrden(DBController.listarLineaOrden(o.getId()));
                 ordenProduccions.add(o);
             }
         }catch(ClassNotFoundException | SQLException ex){

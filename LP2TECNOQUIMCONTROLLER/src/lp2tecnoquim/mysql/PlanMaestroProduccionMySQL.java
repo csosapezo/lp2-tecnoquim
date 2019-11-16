@@ -111,13 +111,13 @@ public class PlanMaestroProduccionMySQL implements PlanMaestroProduccionDAO{
                 a.getResponsable().setNombres(rs.getString("NOMBRES"));
                 a.getResponsable().setApellidos(rs.getString("APELLIDOS"));
                 //a.getResponsable().getRol().setIdRol(rs.getString("FK_ID_ROL")));
-                ArrayList<DetalleMaquinaria> dm = DBController.listarDetalleMaquinaria(a.getId());
-                for (DetalleMaquinaria det : dm) 
-                { 		      
-                    ArrayList<Maquinaria> m = DBController.listarMaquinaria(det.getMaquinaria().getNombre());
-                    a.getMaquinarias().add(m.get(0));
-                }                
-                a.setOrdenes(DBController.listarOrdenesProduccion(a.getId()));
+//                ArrayList<DetalleMaquinaria> dm = DBController.listarDetalleMaquinaria(a.getId());
+//                for (DetalleMaquinaria det : dm) 
+//                { 		      
+//                    ArrayList<Maquinaria> m = DBController.listarMaquinaria(det.getMaquinaria().getNombre());
+//                    a.getMaquinarias().add(m.get(0));
+//                }                
+//                a.setOrdenes(DBController.listarOrdenesProduccion(a.getId()));
                 
                 plan.add(a);
             }
