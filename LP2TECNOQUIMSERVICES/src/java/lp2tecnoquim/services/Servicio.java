@@ -253,7 +253,7 @@ public class Servicio {
 
     @WebMethod(operationName = "actualizarPMP")
     public void actualizarPMP(@WebParam(name = "PlanMaestroProduccion") PlanMaestroProduccion pmp){
-        //DBController.insertarPMP(politicaStock);        
+        DBController.actualizarPMP(pmp);        
     }
     
     @WebMethod(operationName = "listarPMP")
