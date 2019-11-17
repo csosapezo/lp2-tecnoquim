@@ -50,11 +50,10 @@ public class PlanMaestroProduccionMySQL implements PlanMaestroProduccionDAO{
     public void actualizar(PlanMaestroProduccion plan) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_PLAN(?,?,?,?)}");
+            cs = con.prepareCall("{call ACTUALIZAR_PLAN(?,?,?)}");
             cs.setInt("_ID_PMP", plan.getId());
-            java.sql.Date sqlDate = new java.sql.Date(plan.getPeriodo().getTime());
-            cs.setDate("_PERIODO", sqlDate);
-            cs.setInt("_ESTADO",1);
+            int nEstado = plan.getEstado().ordinal();
+            cs.setInt("_ESTADO",nEstado);
             cs.setInt("_FK_ID_TRABAJADOR",plan.getResponsable().getId());
                     
             cs.executeUpdate();
