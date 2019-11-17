@@ -5,12 +5,23 @@
  */
 package lp2tecnoquim.services;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import lp2tecnoquim.config.DBController;
+import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.model.*;
+import lp2tecnoquim.servlets.ServletInsumosRestringidos;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
@@ -349,14 +360,55 @@ public class Servicio {
         return DBController.listarUsuarios(username);        
     }
     
+    @WebMethod(operationName = "generarReporteInsumosRestringidosPDF")
+    public byte[] generarReporteInsumosRestringidosPDF(
+            @WebParam (name = "mes") int mes,
+            @WebParam (name = "anio") int anio){
+        byte[] arreglo = null;
+        try{
+            String ruta=ServletInsumosRestringidos.class.getResource(
+                    "/lp2tecnoquim/reports/InsumosRestringidos.jasper").getPath();
+            ruta=ruta.replaceAll("%20", " ");
+            ruta=ruta.replaceAll("%23", "#");
+            JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile(ruta);
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            HashMap hm = new HashMap();
+            hm.put("MES", mes);
+            hm.put("ANIO", anio);
+            JasperPrint jp = JasperFillManager.fillReport(reporte,hm,con);
+            arreglo = JasperExportManager.exportReportToPdf(jp);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return arreglo;
+    }
     
-    
-    
-    
-    
-    
-    
-    
+    @WebMethod(operationName = "generarReporteProductosRestringidosPDF")
+    public byte[] generarReporteProductosRestringidosPDF(
+            @WebParam (name = "mes") int mes,
+            @WebParam (name = "anio") int anio){
+        byte[] arreglo = null;
+        try{
+            String ruta=ServletInsumosRestringidos.class.getResource(
+                    "/lp2tecnoquim/reports/ProductosRestringidos.jasper").getPath();
+            ruta=ruta.replaceAll("%20", " ");
+            ruta=ruta.replaceAll("%23", "#");
+            JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile(ruta);
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            HashMap hm = new HashMap();
+            hm.put("MES", mes);
+            hm.put("ANIO", anio);
+            JasperPrint jp = JasperFillManager.fillReport(reporte,hm,con);
+            arreglo = JasperExportManager.exportReportToPdf(jp);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return arreglo;
+    }
     
 }
     
