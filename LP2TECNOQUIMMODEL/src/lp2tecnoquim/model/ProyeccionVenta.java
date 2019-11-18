@@ -8,10 +8,6 @@ package lp2tecnoquim.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author alulab14
- */
 public class ProyeccionVenta {
     
     private int id;

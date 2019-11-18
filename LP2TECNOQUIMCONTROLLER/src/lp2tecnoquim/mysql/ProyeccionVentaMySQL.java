@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import lp2tecnoquim.config.DBController;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.ProyeccionVentaDAO;
+import lp2tecnoquim.model.LineaProyeccion;
 import lp2tecnoquim.model.ProyeccionVenta;
 
 public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
@@ -24,10 +25,12 @@ public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
             String currentTime = sdf.format(proyeccion.getPeriodo());
             java.sql.Date sql = java.sql.Date.valueOf(currentTime);
             cs.setDate("_PERIODO", sql);
-            
             cs.registerOutParameter("_ID_PROY_VENTA", java.sql.Types.INTEGER);
             cs.executeUpdate();
             proyeccion.setId(cs.getInt("_ID_PROY_VENTA"));
+            for (LineaProyeccion lp : proyeccion.getProyecciones()){
+                DBController.insertarLineaProyeccion(lp,proyeccion.getId());
+            }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{
@@ -45,8 +48,11 @@ public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
             String currentTime = sdf.format(proyeccion.getPeriodo());
             java.sql.Date sql = java.sql.Date.valueOf(currentTime);
             cs.setDate("_PERIODO", sql);
-                    
             cs.executeUpdate();
+            //antes de esto en la base de datos se eliminan las proyecciones anteriores
+            for (LineaProyeccion lp : proyeccion.getProyecciones()){
+                DBController.insertarLineaProyeccion(lp,proyeccion.getId());
+            }
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -86,8 +92,6 @@ public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
                 a.setPeriodo(rs.getDate("PERIODO"));
                 a.setProyecciones(DBController.listarLineaProyeccion(a.getId()));
                 ///////////////////////////////////////////////
-                
-                
                 proyeccion.add(a);
             }
         }catch(ClassNotFoundException | SQLException ex){
