@@ -1,37 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lp2tecnoquim.model;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author alulab14
- */
 public class PlanMaestroProduccion {
     private int id;
     private Date periodo;
     private Estado estado;
     private ArrayList<OrdenProduccion> ordenes;
-    private ArrayList<Maquinaria> maquinarias;
+    private ArrayList<DetalleMaquinaria> detMaquinarias;
     private Trabajador responsable;
 
     public PlanMaestroProduccion() {
         periodo = new Date();
         ordenes = new ArrayList<OrdenProduccion>();
-        maquinarias = new ArrayList<Maquinaria>();
+        detMaquinarias = new ArrayList<DetalleMaquinaria>();
         responsable = new Trabajador();
     }
 
-    public PlanMaestroProduccion(Date periodo, Estado estado, ArrayList<OrdenProduccion> ordenes, ArrayList<Maquinaria> maquinarias, Trabajador responsable) {
+    public PlanMaestroProduccion(Date periodo, Estado estado, ArrayList<OrdenProduccion> ordenes, ArrayList<DetalleMaquinaria> detMaquinarias, Trabajador responsable) {
         this.periodo = periodo;
         this.estado = estado;
         this.ordenes = ordenes;
-        this.maquinarias = maquinarias;
+        this.detMaquinarias = detMaquinarias;
         this.responsable = responsable;
     }
 
@@ -67,12 +58,12 @@ public class PlanMaestroProduccion {
         this.ordenes = ordenes;
     }
 
-    public ArrayList<Maquinaria> getMaquinarias() {
-        return maquinarias;
+    public ArrayList<DetalleMaquinaria> getMaquinarias() {
+        return detMaquinarias;
     }
 
-    public void setMaquinarias(ArrayList<Maquinaria> maquinarias) {
-        this.maquinarias = maquinarias;
+    public void setMaquinarias(ArrayList<DetalleMaquinaria> maquinarias) {
+        this.detMaquinarias = maquinarias;
     }
 
     public Trabajador getResponsable() {

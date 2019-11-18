@@ -110,6 +110,10 @@ public abstract class DBController {
           return daoFactory.getDetalleMaquinariaDAO().listar(idPMP);
       }
       
+      public static ArrayList<DetalleMaquinaria> listarDetalleMaquinariaTodos(String maq){
+          return daoFactory.getDetalleMaquinariaDAO().listarTodo(maq);
+      }
+      
       // Instructivo
       
       public static int insertarInstructivo(Instructivo instructivo, int idProducto){

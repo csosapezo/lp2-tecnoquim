@@ -116,9 +116,17 @@ public class Servicio {
     public void actualizarDetalleMaquinaria(@WebParam(name = "maquinaria") DetalleMaquinaria maquinaria){        
         DBController.actualizarDetalleMaquinaria(maquinaria);
     }
+    @WebMethod(operationName = "eliminarDetalleMaquinaria")
+    public void eliminarDetalleMaquinaria(@WebParam(name = "idMaquinaria") int idMaq){        
+        DBController.eliminarDetalleMaquinaria(idMaq);
+    }
     @WebMethod(operationName = "listarDetalleMaquinaria")
     public ArrayList<DetalleMaquinaria> listarDetalleMaquinaria(@WebParam(name = "idPMP") int idPMP){
         return DBController.listarDetalleMaquinaria(idPMP);
+    }
+    @WebMethod(operationName = "listarDetalleMaquinariaTodos")
+    public ArrayList<DetalleMaquinaria> listarDetalleMaquinariaTodos(String maq){
+        return DBController.listarDetalleMaquinariaTodos(maq);
     }
      //Instructivo
     @WebMethod(operationName = "insertarInstructivo")

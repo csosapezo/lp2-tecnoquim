@@ -18,5 +18,6 @@ public interface DetalleMaquinariaDAO {
     void actualizar(DetalleMaquinaria detalleM);
     void eliminar(int id);
     ArrayList<DetalleMaquinaria> listar(int idPMP);
+    ArrayList<DetalleMaquinaria> listarTodo(String maq);
     
 }
