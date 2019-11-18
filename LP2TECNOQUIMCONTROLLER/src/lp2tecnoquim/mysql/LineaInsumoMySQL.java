@@ -98,15 +98,13 @@ public class LineaInsumoMySQL implements LineaInsumoDAO {
                 l.setIdLineaI(rs.getInt("ID_LINEA_INS"));
                 l.setCantInsumo(rs.getInt("CANT"));
                 l.setEstado(rs.getBoolean("ESTADO"));
-                Insumo in=new Insumo();
-                in.setId(rs.getInt("ID_INSUMO"));
-                in.setNombre(rs.getString("NOMBRE"));
-                in.setColor(rs.getString("COLOR"));
-                in.setGranularidad(rs.getFloat("GRANULARIDAD"));
-                in.setCantidad(rs.getInt("CANTIDAD"));
-                in.setUnidad(rs.getString("UNIDAD"));
-                in.setRestriccion(rs.getBoolean("RESTRICCION"));
-                l.setInsumo(in);     
+                l.getInsumo().setId(rs.getInt("ID_INSUMO"));
+                l.getInsumo().setNombre(rs.getString("NOMBRE"));
+                l.getInsumo().setColor(rs.getString("COLOR"));
+                l.getInsumo().setGranularidad(rs.getFloat("GRANULARIDAD"));
+                l.getInsumo().setCantidad(rs.getInt("CANTIDAD"));
+                l.getInsumo().setUnidad(rs.getString("UNIDAD"));
+                l.getInsumo().setRestriccion(rs.getBoolean("RESTRICCION"));
                 lineaInsumos.add(l);
             }
         }catch(ClassNotFoundException | SQLException ex){

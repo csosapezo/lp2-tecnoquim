@@ -93,11 +93,9 @@ public class ProductoMySQL implements ProductoDAO{
                 a.setGranularidad(rs.getFloat("GRANULARIDAD"));
                 a.setPresentacion(rs.getString("PRESENTACION"));
                 a.setRestriccion(rs.getBoolean("RESTRICCION"));
-                Instructivo i=new Instructivo();
-                i.setId(rs.getInt("ID_INSTRUCTIVO"));
-                i.setActividades(rs.getString("ACTIVIDADES"));
-                i.setInsumos(DBController.listarLineaInsumo(i.getId()));
-                a.setInstructivo(i);
+                a.getInstructivo().setId(rs.getInt("ID_INSTRUCTIVO"));
+                a.getInstructivo().setActividades(rs.getString("ACTIVIDADES"));
+                //a.getInstructivo().setInsumos(DBController.listarLineaInsumo(i.getId()));
                 producto.add(a);
             }
         }catch(ClassNotFoundException | SQLException ex){
