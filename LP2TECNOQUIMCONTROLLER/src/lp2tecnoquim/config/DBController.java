@@ -94,8 +94,8 @@ public abstract class DBController {
       
       // DetalleMaquinaria
       
-      public static void insertarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria){
-          daoFactory.getDetalleMaquinariaDAO().insertar(detalleMaquinaria);
+      public static void insertarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria, int idPMP){
+          daoFactory.getDetalleMaquinariaDAO().insertar(detalleMaquinaria, idPMP);
       }
       
       public static void actualizarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria){
