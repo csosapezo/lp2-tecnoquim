@@ -15,9 +15,10 @@ import lp2tecnoquim.model.PlanMaestroProduccion;
  */
 public interface PlanMaestroProduccionDAO {
     
-    void insertar(PlanMaestroProduccion plan);
+    int insertar(PlanMaestroProduccion plan);
     void actualizar(PlanMaestroProduccion plan);
     void eliminar(int id);
     ArrayList<PlanMaestroProduccion> listar(String periodo);
+    ArrayList<PlanMaestroProduccion> listarEstado(int estado);
     
 }

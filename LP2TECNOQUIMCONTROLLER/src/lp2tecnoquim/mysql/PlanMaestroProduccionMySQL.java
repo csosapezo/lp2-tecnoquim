@@ -5,21 +5,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import lp2tecnoquim.config.DBController;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.PlanMaestroProduccionDAO;
-import lp2tecnoquim.model.DetalleMaquinaria;
 import lp2tecnoquim.model.PlanMaestroProduccion;
 import lp2tecnoquim.model.Estado;
-import lp2tecnoquim.model.Maquinaria;
-import lp2tecnoquim.model.OrdenProduccion;
-import lp2tecnoquim.model.Trabajador;
 
 public class PlanMaestroProduccionMySQL implements PlanMaestroProduccionDAO{
 
@@ -27,7 +17,8 @@ public class PlanMaestroProduccionMySQL implements PlanMaestroProduccionDAO{
     CallableStatement cs;
 
     @Override
-    public void insertar(PlanMaestroProduccion plan) {
+    public int insertar(PlanMaestroProduccion plan) {
+        int id = 0;
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call INSERTAR_PLAN(?,?,?)}");
@@ -39,11 +30,13 @@ public class PlanMaestroProduccionMySQL implements PlanMaestroProduccionDAO{
             cs.registerOutParameter("_ID_PMP", java.sql.Types.INTEGER);
             cs.executeUpdate();
             plan.setId(cs.getInt("_ID_PMP"));
+            id = plan.getId();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{
             try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
         }
+        return id;
     }
 
     @Override
@@ -128,4 +121,52 @@ public class PlanMaestroProduccionMySQL implements PlanMaestroProduccionDAO{
         return plan;
     }
     
+    @Override
+    public ArrayList<PlanMaestroProduccion> listarEstado(int estado) {
+        ArrayList<PlanMaestroProduccion> plan = new ArrayList<>();
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            cs = con.prepareCall("{call LISTAR_PLAN2(?)}");
+            cs.setInt("_ESTADO", estado);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                PlanMaestroProduccion  a = new PlanMaestroProduccion();
+                a.setId(rs.getInt("ID_PMP"));
+                a.setPeriodo(rs.getDate("PERIODO"));
+                int nEstado = rs.getInt("ESTADO");
+                switch (nEstado) {
+                    case 0:
+                        a.setEstado(Estado.Aprobado);
+                        break;
+                    case 1:
+                        a.setEstado(Estado.Rechazado);
+                        break;
+                    case 2:
+                        a.setEstado(Estado.Pendiente);
+                        break;
+                    default:
+                        break;
+                }
+                a.getResponsable().setId(rs.getInt("FK_ID_TRABAJADOR"));
+                a.getResponsable().setNombres(rs.getString("NOMBRES"));
+                a.getResponsable().setApellidos(rs.getString("APELLIDOS"));
+                //a.getResponsable().getRol().setIdRol(rs.getString("FK_ID_ROL")));
+//                ArrayList<DetalleMaquinaria> dm = DBController.listarDetalleMaquinaria(a.getId());
+//                for (DetalleMaquinaria det : dm) 
+//                { 		      
+//                    ArrayList<Maquinaria> m = DBController.listarMaquinaria(det.getMaquinaria().getNombre());
+//                    a.getMaquinarias().add(m.get(0));
+//                }                
+//                a.setOrdenes(DBController.listarOrdenesProduccion(a.getId()));
+                
+                plan.add(a);
+            }
+        }catch(ClassNotFoundException | SQLException ex){
+            System.out.println(ex.getMessage());
+        }finally{
+            try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
+        }
+        return plan;
+    }
 }

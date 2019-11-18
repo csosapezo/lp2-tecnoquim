@@ -238,8 +238,8 @@ public abstract class DBController {
       
       // PlanMaestroProduccion
       
-      public static void insertarPMP(PlanMaestroProduccion plan){
-          daoFactory.getPlanMaestroProduccionDAO().insertar(plan);
+      public static int insertarPMP(PlanMaestroProduccion plan){
+          return daoFactory.getPlanMaestroProduccionDAO().insertar(plan);
       }
       
       public static void actualizarPMP(PlanMaestroProduccion plan){
@@ -252,6 +252,10 @@ public abstract class DBController {
       
       public static ArrayList<PlanMaestroProduccion> listarPMP(String periodo){
           return daoFactory.getPlanMaestroProduccionDAO().listar(periodo);
+      }
+      
+      public static ArrayList<PlanMaestroProduccion> listarPMPEstado(int estado){
+          return daoFactory.getPlanMaestroProduccionDAO().listarEstado(estado);
       }
       
       // PoliticaStock

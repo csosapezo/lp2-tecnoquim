@@ -232,7 +232,7 @@ public class Servicio {
 
     @WebMethod(operationName = "actualizarOrdenProduccion")
     public void actualizarOrdenProduccion(@WebParam(name = "ordenProduccion") OrdenProduccion ordenProduccion,int idPMP){
-        DBController.insertarOrdenProduccion(ordenProduccion, idPMP);        
+        DBController.actualizarOrdenProduccion(ordenProduccion, idPMP);        
     }
     
     @WebMethod(operationName = "listarOrdenesProduccionPlan")
@@ -247,8 +247,8 @@ public class Servicio {
     
     //Plan Maestro de Produccion
     @WebMethod(operationName = "insertarPMP")
-    public void insertarPMP(@WebParam(name = "politicaStock") PlanMaestroProduccion politicaStock){
-        DBController.insertarPMP(politicaStock);        
+    public int insertarPMP(@WebParam(name = "politicaStock") PlanMaestroProduccion politicaStock){
+        return DBController.insertarPMP(politicaStock);        
     }
 
     @WebMethod(operationName = "actualizarPMP")
@@ -259,6 +259,11 @@ public class Servicio {
     @WebMethod(operationName = "listarPMP")
     public ArrayList<PlanMaestroProduccion> listarPMP(@WebParam(name = "periodo") String periodo){
         return DBController.listarPMP(periodo);        
+    }
+    
+    @WebMethod(operationName = "listarPMPEstado")
+    public ArrayList<PlanMaestroProduccion> listarPMPEstado(@WebParam(name = "periodo") int estado){
+        return DBController.listarPMPEstado(estado);        
     }
     
     //PoliticaStock
