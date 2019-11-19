@@ -50,7 +50,7 @@ public class MensajeMySQL implements MensajeDAO{
             cs = con.prepareCall("{call ELIMINAR_MENSAJE(?)}");
             cs.setInt("_ID_MENSAJE", idMensaje);
             
-           
+            cs.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{

@@ -43,6 +43,11 @@ public class Servicio {
         DBController.enviarMensaje(mensaje);
     }
     
+    @WebMethod(operationName = "enviarMensaje")
+    public void leerMensaje(@WebParam(name = "idMensaje") int idMensaje) {
+        DBController.eliminarMensaje(idMensaje);
+    }
+    
     @WebMethod(operationName = "verificarUsuario")
     public Trabajador verificarUsuario(@WebParam(name = "usuario") Usuario usuario) {
         return DBController.verificarUsuario(usuario);
