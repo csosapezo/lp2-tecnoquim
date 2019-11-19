@@ -33,17 +33,13 @@ public class Servicio {
     /**
      * This is a sample web service operation
      */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
-    }
     
     @WebMethod(operationName = "enviarMensaje")
     public void enviarMensaje(@WebParam(name = "mensaje") Mensaje mensaje) {
         DBController.enviarMensaje(mensaje);
     }
     
-    @WebMethod(operationName = "enviarMensaje")
+    @WebMethod(operationName = "leerMensaje")
     public void leerMensaje(@WebParam(name = "idMensaje") int idMensaje) {
         DBController.eliminarMensaje(idMensaje);
     }
