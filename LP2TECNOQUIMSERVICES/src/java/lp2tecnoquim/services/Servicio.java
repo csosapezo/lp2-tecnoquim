@@ -161,9 +161,8 @@ public class Servicio {
         DBController.insertarLineaOrden(lineaOrden,idOrden);
     }
     @WebMethod(operationName = "actualizarLineaOrden")
-    public void actualizarLineaOrden(@WebParam(name = "lineaOrden") LineaOrden lineaOrden,
-            @WebParam(name = "idOrden") int idOrden){
-        DBController.actualizarLineaOrden(lineaOrden,idOrden);
+    public void actualizarLineaOrden(@WebParam(name = "lineaOrden") LineaOrden lineaOrden){
+        DBController.actualizarLineaOrden(lineaOrden);
     }
     @WebMethod(operationName = "eliminarLineaOrden")
     public void eliminarLineaOrden(@WebParam(name = "idLineaOrden") int idLineaOrden){

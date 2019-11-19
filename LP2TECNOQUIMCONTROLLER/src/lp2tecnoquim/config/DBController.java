@@ -147,8 +147,8 @@ public abstract class DBController {
           daoFactory.getLineaOrdenDAO().insertar(lineaOrden, idOrden);
       }
       
-      public static void actualizarLineaOrden(LineaOrden lineaOrden, int idOrden){
-          daoFactory.getLineaOrdenDAO().actualizar(lineaOrden, idOrden);
+      public static void actualizarLineaOrden(LineaOrden lineaOrden){
+          daoFactory.getLineaOrdenDAO().actualizar(lineaOrden);
       }
       
       public static void eliminarLineaOrden(int idLineaOrden){
