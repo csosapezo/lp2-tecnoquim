@@ -8,17 +8,17 @@ public class PlanMaestroProduccion {
     private Date periodo;
     private Estado estado;
     private ArrayList<OrdenProduccion> ordenes;
-    private ArrayList<Maquinaria> maquinarias;
+    private ArrayList<DetalleMaquinaria> maquinarias;
     private Trabajador responsable;
 
     public PlanMaestroProduccion() {
         periodo = new Date();
         ordenes = new ArrayList<OrdenProduccion>();
-        maquinarias = new ArrayList<Maquinaria>();
+        maquinarias = new ArrayList<DetalleMaquinaria>();
         responsable = new Trabajador();
     }
 
-    public PlanMaestroProduccion(Date periodo, Estado estado, ArrayList<OrdenProduccion> ordenes, ArrayList<Maquinaria> maquinarias, Trabajador responsable) {
+    public PlanMaestroProduccion(Date periodo, Estado estado, ArrayList<OrdenProduccion> ordenes, ArrayList<DetalleMaquinaria> maquinarias, Trabajador responsable) {
         this.periodo = periodo;
         this.estado = estado;
         this.ordenes = ordenes;
@@ -58,11 +58,11 @@ public class PlanMaestroProduccion {
         this.ordenes = ordenes;
     }
 
-    public ArrayList<Maquinaria> getMaquinarias() {
+    public ArrayList<DetalleMaquinaria> getMaquinarias() {
         return maquinarias;
     }
 
-    public void setMaquinarias(ArrayList<Maquinaria> maquinarias) {
+    public void setMaquinarias(ArrayList<DetalleMaquinaria> maquinarias) {
         this.maquinarias = maquinarias;
     }
 

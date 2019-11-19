@@ -85,20 +85,20 @@ public abstract class DBController {
       
       // DetalleMaquinaria
       
-      public static void insertarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria, int idMaq){
-          daoFactory.getDetalleMaquinariaDAO().insertar(detalleMaquinaria, idMaq);
+      public static void insertarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria, int idPMP){
+          daoFactory.getDetalleMaquinariaDAO().insertar(detalleMaquinaria, idPMP);
       }
       
-      public static void actualizarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria, int idMaquinaria){
-          daoFactory.getDetalleMaquinariaDAO().actualizar(detalleMaquinaria,idMaquinaria);
+      public static void actualizarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria){
+          daoFactory.getDetalleMaquinariaDAO().actualizar(detalleMaquinaria);
       }
       
       public static void eliminarDetalleMaquinaria(int id){
           daoFactory.getDetalleMaquinariaDAO().eliminar(id);
       }
       
-      public static ArrayList<DetalleMaquinaria> listarDetalleMaquinaria(int idMaquinaria){
-          return daoFactory.getDetalleMaquinariaDAO().listar(idMaquinaria);
+      public static ArrayList<DetalleMaquinaria> listarDetalleMaquinaria(int idPMP){
+          return daoFactory.getDetalleMaquinariaDAO().listar(idPMP);
       }
       
       public static ArrayList<DetalleMaquinaria> listarDetalleMaquinariaTodos(String maq){

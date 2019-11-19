@@ -25,9 +25,10 @@ public class MaquinariaMySQL implements MaquinariaDAO {
     public int insertar(Maquinaria maquinaria) {
          try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_MAQUINARIA(?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_MAQUINARIA(?,?,?,?)}");
             cs.setString("_NOMBRE", maquinaria.getNombre());
             cs.setString("_TIPO", maquinaria.getTipo());
+            cs.setBoolean("_ESTADO", maquinaria.getEstado());
             
             cs.registerOutParameter("_ID_MAQUINARIA", java.sql.Types.INTEGER);
             cs.executeUpdate();
@@ -44,10 +45,11 @@ public class MaquinariaMySQL implements MaquinariaDAO {
     public void actualizar(Maquinaria maquinaria) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_MAQUINARIA(?,?,?)}");
+            cs = con.prepareCall("{call ACTUALIZAR_MAQUINARIA(?,?,?,?)}");
             cs.setInt("_ID_MAQUINARIA", maquinaria.getId());
             cs.setString("_NOMBRE", maquinaria.getNombre());
             cs.setString("_TIPO", maquinaria.getTipo());
+            cs.setBoolean("_ESTADO", maquinaria.getEstado());
             cs.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -88,6 +90,7 @@ public class MaquinariaMySQL implements MaquinariaDAO {
                 m.setId(rs.getInt("ID_MAQUINARIA"));
                 m.setNombre(rs.getString("NOMBRE"));
                 m.setTipo(rs.getString("TIPO"));
+                m.setEstado(rs.getBoolean("ESTADO"));
      
                 maquinarias.add(m);
             }

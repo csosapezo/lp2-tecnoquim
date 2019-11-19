@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lp2tecnoquim.services;
 
 import java.sql.Connection;
@@ -22,16 +17,10 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 
-/**
- *
- * @author pukurin
- */
 @WebService(serviceName = "Servicio")
 public class Servicio {
 
-    /**
-     * This is a sample web service operation
-     */
+    
     
     @WebMethod(operationName = "enviarMensaje")
     public void enviarMensaje(@WebParam(name = "mensaje") Mensaje mensaje) {
@@ -110,21 +99,20 @@ public class Servicio {
     //DetalleMaquinaria
     @WebMethod(operationName = "insertarDetalleMaquinaria")
     public void insertarDetalleMaquinaria(@WebParam(name = "detMaquinaria") DetalleMaquinaria maquinaria,
-            @WebParam(name="idMaq") int idMaq){
-        DBController.insertarDetalleMaquinaria(maquinaria,idMaq);
+            @WebParam(name="idPMP") int idPMP){
+        DBController.insertarDetalleMaquinaria(maquinaria,idPMP);
     }
     @WebMethod(operationName = "actualizarDetalleMaquinaria")
-    public void actualizarDetalleMaquinaria(@WebParam(name = "detMaquinaria") DetalleMaquinaria detMaquinaria,
-            @WebParam(name = "idMaquinaria") int idMaquinaria){        
-        DBController.actualizarDetalleMaquinaria(detMaquinaria, idMaquinaria);
+    public void actualizarDetalleMaquinaria(@WebParam(name = "detMaquinaria") DetalleMaquinaria detMaquinaria){        
+        DBController.actualizarDetalleMaquinaria(detMaquinaria);
     }
     @WebMethod(operationName = "eliminarDetalleMaquinaria")
-    public void eliminarDetalleMaquinaria(@WebParam(name = "idDetMaquinaria") int idMaq){        
-        DBController.eliminarDetalleMaquinaria(idMaq);
+    public void eliminarDetalleMaquinaria(@WebParam(name = "idDetMaquinaria") int idDetMaq){        
+        DBController.eliminarDetalleMaquinaria(idDetMaq);
     }
     @WebMethod(operationName = "listarDetalleMaquinaria")
-    public ArrayList<DetalleMaquinaria> listarDetalleMaquinaria(@WebParam(name = "idMaquinaria") int idMaquinaria){
-        return DBController.listarDetalleMaquinaria(idMaquinaria);
+    public ArrayList<DetalleMaquinaria> listarDetalleMaquinaria(@WebParam(name = "idPMP") int idPMP){
+        return DBController.listarDetalleMaquinaria(idPMP);
     }
     @WebMethod(operationName = "listarDetalleMaquinariaTodos")
     public ArrayList<DetalleMaquinaria> listarDetalleMaquinariaTodos(String maq){

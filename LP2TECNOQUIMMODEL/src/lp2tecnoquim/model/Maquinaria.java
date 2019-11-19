@@ -1,29 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lp2tecnoquim.model;
 
-import java.util.ArrayList;
-
-/**
- *
- * @author alulab14
- */
 public class Maquinaria {
+    
     private int id;
     private String nombre;
     private String tipo;
-    private ArrayList<DetalleMaquinaria> detallesMaquinaria;
+    private boolean estado;
 
     public Maquinaria() {
+        estado = false;
     }
 
-    public Maquinaria(String nombre, String tipo,ArrayList<DetalleMaquinaria> detallesMaquinaria) {
+    public Maquinaria(String nombre, String tipo,boolean estado) {
         this.nombre = nombre;
         this.tipo = tipo;
-        this.detallesMaquinaria=detallesMaquinaria;
+        this.estado=estado;
     }
 
 
@@ -50,12 +41,13 @@ public class Maquinaria {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    public ArrayList<DetalleMaquinaria> getDetallesMaquinaria() {
-        return detallesMaquinaria;
+    
+    public boolean getEstado() {
+        return estado;
     }
-    public void setDetallesMaquinaria(ArrayList<DetalleMaquinaria> detallesMaquinaria) {
-        this.detallesMaquinaria = detallesMaquinaria;
+    
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
     
     
