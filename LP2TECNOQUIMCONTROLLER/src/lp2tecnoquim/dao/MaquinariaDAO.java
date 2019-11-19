@@ -15,7 +15,7 @@ import lp2tecnoquim.model.Maquinaria;
  */
 public interface MaquinariaDAO {
     
-    void insertar(Maquinaria maquinaria);
+    int insertar(Maquinaria maquinaria);
     void actualizar(Maquinaria maquinaria);
     void eliminar(int id);
     ArrayList<Maquinaria> listar(String dato);

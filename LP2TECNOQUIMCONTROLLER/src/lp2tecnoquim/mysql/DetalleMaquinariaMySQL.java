@@ -26,14 +26,13 @@ public class DetalleMaquinariaMySQL implements DetalleMaquinariaDAO {
     CallableStatement cs;
 
     @Override
-    public void insertar(DetalleMaquinaria detalleMaquinaria, int idPMP) {
+    public void insertar(DetalleMaquinaria detalleMaquinaria, int idMaq) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_DET_MAQUINARIA(?,?,?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_DET_MAQUINARIA(?,?,?,?)}");
             cs.setBoolean("_ESTADO", detalleMaquinaria.isActivo());
             cs.setDate("_FECHA", new java.sql.Date(detalleMaquinaria.getFecha().getTime()));
-            cs.setInt("_FK_ID_MAQUINARIA", detalleMaquinaria.getMaquinaria().getId());
-            cs.setInt("_FK_ID_PMP", idPMP);
+            cs.setInt("_FK_ID_MAQUINARIA", idMaq);
             cs.registerOutParameter("_ID_DET_MAQ", java.sql.Types.INTEGER);            
             cs.executeUpdate();            
             detalleMaquinaria.setIdDetalleM(cs.getInt("_ID_DET_MAQ"));

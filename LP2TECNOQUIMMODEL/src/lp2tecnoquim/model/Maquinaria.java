@@ -5,22 +5,25 @@
  */
 package lp2tecnoquim.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author alulab14
  */
 public class Maquinaria {
-    
     private int id;
     private String nombre;
     private String tipo;
+    private ArrayList<DetalleMaquinaria> detallesMaquinaria;
 
     public Maquinaria() {
     }
 
-    public Maquinaria(String nombre, String tipo) {
+    public Maquinaria(String nombre, String tipo,ArrayList<DetalleMaquinaria> detallesMaquinaria) {
         this.nombre = nombre;
         this.tipo = tipo;
+        this.detallesMaquinaria=detallesMaquinaria;
     }
 
 
@@ -48,6 +51,12 @@ public class Maquinaria {
         this.tipo = tipo;
     }
 
+    public ArrayList<DetalleMaquinaria> getDetallesMaquinaria() {
+        return detallesMaquinaria;
+    }
+    public void setDetallesMaquinaria(ArrayList<DetalleMaquinaria> detallesMaquinaria) {
+        this.detallesMaquinaria = detallesMaquinaria;
+    }
     
     
     

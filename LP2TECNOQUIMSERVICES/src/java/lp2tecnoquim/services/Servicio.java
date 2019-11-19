@@ -111,8 +111,8 @@ public class Servicio {
     //DetalleMaquinaria
     @WebMethod(operationName = "insertarDetalleMaquinaria")
     public void insertarDetalleMaquinaria(@WebParam(name = "maquinaria") DetalleMaquinaria maquinaria,
-            @WebParam(name="idPMP") int idPMP){
-        DBController.insertarDetalleMaquinaria(maquinaria,idPMP);
+            @WebParam(name="idMaq") int idMaq){
+        DBController.insertarDetalleMaquinaria(maquinaria,idMaq);
     }
     @WebMethod(operationName = "actualizarDetalleMaquinaria")
     public void actualizarDetalleMaquinaria(@WebParam(name = "maquinaria") DetalleMaquinaria maquinaria){        
@@ -208,8 +208,8 @@ public class Servicio {
     
     //Maquinaria
     @WebMethod(operationName = "insertarMaquinaria")
-    public void insertarMaquinaria(@WebParam(name = "maquinaria") Maquinaria maquinaria){
-        DBController.insertarMaquinaria(maquinaria);
+    public int insertarMaquinaria(@WebParam(name = "maquinaria") Maquinaria maquinaria){
+        return DBController.insertarMaquinaria(maquinaria);
     }
     @WebMethod(operationName = "actualizarMaquinaria")
     public void actualizarMaquinaria(@WebParam(name = "maquinaria") Maquinaria maquinaria){

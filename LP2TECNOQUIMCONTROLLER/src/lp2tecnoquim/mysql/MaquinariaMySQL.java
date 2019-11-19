@@ -26,7 +26,7 @@ public class MaquinariaMySQL implements MaquinariaDAO {
     Statement st=null;
     
     @Override
-    public void insertar(Maquinaria maquinaria) {
+    public int insertar(Maquinaria maquinaria) {
          try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call INSERTAR_MAQUINARIA(?,?,?)}");
@@ -41,6 +41,7 @@ public class MaquinariaMySQL implements MaquinariaDAO {
         }finally{
             try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
         }
+        return maquinaria.getId();
     }
 
     @Override
