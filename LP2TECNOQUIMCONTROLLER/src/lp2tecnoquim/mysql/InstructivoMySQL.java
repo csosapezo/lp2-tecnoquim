@@ -50,7 +50,7 @@ public class InstructivoMySQL implements InstructivoDAO {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call ACTUALIZAR_INSTRUCTIVO(?,?,?)}"); // Modificar el SQL
-            cs.setInt("_FK_ID_PRODUCTO", idProducto);
+            cs.setInt("_FK_ID_PROD", idProducto);
             cs.setInt("_ID_INSTRUCTIVO", instructivo.getId());
             cs.setString("_ACTIVIDADES", instructivo.getActividades());          
             cs.executeUpdate();

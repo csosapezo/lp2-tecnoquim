@@ -299,7 +299,7 @@ public class Servicio {
 
     @WebMethod(operationName = "actualizarProducto")
     public void actualizarProducto(@WebParam(name = "producto") Producto producto){
-        DBController.insertarProducto(producto);        
+        DBController.actualizarProducto(producto);        
     }
     @WebMethod(operationName = "eliminarProducto")
     public void eliminarProducto(@WebParam(name = "id") int id){
