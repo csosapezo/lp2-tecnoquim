@@ -16,10 +16,6 @@ import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.MaquinariaDAO;
 import lp2tecnoquim.model.Maquinaria;
 
-/**
- *
- * @author Carlos Sosa
- */
 public class MaquinariaMySQL implements MaquinariaDAO {
     Connection con = null;
     CallableStatement cs;

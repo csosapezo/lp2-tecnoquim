@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lp2tecnoquim.config;
 
 import java.util.ArrayList;
 import lp2tecnoquim.model.*;
 
-/**
- *
- * @author alulab14
- */
 public abstract class DBController {
     
       private static final DAOFactory daoFactory = DAOFactory.getDAOFactory();
@@ -98,16 +89,16 @@ public abstract class DBController {
           daoFactory.getDetalleMaquinariaDAO().insertar(detalleMaquinaria, idMaq);
       }
       
-      public static void actualizarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria){
-          daoFactory.getDetalleMaquinariaDAO().actualizar(detalleMaquinaria);
+      public static void actualizarDetalleMaquinaria(DetalleMaquinaria detalleMaquinaria, int idMaquinaria){
+          daoFactory.getDetalleMaquinariaDAO().actualizar(detalleMaquinaria,idMaquinaria);
       }
       
       public static void eliminarDetalleMaquinaria(int id){
           daoFactory.getDetalleMaquinariaDAO().eliminar(id);
       }
       
-      public static ArrayList<DetalleMaquinaria> listarDetalleMaquinaria(int idPMP){
-          return daoFactory.getDetalleMaquinariaDAO().listar(idPMP);
+      public static ArrayList<DetalleMaquinaria> listarDetalleMaquinaria(int idMaquinaria){
+          return daoFactory.getDetalleMaquinariaDAO().listar(idMaquinaria);
       }
       
       public static ArrayList<DetalleMaquinaria> listarDetalleMaquinariaTodos(String maq){

@@ -6,7 +6,6 @@
 package lp2tecnoquim.services;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,21 +109,22 @@ public class Servicio {
     }
     //DetalleMaquinaria
     @WebMethod(operationName = "insertarDetalleMaquinaria")
-    public void insertarDetalleMaquinaria(@WebParam(name = "maquinaria") DetalleMaquinaria maquinaria,
+    public void insertarDetalleMaquinaria(@WebParam(name = "detMaquinaria") DetalleMaquinaria maquinaria,
             @WebParam(name="idMaq") int idMaq){
         DBController.insertarDetalleMaquinaria(maquinaria,idMaq);
     }
     @WebMethod(operationName = "actualizarDetalleMaquinaria")
-    public void actualizarDetalleMaquinaria(@WebParam(name = "maquinaria") DetalleMaquinaria maquinaria){        
-        DBController.actualizarDetalleMaquinaria(maquinaria);
+    public void actualizarDetalleMaquinaria(@WebParam(name = "detMaquinaria") DetalleMaquinaria detMaquinaria,
+            @WebParam(name = "idMaquinaria") int idMaquinaria){        
+        DBController.actualizarDetalleMaquinaria(detMaquinaria, idMaquinaria);
     }
     @WebMethod(operationName = "eliminarDetalleMaquinaria")
-    public void eliminarDetalleMaquinaria(@WebParam(name = "idMaquinaria") int idMaq){        
+    public void eliminarDetalleMaquinaria(@WebParam(name = "idDetMaquinaria") int idMaq){        
         DBController.eliminarDetalleMaquinaria(idMaq);
     }
     @WebMethod(operationName = "listarDetalleMaquinaria")
-    public ArrayList<DetalleMaquinaria> listarDetalleMaquinaria(@WebParam(name = "idPMP") int idPMP){
-        return DBController.listarDetalleMaquinaria(idPMP);
+    public ArrayList<DetalleMaquinaria> listarDetalleMaquinaria(@WebParam(name = "idMaquinaria") int idMaquinaria){
+        return DBController.listarDetalleMaquinaria(idMaquinaria);
     }
     @WebMethod(operationName = "listarDetalleMaquinariaTodos")
     public ArrayList<DetalleMaquinaria> listarDetalleMaquinariaTodos(String maq){

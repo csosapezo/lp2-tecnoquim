@@ -7,25 +7,18 @@ package lp2tecnoquim.model;
 
 import java.util.Date;
 
-/**
- *
- * @author alulab14
- */
 public class DetalleMaquinaria {
     private int idDetalleM;
     private boolean activo;
-    private Maquinaria maquinaria;
     private Date fecha;
 
     public DetalleMaquinaria(int idDetalleM, boolean estado, Maquinaria maquinaria, Date fecha) {
         this.idDetalleM = idDetalleM;
         this.activo = estado;
-        this.maquinaria = maquinaria;
         this.fecha = fecha;
     }
 
     public DetalleMaquinaria() {
-        maquinaria = new Maquinaria();
         fecha = new Date();
     }
 
@@ -43,14 +36,6 @@ public class DetalleMaquinaria {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
-    }
-
-    public Maquinaria getMaquinaria() {
-        return maquinaria;
-    }
-
-    public void setMaquinaria(Maquinaria maquinaria) {
-        this.maquinaria = maquinaria;
     }
 
     public Date getFecha() {

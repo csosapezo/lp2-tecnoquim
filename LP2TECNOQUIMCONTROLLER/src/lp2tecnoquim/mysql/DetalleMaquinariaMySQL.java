@@ -10,17 +10,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.DetalleMaquinariaDAO;
 import lp2tecnoquim.model.DetalleMaquinaria;
 
-/**
- *
- * @author Carlos Sosa
- */
 public class DetalleMaquinariaMySQL implements DetalleMaquinariaDAO {
     Connection con = null;
     CallableStatement cs;
@@ -44,13 +38,13 @@ public class DetalleMaquinariaMySQL implements DetalleMaquinariaDAO {
     }
 
     @Override
-    public void actualizar(DetalleMaquinaria detalleMaquinaria) {
+    public void actualizar(DetalleMaquinaria detalleMaquinaria, int idMaquinaria) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call ACTUALIZAR_DET_MAQUINARIA(?,?,?)}");
             cs.setBoolean("_ESTADO", detalleMaquinaria.isActivo());
             cs.setDate("_FECHA", new java.sql.Date(detalleMaquinaria.getFecha().getTime()));
-            cs.setInt("_FK_ID_MAQUINARIA", detalleMaquinaria.getMaquinaria().getId());
+            cs.setInt("_FK_ID_MAQUINARIA", idMaquinaria);
                     
             cs.executeUpdate();
             
@@ -77,23 +71,19 @@ public class DetalleMaquinariaMySQL implements DetalleMaquinariaDAO {
     }
 
     @Override
-    public ArrayList<DetalleMaquinaria> listar(int idPMP) {
+    public ArrayList<DetalleMaquinaria> listar(int idMaquinaria) {
         ArrayList<DetalleMaquinaria> detalleMaquinaria = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             cs = con.prepareCall("{call LISTAR_DET_MAQUINARIA(?)}");
-            cs.setInt("_FK_ID_PMP", idPMP);
+            cs.setInt("_FK_ID_MAQ", idMaquinaria);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 DetalleMaquinaria  d = new DetalleMaquinaria();
-                
                 d.setIdDetalleM(rs.getInt("ID_DET_MAQ"));
                 d.setFecha(new java.util.Date(rs.getDate("FECHA").getTime()));
                 d.setActivo(rs.getBoolean("ESTADO"));
-                d.getMaquinaria().setId(rs.getInt("ID_MAQUINARIA"));
-                d.getMaquinaria().setNombre(rs.getString("NOMBRE"));
-                d.getMaquinaria().setTipo(rs.getString("TIPO"));
                 
                 detalleMaquinaria.add(d);
             }
@@ -120,9 +110,6 @@ public class DetalleMaquinariaMySQL implements DetalleMaquinariaDAO {
                 d.setIdDetalleM(rs.getInt("ID_DET_MAQ"));
                 d.setFecha(new java.util.Date(rs.getDate("FECHA").getTime()));
                 d.setActivo(rs.getBoolean("ESTADO"));
-                d.getMaquinaria().setId(rs.getInt("ID_MAQUINARIA"));
-                d.getMaquinaria().setNombre(rs.getString("NOMBRE"));
-                d.getMaquinaria().setTipo(rs.getString("TIPO"));
                 
                 detalleMaquinaria.add(d);
             }
