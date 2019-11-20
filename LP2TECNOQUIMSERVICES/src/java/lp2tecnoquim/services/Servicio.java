@@ -11,6 +11,7 @@ import lp2tecnoquim.config.DBController;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.model.*;
 import lp2tecnoquim.servlets.ServletInsumosRestringidos;
+import lp2tecnoquim.servlets.ServletInsumosCalidad;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -425,7 +426,25 @@ public class Servicio {
         }
         return arreglo;
     }
-    
+    @WebMethod(operationName = "generarReporteInsumosCalidadPDF")
+    public byte[] generarReporteInsumosCalidadPDF(){
+        byte[] arreglo = null;
+        try{
+            String ruta=ServletInsumosCalidad.class.getResource(
+                    "/lp2tecnoquim/reports/InsumosCalidad.jasper").getPath();
+            ruta=ruta.replaceAll("%20", " ");
+            ruta=ruta.replaceAll("%23", "#");
+            JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile(ruta);
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            JasperPrint jp = JasperFillManager.fillReport(reporte,null,con);
+            arreglo = JasperExportManager.exportReportToPdf(jp);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return arreglo;
+    }
 }
     
     
