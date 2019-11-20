@@ -87,6 +87,12 @@ public class Servicio {
     public void actualizarDetalleAlmacenInsumoPorOrden(@WebParam(name = "orden") OrdenProduccion orden){
         DBController.actualizarDetalleAlmacenInsumoPorOrden(orden);
     }
+    @WebMethod(operationName = "actualizarDetalleAlmacenInsumoEstado")
+    public void actualizarDetalleAlmacenInsumoEstado(@WebParam(name = "detalleAlmacenInsumo") DetalleAlmacenInsumo detalleAlmacenInsumo){
+        DBController.actualizarDetalleAlmacenInsumoEstado(detalleAlmacenInsumo);
+    }
+    
+    
     //DetalleAlmacenProducto
     @WebMethod(operationName = "insertarDetalleAlmacenProducto")
     public void insertarDetalleAlmacenProducto(@WebParam(name = "detalleAlmacenProducto") DetalleAlmacenProducto detalleAlmacenProducto){

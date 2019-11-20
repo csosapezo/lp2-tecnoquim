@@ -69,6 +69,10 @@ public abstract class DBController {
           daoFactory.getDetalleAlmacenInsumoDAO().actualizarPorOrden(orden);
       }
       
+      public static void actualizarDetalleAlmacenInsumoEstado(DetalleAlmacenInsumo detalleAlmacenInsumo){
+          daoFactory.getDetalleAlmacenInsumoDAO().actualizarEstado(detalleAlmacenInsumo);
+      }
+      
       // DetalleAlmacenProducto
       
       public static void insertarDetalleAlmacenProducto(DetalleAlmacenProducto detalleAlmacenProducto){
