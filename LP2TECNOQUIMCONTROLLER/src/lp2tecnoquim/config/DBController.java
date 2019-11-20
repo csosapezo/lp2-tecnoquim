@@ -65,6 +65,10 @@ public abstract class DBController {
           return daoFactory.getDetalleAlmacenInsumoDAO().listar(dato);
       }
       
+      public static void actualizarDetalleAlmacenInsumoPorOrden(OrdenProduccion orden){
+          daoFactory.getDetalleAlmacenInsumoDAO().actualizarPorOrden(orden);
+      }
+      
       // DetalleAlmacenProducto
       
       public static void insertarDetalleAlmacenProducto(DetalleAlmacenProducto detalleAlmacenProducto){
@@ -81,6 +85,10 @@ public abstract class DBController {
       
       public static ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(String dato){
           return daoFactory.getDetalleAlmacenProductoDAO().listar(dato);
+      }
+      
+      public static void insertarDetalleAlmacenProductoPorOrden(OrdenProduccion orden){
+          daoFactory.getDetalleAlmacenProductoDAO().insertarPorOrden(orden);
       }
       
       // DetalleMaquinaria

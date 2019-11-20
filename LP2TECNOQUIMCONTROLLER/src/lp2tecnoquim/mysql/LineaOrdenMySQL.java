@@ -51,7 +51,7 @@ public class LineaOrdenMySQL implements LineaOrdenDAO {
     public void actualizar(LineaOrden lineaOrden) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_LINEA_ORDEN_PROD(?,?,?,?)}");
+            cs = con.prepareCall("{call ACTUALIZAR_LINEA_ORDEN(?,?,?,?)}");
             cs.setInt("_ID_LINEAORD", lineaOrden.getIdLineaOrden());
             cs.setInt("_FK_ID_PROD", lineaOrden.getProducto().getIdProducto());
             cs.setInt("_CANT_PROD", lineaOrden.getCantProducto());

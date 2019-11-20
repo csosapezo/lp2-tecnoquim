@@ -90,7 +90,7 @@ public class ProyeccionVentaMySQL implements ProyeccionVentaDAO{
                 ProyeccionVenta  a = new ProyeccionVenta();
                 a.setId(rs.getInt("ID_PROY_VENTA"));
                 a.setPeriodo(rs.getDate("PERIODO"));
-                a.setProyecciones(DBController.listarLineaProyeccion(a.getId()));
+                //a.setProyecciones(DBController.listarLineaProyeccion(a.getId()));
                 ///////////////////////////////////////////////
                 proyeccion.add(a);
             }

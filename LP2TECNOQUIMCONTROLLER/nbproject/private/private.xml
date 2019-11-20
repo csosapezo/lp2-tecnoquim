@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/dao/PoliticaStockDAO.java</file>
             <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/config/MySQLDAOFactory.java</file>
             <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/PoliticaDeStockMySQL.java</file>
             <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/config/DBController.java</file>
             <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/config/DAOFactory.java</file>
             <file>file:/C:/Doc%20Familiares/Jennifer/2019-2/LP2/ta/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/MaquinariaMySQL.java</file>
+=======
+            <file>file:/D:/Users/alulab14.INF.000/Desktop/lp2/lp2-tecnoquim-back-end/LP2TECNOQUIMCONTROLLER/src/lp2tecnoquim/mysql/ProyeccionVentaMySQL.java</file>
+>>>>>>> d65c53c8ab3b8a3e3c57eb78a8dea0b6dd408597
         </group>
     </open-files>
 </project-private>
