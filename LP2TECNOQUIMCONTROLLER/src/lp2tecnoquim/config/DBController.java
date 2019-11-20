@@ -267,8 +267,8 @@ public abstract class DBController {
           daoFactory.getPoliticaStockDAO().eliminar(idPoliticaStock);
       }
       
-      public static ArrayList<PoliticaStock> listarPoliticaStock(){
-          return daoFactory.getPoliticaStockDAO().listar();
+      public static ArrayList<PoliticaStock> listarPoliticaStock(String dato){
+          return daoFactory.getPoliticaStockDAO().listar(dato);
       }
       
       // Producto

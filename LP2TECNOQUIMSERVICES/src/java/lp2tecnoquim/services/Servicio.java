@@ -275,8 +275,8 @@ public class Servicio {
     }
     
     @WebMethod(operationName = "listarPoliticaStock")
-    public ArrayList<PoliticaStock> listarPoliticaStock(){
-        return DBController.listarPoliticaStock();        
+    public ArrayList<PoliticaStock> listarPoliticaStock(@WebParam(name = "dato") String dato){
+        return DBController.listarPoliticaStock(dato);        
     }
     //Producto
     @WebMethod(operationName = "insertarProducto")
