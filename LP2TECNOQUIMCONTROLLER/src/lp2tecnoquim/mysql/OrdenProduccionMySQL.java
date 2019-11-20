@@ -50,11 +50,10 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
     public void actualizar(OrdenProduccion ordenProduccion, int idPMP) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call ACTUALIZAR_ORDENPROD(?,?,?)}");
+            cs = con.prepareCall("{CALL ACTUALIZAR_ORDENPROD(?)}");
             
             cs.setInt("_ID_ORDENPROD", ordenProduccion.getId());
-            cs.setDate("_FECHA", new java.sql.Date(ordenProduccion.getFecha().getTime()));
-            cs.setInt("_FK_ID_PMP", idPMP);
+            cs.executeUpdate();
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
