@@ -12,6 +12,10 @@
         <servlet-name>ServletInsumosRestringidosCalidad</servlet-name>
         <servlet-class>lp2tecnoquim.servlets.ServletInsumosCalidad</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletProductosCalidad</servlet-name>
+        <servlet-class>lp2tecnoquim.servlets.ServletProductosCalidad</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletInsumosRestringidos</servlet-name>
         <url-pattern>/ServletInsumosRestringidos</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>ServletInsumosRestringidosCalidad</servlet-name>
         <url-pattern>/ServletInsumosRestringidosCalidad</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletProductosCalidad</servlet-name>
+        <url-pattern>/ServletProductosCalidad</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
