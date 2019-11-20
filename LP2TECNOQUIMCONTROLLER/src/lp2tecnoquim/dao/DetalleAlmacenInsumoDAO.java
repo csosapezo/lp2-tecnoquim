@@ -7,6 +7,7 @@ package lp2tecnoquim.dao;
 
 import java.util.ArrayList;
 import lp2tecnoquim.model.DetalleAlmacenInsumo;
+import lp2tecnoquim.model.OrdenProduccion;
 
 
 /**
@@ -18,4 +19,5 @@ public interface DetalleAlmacenInsumoDAO {
     void actualizar(DetalleAlmacenInsumo detalleAlmacenInsumo);
     void eliminar(int id);
     ArrayList<DetalleAlmacenInsumo> listar(String dato);
+    void actualizarPorOrden(OrdenProduccion orden);
 }

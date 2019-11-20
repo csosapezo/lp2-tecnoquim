@@ -13,11 +13,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import lp2tecnoquim.config.DBController;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.DetalleAlmacenInsumoDAO;
 import lp2tecnoquim.model.DetalleAlmacenInsumo;
 import lp2tecnoquim.model.EstadoMaterial;
 import lp2tecnoquim.model.Insumo;
+import lp2tecnoquim.model.LineaInsumo;
+import lp2tecnoquim.model.LineaOrden;
+import lp2tecnoquim.model.OrdenProduccion;
 
 /**
  *
@@ -153,5 +157,28 @@ public class DetalleAlmacenInsumoMySQL implements DetalleAlmacenInsumoDAO {
             try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
         }
         return detalleAlmacenInsumo;
+    }
+    
+    public void actualizarPorOrden(OrdenProduccion orden){
+        for (LineaOrden linea: orden.getLineasOrden()){
+            ArrayList<LineaInsumo> insumosRequeridos = DBController.listarLineaInsumo(linea.getProducto().getInstructivo().getId());
+            for (LineaInsumo lineaInsumo : insumosRequeridos){
+                ArrayList<DetalleAlmacenInsumo> almacen = listar(lineaInsumo.getInsumo().getNombre());
+                int cantidadRequerida = linea.getCantProducto() * lineaInsumo.getCantInsumo();
+                for (DetalleAlmacenInsumo insumoAlmacen : almacen){
+                    if (insumoAlmacen.getStock() > cantidadRequerida){
+                        insumoAlmacen.setStock(insumoAlmacen.getStock() - cantidadRequerida);
+                        actualizar(insumoAlmacen);
+                        break;
+                    } else if (insumoAlmacen.getStock() == cantidadRequerida) {
+                        eliminar(insumoAlmacen.getId());
+                        break;
+                    } else {
+                        eliminar(insumoAlmacen.getId());
+                        cantidadRequerida -= insumoAlmacen.getStock();
+                    }
+                }
+        }
+        }
     }
 }

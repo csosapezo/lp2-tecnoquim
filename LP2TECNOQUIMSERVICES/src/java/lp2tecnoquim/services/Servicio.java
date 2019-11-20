@@ -83,6 +83,10 @@ public class Servicio {
     public ArrayList<DetalleAlmacenInsumo> listarDetalleAlmacenInsumo(@WebParam(name = "dato") String dato){
         return DBController.listarDetalleAlmacenInsumo(dato);
     }
+    @WebMethod(operationName = "actualizarDetalleAlmacenInsumoPorOrden")
+    public void actualizarDetalleAlmacenInsumoPorOrden(@WebParam(name = "orden") OrdenProduccion orden){
+        DBController.actualizarDetalleAlmacenInsumoPorOrden(orden);
+    }
     //DetalleAlmacenProducto
     @WebMethod(operationName = "insertarDetalleAlmacenProducto")
     public void insertarDetalleAlmacenProducto(@WebParam(name = "detalleAlmacenProducto") DetalleAlmacenProducto detalleAlmacenProducto){
@@ -95,6 +99,10 @@ public class Servicio {
     @WebMethod(operationName = "listarDetalleAlmacenProducto")
     public ArrayList<DetalleAlmacenProducto> listarDetalleAlmacenProducto(@WebParam(name = "dato") String dato){
         return DBController.listarDetalleAlmacenProducto(dato);
+    }
+    @WebMethod(operationName = "insertarDetalleAlmacenProductoPorOrden")
+    public void insertarDetalleAlmacenProductoPorOrden(@WebParam(name = "orden") OrdenProduccion orden){
+        DBController.insertarDetalleAlmacenProductoPorOrden(orden);
     }
     //DetalleMaquinaria
     @WebMethod(operationName = "insertarDetalleMaquinaria")

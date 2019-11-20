@@ -17,6 +17,8 @@ import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.DetalleAlmacenProductoDAO;
 import lp2tecnoquim.model.DetalleAlmacenProducto;
 import lp2tecnoquim.model.EstadoMaterial;
+import lp2tecnoquim.model.LineaOrden;
+import lp2tecnoquim.model.OrdenProduccion;
 
 /**
  *
@@ -138,5 +140,18 @@ public class DetalleAlmacenProductoMySQL implements DetalleAlmacenProductoDAO {
             try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
         }
         return detalleAlmacenProducto;
+    }
+    
+    public void insertarPorOrden(OrdenProduccion orden){
+        for(LineaOrden linea: orden.getLineasOrden()){
+            DetalleAlmacenProducto prod = new DetalleAlmacenProducto();
+            prod.getAlmacen().setIdAlmacen(2);
+            prod.setProducto(linea.getProducto());
+            prod.setEstado(linea.getEstadoCalidad());
+            prod.setStock(linea.getCantProducto());
+            prod.setnLote(linea.getIdLineaOrden());
+            prod.setPeriodo(orden.getFecha());
+            insertar(prod);
+        }
     }
 }
