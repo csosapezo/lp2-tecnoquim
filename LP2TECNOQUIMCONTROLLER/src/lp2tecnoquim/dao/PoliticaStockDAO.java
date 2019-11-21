@@ -18,6 +18,6 @@ public interface PoliticaStockDAO {
     void insertar(PoliticaStock politica);
     void actualizar(PoliticaStock politica);
     void eliminar(int id);
-    ArrayList<PoliticaStock> listar();
+    ArrayList<PoliticaStock> listar(String dato);
     
 }

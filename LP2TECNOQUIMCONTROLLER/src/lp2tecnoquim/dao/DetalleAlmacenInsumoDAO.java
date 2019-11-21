@@ -20,4 +20,5 @@ public interface DetalleAlmacenInsumoDAO {
     void eliminar(int id);
     ArrayList<DetalleAlmacenInsumo> listar(String dato);
     void actualizarPorOrden(OrdenProduccion orden);
+    void actualizarEstado(DetalleAlmacenInsumo detalleAlmacenInsumo);
 }

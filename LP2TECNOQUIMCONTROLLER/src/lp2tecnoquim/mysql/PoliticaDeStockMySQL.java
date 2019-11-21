@@ -69,12 +69,13 @@ public class PoliticaDeStockMySQL implements PoliticaStockDAO{
     }
 
     @Override
-    public ArrayList<PoliticaStock> listar() {
+    public ArrayList<PoliticaStock> listar(String dato) {
         ArrayList<PoliticaStock> politica = new ArrayList<>();
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call LISTAR_POLITICA_DE_STOCK()}");
+            cs = con.prepareCall("{call LISTAR_POLITICA_DE_STOCK(?)}");
+            cs.setString("_NOMBRE",dato);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 PoliticaStock  a = new PoliticaStock();

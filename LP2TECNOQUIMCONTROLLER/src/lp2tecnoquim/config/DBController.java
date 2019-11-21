@@ -69,6 +69,10 @@ public abstract class DBController {
           daoFactory.getDetalleAlmacenInsumoDAO().actualizarPorOrden(orden);
       }
       
+      public static void actualizarDetalleAlmacenInsumoEstado(DetalleAlmacenInsumo detalleAlmacenInsumo){
+          daoFactory.getDetalleAlmacenInsumoDAO().actualizarEstado(detalleAlmacenInsumo);
+      }
+      
       // DetalleAlmacenProducto
       
       public static void insertarDetalleAlmacenProducto(DetalleAlmacenProducto detalleAlmacenProducto){
@@ -279,8 +283,8 @@ public abstract class DBController {
           daoFactory.getPoliticaStockDAO().eliminar(idPoliticaStock);
       }
       
-      public static ArrayList<PoliticaStock> listarPoliticaStock(){
-          return daoFactory.getPoliticaStockDAO().listar();
+      public static ArrayList<PoliticaStock> listarPoliticaStock(String dato){
+          return daoFactory.getPoliticaStockDAO().listar(dato);
       }
       
       // Producto

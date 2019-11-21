@@ -11,6 +11,8 @@ import lp2tecnoquim.config.DBController;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.model.*;
 import lp2tecnoquim.servlets.ServletInsumosRestringidos;
+import lp2tecnoquim.servlets.ServletInsumosCalidad;
+import lp2tecnoquim.servlets.ServletProductosCalidad;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -87,6 +89,12 @@ public class Servicio {
     public void actualizarDetalleAlmacenInsumoPorOrden(@WebParam(name = "orden") OrdenProduccion orden){
         DBController.actualizarDetalleAlmacenInsumoPorOrden(orden);
     }
+    @WebMethod(operationName = "actualizarDetalleAlmacenInsumoEstado")
+    public void actualizarDetalleAlmacenInsumoEstado(@WebParam(name = "detalleAlmacenInsumo") DetalleAlmacenInsumo detalleAlmacenInsumo){
+        DBController.actualizarDetalleAlmacenInsumoEstado(detalleAlmacenInsumo);
+    }
+    
+    
     //DetalleAlmacenProducto
     @WebMethod(operationName = "insertarDetalleAlmacenProducto")
     public void insertarDetalleAlmacenProducto(@WebParam(name = "detalleAlmacenProducto") DetalleAlmacenProducto detalleAlmacenProducto){
@@ -288,8 +296,8 @@ public class Servicio {
     }
     
     @WebMethod(operationName = "listarPoliticaStock")
-    public ArrayList<PoliticaStock> listarPoliticaStock(){
-        return DBController.listarPoliticaStock();        
+    public ArrayList<PoliticaStock> listarPoliticaStock(@WebParam(name = "dato") String dato){
+        return DBController.listarPoliticaStock(dato);        
     }
     //Producto
     @WebMethod(operationName = "insertarProducto")
@@ -424,7 +432,44 @@ public class Servicio {
         }
         return arreglo;
     }
-    
+    @WebMethod(operationName = "generarReporteInsumosCalidadPDF")
+    public byte[] generarReporteInsumosCalidadPDF(){
+        byte[] arreglo = null;
+        try{
+            String ruta=ServletInsumosCalidad.class.getResource(
+                    "/lp2tecnoquim/reports/InsumosCalidad.jasper").getPath();
+            ruta=ruta.replaceAll("%20", " ");
+            ruta=ruta.replaceAll("%23", "#");
+            JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile(ruta);
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            JasperPrint jp = JasperFillManager.fillReport(reporte,null,con);
+            arreglo = JasperExportManager.exportReportToPdf(jp);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return arreglo;
+    }
+    @WebMethod(operationName = "generarReporteProductosCalidadPDF")
+    public byte[] generarReporteProductosCalidadPDF(){
+        byte[] arreglo = null;
+        try{
+            String ruta=ServletProductosCalidad.class.getResource(
+                    "/lp2tecnoquim/reports/ProductosCalidad.jasper").getPath();
+            ruta=ruta.replaceAll("%20", " ");
+            ruta=ruta.replaceAll("%23", "#");
+            JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile(ruta);
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            JasperPrint jp = JasperFillManager.fillReport(reporte,null,con);
+            arreglo = JasperExportManager.exportReportToPdf(jp);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return arreglo;
+    }
 }
     
     

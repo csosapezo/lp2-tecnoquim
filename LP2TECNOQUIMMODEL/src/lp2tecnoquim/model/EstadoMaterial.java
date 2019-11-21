@@ -10,7 +10,7 @@ package lp2tecnoquim.model;
  * @author Carlos Sosa
  */
 public enum EstadoMaterial {
-    Bueno, Pendiente, Corregido
+    Bueno, Pendiente, Corregido, Rechazado
     
     /*
     * Bueno: El insumo o producto no ha sido observado

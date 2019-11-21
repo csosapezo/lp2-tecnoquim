@@ -182,4 +182,25 @@ public class DetalleAlmacenInsumoMySQL implements DetalleAlmacenInsumoDAO {
         }
         }
     }
+
+    @Override
+    public void actualizarEstado(DetalleAlmacenInsumo detalleAlmacenInsumo) {
+        try{
+            con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            cs = con.prepareCall("{call ACTUALIZAR_DETALLE_ALMACEN_INSUMO_ESTADO(?,?)}");
+            cs.setInt("_ID_DET_ALM_INS", detalleAlmacenInsumo.getId());
+            if (detalleAlmacenInsumo.getEstado()== EstadoMaterial.Bueno){
+                cs.setInt("_CALIDAD", 1);
+            }else if (detalleAlmacenInsumo.getEstado()== EstadoMaterial.Rechazado){
+                cs.setInt("_CALIDAD", 2);
+            }else if (detalleAlmacenInsumo.getEstado()== EstadoMaterial.Pendiente){
+                cs.setInt("_CALIDAD", 0);
+            }                   
+            cs.executeUpdate();            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }finally{
+            try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
+        }
+    }
 }
