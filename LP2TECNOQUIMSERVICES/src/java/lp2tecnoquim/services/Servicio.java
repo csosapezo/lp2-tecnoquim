@@ -13,6 +13,7 @@ import lp2tecnoquim.model.*;
 import lp2tecnoquim.servlets.ServletInsumosRestringidos;
 import lp2tecnoquim.servlets.ServletInsumosCalidad;
 import lp2tecnoquim.servlets.ServletProductosCalidad;
+import lp2tecnoquim.servlets.ServletReporteGeneral;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -459,6 +460,30 @@ public class Servicio {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
             JasperPrint jp = JasperFillManager.fillReport(reporte,null,con);
+            arreglo = JasperExportManager.exportReportToPdf(jp);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return arreglo;
+    }
+    @WebMethod(operationName = "generarReporteGeneralPDF")
+    public byte[] generarReporteGeneralPDF(
+            @WebParam (name = "mes") int mes,
+            @WebParam (name = "anio") int anio){
+        byte[] arreglo = null;
+        try{
+            String ruta=ServletInsumosRestringidos.class.getResource(
+                    "/lp2tecnoquim/reports/ReporteGeneral.jasper").getPath();
+            ruta=ruta.replaceAll("%20", " ");
+            ruta=ruta.replaceAll("%23", "#");
+            JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile(ruta);
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            HashMap hm = new HashMap();
+            hm.put("MES", mes);
+            hm.put("ANIO", anio);
+            JasperPrint jp = JasperFillManager.fillReport(reporte,hm,con);
             arreglo = JasperExportManager.exportReportToPdf(jp);
         }catch(Exception ex){
             System.out.println(ex.getMessage());
