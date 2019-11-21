@@ -259,6 +259,11 @@ public class Servicio {
         return DBController.listarOrdenesProduccion(fecha);        
     }
     
+    @WebMethod(operationName = "verificarDisponibilidadInsumos")
+    public boolean verificarDisponibilidadInsumos(@WebParam(name = "ordenProduccion") OrdenProduccion ordenProduccion){
+        return DBController.verificarDisponibilidadInsumos(ordenProduccion);       
+    }
+    
     //Plan Maestro de Produccion
     @WebMethod(operationName = "insertarPMP")
     public int insertarPMP(@WebParam(name = "politicaStock") PlanMaestroProduccion politicaStock){

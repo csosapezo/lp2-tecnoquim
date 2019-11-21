@@ -159,6 +159,7 @@ public class DetalleAlmacenInsumoMySQL implements DetalleAlmacenInsumoDAO {
         return detalleAlmacenInsumo;
     }
     
+    @Override
     public void actualizarPorOrden(OrdenProduccion orden){
         for (LineaOrden linea: orden.getLineasOrden()){
             ArrayList<LineaInsumo> insumosRequeridos = DBController.listarLineaInsumo(linea.getProducto().getInstructivo().getId());

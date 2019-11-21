@@ -19,5 +19,6 @@ public interface OrdenProduccionDAO {
     void eliminar(int id);
     ArrayList<OrdenProduccion> listar(int idPMP);
     ArrayList<OrdenProduccion> listar(String fecha);
+    boolean verificarDisponibilidadInsumos(OrdenProduccion orden);
     
 }

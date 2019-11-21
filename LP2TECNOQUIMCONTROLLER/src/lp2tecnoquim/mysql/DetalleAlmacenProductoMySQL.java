@@ -142,6 +142,7 @@ public class DetalleAlmacenProductoMySQL implements DetalleAlmacenProductoDAO {
         return detalleAlmacenProducto;
     }
     
+    @Override
     public void insertarPorOrden(OrdenProduccion orden){
         for(LineaOrden linea: orden.getLineasOrden()){
             DetalleAlmacenProducto prod = new DetalleAlmacenProducto();
