@@ -235,6 +235,10 @@ public abstract class DBController {
           return daoFactory.getOrdenProduccionDAO().listar(idPMP);
       }
       
+      public static boolean verificarDisponibilidadInsumos(OrdenProduccion orden){
+          return daoFactory.getOrdenProduccionDAO().verificarDisponibilidadInsumos(orden);
+      }
+      
       public static ArrayList<OrdenProduccion> listarOrdenesProduccion(String fecha){
           return daoFactory.getOrdenProduccionDAO().listar(fecha);
       }

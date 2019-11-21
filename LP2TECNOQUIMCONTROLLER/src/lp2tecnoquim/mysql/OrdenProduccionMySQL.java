@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import lp2tecnoquim.config.DBController;
 import lp2tecnoquim.config.DBManager;
 import lp2tecnoquim.dao.OrdenProduccionDAO;
+import lp2tecnoquim.model.Mensaje;
 import lp2tecnoquim.model.OrdenProduccion;
 
 /**
@@ -129,5 +130,61 @@ public class OrdenProduccionMySQL implements OrdenProduccionDAO {
             try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
         }
         return ordenProduccions;
+    }
+    
+    @Override
+    public boolean verificarDisponibilidadInsumos(OrdenProduccion ordenProduccion){
+        boolean disponible = true;
+        ArrayList<String> insumosFaltantes = new ArrayList<String>();
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
+            cs = con.prepareCall("{call VERIFICAR_DISPONIBILIDAD_INSUMOS(?)}");
+            cs.setInt("_ID_ORDEN", ordenProduccion.getId());
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                int remanente = rs.getInt("REMANENTE");
+                String nombre = rs.getString("NOMBRE");
+                if (remanente < 0) {
+                    disponible = false;
+                    insumosFaltantes.add(Integer.toString(remanente) + " " + nombre);
+                }
+            }
+            
+            if (!disponible){
+                Mensaje mensaje = new Mensaje();
+            
+                cs = con.prepareCall("{call LISTAR_TRABAJADOR_ROL(?)}");
+                cs.setInt("_ID_ROL", 6);
+                rs = cs.executeQuery();
+                while(rs.next()){
+                    mensaje.getReceptor().setId(rs.getInt("ID_TRABAJADOR"));
+                    break;
+                }
+
+                cs = con.prepareCall("{call LISTAR_TRABAJADOR_ROL(?)}");
+                cs.setInt("_ID_ROL", 1);
+                rs = cs.executeQuery();
+                while(rs.next()){
+                    mensaje.getEmisor().setId(rs.getInt("ID_TRABAJADOR"));
+                    break;
+                }
+
+                mensaje.setFechaEnvio(new java.sql.Date((new java.util.Date()).getTime()));
+
+                for (String insumo : insumosFaltantes){
+                    mensaje.setDescripcion(" FALTA " + insumo);
+                    DBController.enviarMensaje(mensaje);
+                }
+            }
+            
+            
+            return disponible;
+        }catch(ClassNotFoundException | SQLException ex){
+            System.out.println(ex.getMessage());
+        }finally{
+            try{con.close();}catch(SQLException ex){System.out.println(ex.getMessage());}
+        }
+        return true;
     }
 }
