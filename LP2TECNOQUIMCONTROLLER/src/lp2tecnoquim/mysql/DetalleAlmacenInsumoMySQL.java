@@ -36,7 +36,7 @@ public class DetalleAlmacenInsumoMySQL implements DetalleAlmacenInsumoDAO {
     public void insertar(DetalleAlmacenInsumo detalleAlmacenInsumo,int idInsumo) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_DETALLE_ALMACEN_INSUMO(?,?,?,?,?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_DETALLE_INSUMO(?,?,?,?,?,?,?)}");
             cs.setInt("_FK_ID_INSUMO", idInsumo);
             cs.setInt("_FK_ID_ALMACEN", detalleAlmacenInsumo.getAlmacen().getIdAlmacen());
             cs.setInt("_NUM_LOTE", detalleAlmacenInsumo.getnLote());
