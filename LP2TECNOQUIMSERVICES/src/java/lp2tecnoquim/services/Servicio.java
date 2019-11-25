@@ -477,6 +477,10 @@ public class Servicio {
             @WebParam (name = "anio") int anio){
         byte[] arreglo = null;
         try{
+            String subRuta=ServletReporteGeneral.class.getResource(
+                    "/lp2tecnoquim/reports/SubReporte.jasper").getPath();
+            subRuta=subRuta.replaceAll("%20", " ");
+            
             String ruta=ServletInsumosRestringidos.class.getResource(
                     "/lp2tecnoquim/reports/ReporteGeneral.jasper").getPath();
             ruta=ruta.replaceAll("%20", " ");
@@ -488,6 +492,7 @@ public class Servicio {
             HashMap hm = new HashMap();
             hm.put("MES", mes);
             hm.put("ANIO", anio);
+            hm.put("SUBREPORT_DIR", subRuta);
             JasperPrint jp = JasperFillManager.fillReport(reporte,hm,con);
             arreglo = JasperExportManager.exportReportToPdf(jp);
         }catch(Exception ex){

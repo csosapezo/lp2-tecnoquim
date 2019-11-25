@@ -43,6 +43,11 @@ public class ServletReporteGeneral extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             int mes = Integer.parseInt(request.getParameter("mes"));
             int anio = Integer.parseInt(request.getParameter("anio"));
+            
+//            String subRuta=ServletReporteGeneral.class.getResource(
+//                    "/lp2tecnoquim/reports/SubReporteGeneral.jasper").getPath();
+//            subRuta=subRuta.replaceAll("%20", " ");
+
             //Hacemos referencia al archive jasper JasperReport 
             String ruta=ServletReporteGeneral.class.getResource(
                     "/lp2tecnoquim/reports/ReporteGeneral.jasper").getPath();
@@ -55,6 +60,7 @@ public class ServletReporteGeneral extends HttpServlet {
             HashMap hm = new HashMap();
             hm.put("MES", mes);
             hm.put("ANIO", anio);
+//            hm.put("SUBREPORT_DIR", subRuta);
             OutputStream outStream = response.getOutputStream();
             JasperPrint jp = JasperFillManager.fillReport(reporte,hm,con);
             con.close();
