@@ -125,10 +125,13 @@ public class DetalleAlmacenProductoMySQL implements DetalleAlmacenProductoDAO {
                         d.setEstado(EstadoMaterial.Bueno);
                         break;
                     case 1:
+                        d.setEstado(EstadoMaterial.Pendiente);
+                        break;
+                    case 2:
                         d.setEstado(EstadoMaterial.Corregido);
                         break;
                     default:
-                        d.setEstado(EstadoMaterial.Pendiente);
+                        d.setEstado(EstadoMaterial.Rechazado);
                         break;
                 }
                 

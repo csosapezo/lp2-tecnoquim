@@ -111,10 +111,13 @@ public class LineaOrdenMySQL implements LineaOrdenDAO {
                         l.setEstadoCalidad(EstadoMaterial.Bueno);
                         break;
                     case 1:
+                        l.setEstadoCalidad(EstadoMaterial.Pendiente);
+                        break;
+                    case 2:
                         l.setEstadoCalidad(EstadoMaterial.Corregido);
                         break;
                     default:
-                        l.setEstadoCalidad(EstadoMaterial.Pendiente);
+                        l.setEstadoCalidad(EstadoMaterial.Rechazado);
                         break;
                 }
                 
