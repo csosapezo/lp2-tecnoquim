@@ -478,11 +478,11 @@ public class Servicio {
         byte[] arreglo = null;
         try{
             String subRuta=ServletReporteGeneral.class.getResource(
-                    "/lp2tecnoquim/reports/SubReporte.jasper").getPath();
+                    "/lp2tecnoquim/reports/subReporte.jasper").getPath();
             subRuta=subRuta.replaceAll("%20", " ");
             
             String ruta=ServletInsumosRestringidos.class.getResource(
-                    "/lp2tecnoquim/reports/ReporteGeneral.jasper").getPath();
+                    "/lp2tecnoquim/reports/reporteGeneral.jasper").getPath();
             ruta=ruta.replaceAll("%20", " ");
             ruta=ruta.replaceAll("%23", "#");
             JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile(ruta);
