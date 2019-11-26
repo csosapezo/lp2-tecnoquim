@@ -39,16 +39,18 @@ public class DetalleAlmacenInsumoMySQL implements DetalleAlmacenInsumoDAO {
             cs = con.prepareCall("{call INSERTAR_DETALLE_INSUMO(?,?,?,?,?,?,?)}");
             cs.setInt("_FK_ID_INSUMO", idInsumo);
             cs.setInt("_FK_ID_ALMACEN", detalleAlmacenInsumo.getAlmacen().getIdAlmacen());
-            cs.setInt("_NUM_LOTE", detalleAlmacenInsumo.getnLote());
+            //cs.setInt("_NUM_LOTE", detalleAlmacenInsumo.getnLote());
             cs.setDate("_PERIODO", new java.sql.Date(detalleAlmacenInsumo.getPeriodo().getTime()));
             cs.setInt("_STOCK", detalleAlmacenInsumo.getStock());
             cs.setInt("_CALIDAD", 0);
             
             cs.registerOutParameter("_ID_DET_ALM_INS", java.sql.Types.INTEGER);
+            cs.registerOutParameter("_NUM_LOTE", java.sql.Types.INTEGER);
             
             cs.executeUpdate();
             
             detalleAlmacenInsumo.setId(cs.getInt("_ID_DET_ALM_INS"));
+            detalleAlmacenInsumo.setnLote(cs.getInt("_NUM_LOTE"));
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }finally{
