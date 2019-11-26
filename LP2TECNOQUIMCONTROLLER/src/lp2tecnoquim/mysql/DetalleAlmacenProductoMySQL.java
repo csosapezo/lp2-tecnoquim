@@ -33,7 +33,7 @@ public class DetalleAlmacenProductoMySQL implements DetalleAlmacenProductoDAO {
     public void insertar(DetalleAlmacenProducto detalleAlmacenProducto) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_DETALLE_ALMACEN_PRODUCTO(?,?,?,?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_DETALLE_ALMACEN_PRODUCTO(?,?,?,?,?,?,?)}");
             cs.setInt("_FK_ID_PRODUCTO", detalleAlmacenProducto.getProducto().getIdProducto());
             cs.setInt("_FK_ID_ALMACEN", detalleAlmacenProducto.getAlmacen().getIdAlmacen());
             cs.setInt("_NUM_LOTE", detalleAlmacenProducto.getnLote());
