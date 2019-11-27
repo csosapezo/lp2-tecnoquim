@@ -19,7 +19,7 @@ public class PoliticaDeStockMySQL implements PoliticaStockDAO{
     public void insertar(PoliticaStock politica) {
         try{
             con = DriverManager.getConnection(DBManager.url, DBManager.user, DBManager.password);
-            cs = con.prepareCall("{call INSERTAR_POLITICA_DE_STOCK(?,?,?)}");
+            cs = con.prepareCall("{call INSERTAR_POLITICA_DE_STOCK(?,?,?,?)}");
             cs.setInt("_FK_ID_PROD", politica.getProducto().getIdProducto());
             cs.setInt("_CANT_MAX",politica.getCantMax());
             cs.setInt("_CANT_MIN",politica.getCantMin());
